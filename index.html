@@ -6,55 +6,37 @@
 <title>如桑的AI日报 · 2026-09-02</title>
 <style>
   :root{
-    --bg:#f5f6f8; --card:#fff; --hover:#f8f9fc; --line:#e8eaf0; --line2:#dde0e6;
-    --txt:#1a1a2e; --sub:#5a6178; --dim:#949db5; --accent:#2563eb;
-    --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
-    --t-tuoguan:#7c3aed; --t-xuanpin:#d97706; --t-ka:#0891b2; --t-pan:#059669;
-    --sidebar-w:200px;
+    --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
+    --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
+    --accent:#6ea8fe; --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
+    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
-    background:var(--bg); color:var(--txt);
+    background:radial-gradient(1200px 700px at 80% -10%,#15203a 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--txt);
     font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
     line-height:1.65; -webkit-font-smoothing:antialiased;
   }
   a{color:var(--accent);text-decoration:none}
   a:hover{text-decoration:underline}
 
-  /* Layout */
-  .app{display:flex;min-height:100vh}
-  .sidebar{
-    position:fixed; top:0; left:0; width:var(--sidebar-w); height:100vh;
-    background:var(--card); border-right:1px solid var(--line);
-    padding:40px 0 24px; overflow-y:auto; z-index:10;
-    display:flex; flex-direction:column;
-  }
-  .sidebar .logo{font-size:15px;font-weight:700;padding:0 20px;margin-bottom:28px;color:var(--txt)}
-  .sidebar .logo span{color:var(--dim);font-weight:400;font-size:13px;display:block;margin-top:2px}
-  .sidebar nav{flex:1}
-  .sidebar nav a{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:9px 20px;font-size:14px;color:var(--sub);transition:.12s;
-    border-left:3px solid transparent;
-  }
-  .sidebar nav a:hover{background:var(--hover);color:var(--txt);text-decoration:none}
-  .sidebar nav a .cnt{font-size:12px;color:var(--dim);background:var(--bg);border-radius:10px;padding:0 8px;min-width:22px;text-align:center}
-  .sidebar .footnote{padding:0 20px;font-size:12px;color:var(--dim);line-height:1.6}
-
-  .main{margin-left:var(--sidebar-w);flex:1;padding:40px 48px 80px;max-width:900px}
-  .main section{scroll-margin-top:20px;margin-bottom:44px}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;padding-bottom:80px}
 
   /* Header */
-  .main-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+  .main-header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding:48px 0 20px;margin-bottom:36px;border-bottom:1px solid var(--line)
+  }
   .main-header h1{font-size:28px;font-weight:800;letter-spacing:-.3px}
   .main-header .status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-top:4px;white-space:nowrap}
   .main-header .status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
   .main-header .status .label{color:var(--green);font-weight:600}
 
   /* Section header */
+  section{margin-bottom:44px;scroll-margin-top:20px}
   .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
-  .sec-title .ico{width:18px;text-align:center;color:var(--accent)}
   .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
 
   /* Insight card */
@@ -71,20 +53,24 @@
   .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
 
   /* Card (list items) */
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:box-shadow .15s}
-  .card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06);border-color:var(--line2)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
+  .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
   .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
   .card .meta .tag{font-size:11px;font-weight:600;border-radius:5px;padding:1px 8px}
-  .tag-tuoguan{background:#ede9fe;color:var(--t-tuoguan)}
-  .tag-xuanpin{background:#fef3c7;color:var(--t-xuanpin)}
-  .tag-ka{background:#ecfeff;color:var(--t-ka)}
-  .tag-pan{background:#d1fae5;color:var(--t-pan)}
+  .tag-tuoguan{background:rgba(167,139,250,.18);color:var(--t-tuoguan)}
+  .tag-xuanpin{background:rgba(251,191,36,.18);color:var(--t-xuanpin)}
+  .tag-ka{background:rgba(34,211,238,.18);color:var(--t-ka)}
+  .tag-pan{background:rgba(52,211,153,.18);color:var(--t-pan)}
   .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
-    display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
-  .s9{background:var(--red)} .s8{background:#f97316} .s7{background:#eab308} .s6{background:var(--dim)}
+    display:flex;align-items:center;justify-content:center;color:#0a0d15;flex:none}
+  .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)}
+  .s8{background:linear-gradient(135deg,#ffb15d,#ff9028)}
+  .s7{background:linear-gradient(135deg,#ffd97a,#ffc23d)}
+  .s6{background:linear-gradient(135deg,#9fb0d0,#7c8db0)}
   .card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:6px}
   .card .sum{font-size:13.5px;color:var(--sub);line-height:1.6;margin-bottom:8px}
-  .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);background:#f8faff;border-radius:0 6px 6px 0;line-height:1.6}
+  .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);
+    background:rgba(110,168,254,.08);border-radius:0 6px 6px 0;line-height:1.6}
   .card .ins b{color:var(--accent);margin-right:4px}
   .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
   .card .foot .src{color:var(--dim)}
@@ -92,48 +78,25 @@
   .card .foot .orig:hover{text-decoration:underline}
 
   /* Compact row */
-  .row{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:box-shadow .15s}
-  .row:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  .row{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
+    border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:.18s}
+  .row:hover{background:var(--card);border-color:#2a3554;transform:translateY(-1px)}
   .row .rc{flex:1;min-width:0}
   .row h4{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
   .row .ract{font-size:13px;color:var(--sub);line-height:1.6}
 
   footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
 
-  @media(max-width:768px){
-    .sidebar{position:relative;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;padding:16px 12px;border-right:none;border-bottom:1px solid var(--line)}
-    .sidebar .logo{width:100%;margin-bottom:12px;padding:0}
-    .sidebar nav{display:flex;flex-wrap:wrap;gap:4px;flex:none}
-    .sidebar nav a{border-left:none;border-bottom:2px solid transparent;padding:6px 10px;font-size:13px}
-    .sidebar nav a:hover{border-bottom-color:var(--accent);background:none}
-    .sidebar .footnote{display:none}
-    .app{flex-direction:column}
-    .main{margin-left:0;padding:20px 16px 60px;max-width:100%}
-    .main-header{flex-direction:column;gap:8px}
+  @media(max-width:640px){
+    .main-header{flex-direction:column;gap:8px;padding-top:32px}
     .insight{padding:20px 16px}
   }
 </style>
 </head>
 <body>
-<div class="app">
+<div class="wrap">
 
-  <!-- ============ 侧边栏导航 ============ -->
-  <aside class="sidebar">
-    <div class="logo">如桑的AI日报<span>产品运营 · 每日速览</span></div>
-    <nav>
-      <a href="#insight">今日洞见</a>
-      <a href="#hot">全球热榜<span class="cnt">7</span></a>
-      <a href="#ecom">电商·联盟<span class="cnt">4</span></a>
-      <a href="#oss">开源热项<span class="cnt">3</span></a>
-      <a href="#voices">大佬说<span class="cnt">3</span></a>
-      <a href="#cn">国内速递<span class="cnt">6</span></a>
-      <a href="#research">前沿研究<span class="cnt">3</span></a>
-    </nav>
-    <div class="footnote">由 AI 每日联网检索聚合生成<br>评分与启示为编辑判断<br>点击标题可查看原文</div>
-  </aside>
-
-  <!-- ============ 主内容区 ============ -->
-  <main class="main">
+  <main>
 
     <header class="main-header">
       <h1>如桑的AI日报</h1>
