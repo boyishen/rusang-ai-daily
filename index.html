@@ -53,7 +53,7 @@
   .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
 
   /* Card (list items) */
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;transition:.18s}
   .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
   .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
   .card .meta .tag{font-size:11px;font-weight:600;border-radius:5px;padding:1px 8px}
@@ -79,7 +79,7 @@
 
   /* Compact row */
   .row{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
-    border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:.18s}
+    border-radius:10px;padding:12px 16px;transition:.18s}
   .row:hover{background:var(--card);border-color:#2a3554;transform:translateY(-1px)}
   .row .rc{flex:1;min-width:0}
   .row h4{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
@@ -94,8 +94,13 @@
   .nav-bar a:hover{background:var(--card);color:var(--txt);border-color:#2a3554;text-decoration:none}
   .nav-bar a .ncount{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:0 6px;min-width:18px;text-align:center}
 
+  /* Two-column grid *\
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid > .sec-title{grid-column:1/-1}
+
   @media(max-width:640px){
     .main-header{flex-direction:column;gap:8px;padding-top:32px}
+    .grid{grid-template-columns:1fr}
     .insight{padding:20px 16px}
   }
 </style>
@@ -148,7 +153,7 @@
     </section>
 
     <!-- ============ 全球热榜 ============ -->
-    <section id="hot">
+    <section id="hot" class="grid">
       <div class="sec-title">全球热榜<span class="count">7</span></div>
 
       <article class="card">
@@ -209,7 +214,7 @@
     </section>
 
     <!-- ============ 电商·联盟聚焦 ============ -->
-    <section id="ecom">
+    <section id="ecom" class="grid">
       <div class="sec-title">电商 · 联盟聚焦<span class="count">4</span></div>
 
       <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">AI托管</span><div class="rc">
@@ -234,7 +239,7 @@
     </section>
 
     <!-- ============ 开源热项 ============ -->
-    <section id="oss">
+    <section id="oss" class="grid">
       <div class="sec-title">开源热项<span class="count">3</span></div>
 
       <article class="card">
@@ -263,7 +268,7 @@
     </section>
 
     <!-- ============ 大佬说 ============ -->
-    <section id="voices">
+    <section id="voices" class="grid">
       <div class="sec-title">大佬说<span class="count">3</span></div>
 
       <article class="card">
@@ -292,7 +297,7 @@
     </section>
 
     <!-- ============ 国内速递 ============ -->
-    <section id="cn">
+    <section id="cn" class="grid">
       <div class="sec-title">国内速递<span class="count">6</span></div>
 
       <article class="card">
@@ -345,7 +350,7 @@
     </section>
 
     <!-- ============ 前沿研究 ============ -->
-    <section id="research">
+    <section id="research" class="grid">
       <div class="sec-title">前沿研究<span class="count">3</span></div>
 
       <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">AI托管</span><div class="rc">
