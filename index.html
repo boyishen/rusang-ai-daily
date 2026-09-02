@@ -3,412 +3,393 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>每日 AI 前沿速览 · 2026-09-02</title>
+<title>如桑的AI日报 · 2026-09-02</title>
 <style>
   :root{
-    --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
-    --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
-    --hot:#ff5d5d; --warm:#ff9f43; --mid:#ffd166; --cool:#5b6b8c;
-    --t-tuoguan:#a78bfa;   /* AI托管 */
-    --t-xuanpin:#fbbf24;   /* AI选品 */
-    --t-ka:#22d3ee;        /* 工具生态 */
-    --t-pan:#34d399;       /* 电商联盟 */
-    --accent:#6ea8fe;
+    --bg:#f5f6f8; --card:#fff; --hover:#f8f9fc; --line:#e8eaf0; --line2:#dde0e6;
+    --txt:#1a1a2e; --sub:#5a6178; --dim:#949db5; --accent:#2563eb;
+    --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
+    --t-tuoguan:#7c3aed; --t-xuanpin:#d97706; --t-ka:#0891b2; --t-pan:#059669;
+    --sidebar-w:200px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
   body{
-    background:radial-gradient(1200px 700px at 80% -10%,#15203a 0%,var(--bg) 55%) fixed,var(--bg);
-    color:var(--txt);
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Segoe UI,sans-serif;
-    line-height:1.7; -webkit-font-smoothing:antialiased; padding-bottom:80px;
+    background:var(--bg); color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
-  a{color:inherit;text-decoration:none}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
 
-  /* HERO */
-  header.hero{padding:56px 0 28px;border-bottom:1px solid var(--line)}
-  .kicker{color:var(--accent);letter-spacing:.32em;font-size:12px;font-weight:700;text-transform:uppercase}
-  h1.title{font-size:44px;line-height:1.15;margin:12px 0 8px;font-weight:800;letter-spacing:-.5px}
-  .subtitle{color:var(--sub);font-size:15px}
-  .dateline{color:var(--dim);font-size:13px;margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-  .dateline b{color:var(--sub);font-weight:600}
-  .pill{border:1px solid var(--line);background:var(--bg2);border-radius:999px;padding:2px 10px;font-size:12px;color:var(--sub)}
-
-  /* legend */
-  .legend{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 4px}
-  .lg{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--sub);
-      background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:7px 11px}
-  .dot{width:9px;height:9px;border-radius:50%;flex:none}
-  .lg b{color:var(--txt);font-weight:600}
-
-  /* SECTION */
-  section{padding:40px 0 6px}
-  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-  .sec-ico{font-size:16px;color:var(--accent);width:22px;text-align:center}
-  .sec-head h2{font-size:21px;font-weight:800;letter-spacing:-.2px}
-  .sec-head .cnt{font-size:12px;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
-  .sec-head .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-  .sec-note{color:var(--dim);font-size:12.5px;margin:-12px 0 18px 34px}
-
-  /* INSIGHT (今日洞见) */
-  .insight-card{
-    position:relative;border-radius:18px;padding:2px;
-    background:linear-gradient(135deg,#a78bfa,#22d3ee 40%,#34d399 75%,#fbbf24);
+  /* Layout */
+  .app{display:flex;min-height:100vh}
+  .sidebar{
+    position:fixed; top:0; left:0; width:var(--sidebar-w); height:100vh;
+    background:var(--card); border-right:1px solid var(--line);
+    padding:40px 0 24px; overflow-y:auto; z-index:10;
+    display:flex; flex-direction:column;
   }
-  .insight-inner{background:linear-gradient(180deg,#121a2c,#0e1422);border-radius:16px;padding:28px 30px}
-  .insight-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);
-    border:1px solid var(--line);background:var(--bg2);padding:4px 12px;border-radius:999px;margin-bottom:16px}
-  .insight-inner h3{font-size:19px;font-weight:700;margin-bottom:14px;line-height:1.5}
-  .insight-inner p{color:var(--sub);font-size:15px;margin-bottom:14px}
-  .insight-inner p:last-child{margin-bottom:0}
-  .insight-inner strong{color:var(--txt);font-weight:700}
-  .insight-inner .num{color:var(--accent);font-weight:800;margin-right:6px}
-  .hl-t{color:var(--t-tuoguan)} .hl-x{color:var(--t-xuanpin)} .hl-k{color:var(--t-ka)} .hl-p{color:var(--t-pan)}
+  .sidebar .logo{font-size:15px;font-weight:700;padding:0 20px;margin-bottom:28px;color:var(--txt)}
+  .sidebar .logo span{color:var(--dim);font-weight:400;font-size:13px;display:block;margin-top:2px}
+  .sidebar nav{flex:1}
+  .sidebar nav a{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:9px 20px;font-size:14px;color:var(--sub);transition:.12s;
+    border-left:3px solid transparent;
+  }
+  .sidebar nav a:hover{background:var(--hover);color:var(--txt);text-decoration:none}
+  .sidebar nav a .cnt{font-size:12px;color:var(--dim);background:var(--bg);border-radius:10px;padding:0 8px;min-width:22px;text-align:center}
+  .sidebar .footnote{padding:0 20px;font-size:12px;color:var(--dim);line-height:1.6}
 
-  /* CARD */
-  .card{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);
-    border-radius:14px;padding:18px 20px;margin-bottom:12px;transition:.18s;}
-  .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
-  .rank{font-size:15px;font-weight:800;color:var(--dim);min-width:26px;padding-top:2px;font-variant-numeric:tabular-nums}
-  .cbody{flex:1;min-width:0}
-  .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-  .cat{font-size:11px;color:var(--sub);border:1px solid var(--line);background:var(--bg2);border-radius:6px;padding:1px 8px}
-  .topic{font-size:11px;font-weight:700;border-radius:6px;padding:1px 8px;color:#0a0d15}
-  .tp-tuoguan{background:var(--t-tuoguan)} .tp-xuanpin{background:var(--t-xuanpin)}
-  .tp-ka{background:var(--t-ka)} .tp-pan{background:var(--t-pan)}
-  .score{margin-left:auto;font-size:12px;font-weight:800;width:26px;height:26px;border-radius:8px;
-    display:flex;align-items:center;justify-content:center;color:#0a0d15;font-variant-numeric:tabular-nums}
-  .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)} .s8{background:linear-gradient(135deg,#ffb15d,#ff9028)}
-  .s7{background:linear-gradient(135deg,#ffd97a,#ffc23d)} .s6{background:linear-gradient(135deg,#9fb0d0,#7c8db0)}
-  .card h3{font-size:16.5px;font-weight:700;line-height:1.5;margin-bottom:7px}
-  .card h3 a:hover{color:var(--accent)}
-  .sum{color:var(--sub);font-size:14px;margin-bottom:10px}
-  .ins{font-size:13.5px;color:var(--txt);background:linear-gradient(90deg,rgba(110,168,254,.10),transparent);
-    border-left:2px solid var(--accent);padding:8px 12px;border-radius:0 8px 8px 0}
-  .ins b{color:var(--accent);margin-right:5px}
-  .foot{display:flex;align-items:center;gap:10px;margin-top:11px;flex-wrap:wrap}
-  .src{font-size:11.5px;color:var(--dim)}
-  .tags{display:flex;gap:6px;flex-wrap:wrap}
-  .tg{font-size:11px;color:var(--dim);border:1px solid var(--line);border-radius:6px;padding:0 7px}
-  .orig{margin-left:auto;font-size:12px;color:var(--accent);font-weight:600}
-  .orig:hover{text-decoration:underline}
+  .main{margin-left:var(--sidebar-w);flex:1;padding:40px 48px 80px;max-width:900px}
+  .main section{scroll-margin-top:20px;margin-bottom:44px}
 
-  /* compact rows */
-  .row{display:flex;gap:14px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
-    border-radius:12px;padding:14px 16px;margin-bottom:10px}
+  /* Header */
+  .main-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+  .main-header h1{font-size:28px;font-weight:800;letter-spacing:-.3px}
+  .main-header .status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-top:4px;white-space:nowrap}
+  .main-header .status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+  .main-header .status .label{color:var(--green);font-weight:600}
+
+  /* Section header */
+  .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .sec-title .ico{width:18px;text-align:center;color:var(--accent)}
+  .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
+
+  /* Insight card */
+  .insight{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:8px}
+  .insight .insight-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-bottom:16px}
+  .insight .insight-head .star{color:var(--orange);font-size:16px}
+  .insight .insight-head .by{color:var(--dim);font-size:12px}
+  .insight .intro{font-size:15px;color:var(--sub);margin-bottom:18px;line-height:1.7}
+  .insight .item{margin-bottom:18px}
+  .insight .item:last-child{margin-bottom:0}
+  .insight .item .idx{color:var(--accent);font-weight:700;font-size:14px;margin-right:6px}
+  .insight .item .ititle{display:inline;font-weight:700;font-size:15px;color:var(--txt)}
+  .insight .item .ititle a{font-weight:700}
+  .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
+
+  /* Card (list items) */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:box-shadow .15s}
+  .card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06);border-color:var(--line2)}
+  .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
+  .card .meta .tag{font-size:11px;font-weight:600;border-radius:5px;padding:1px 8px}
+  .tag-tuoguan{background:#ede9fe;color:var(--t-tuoguan)}
+  .tag-xuanpin{background:#fef3c7;color:var(--t-xuanpin)}
+  .tag-ka{background:#ecfeff;color:var(--t-ka)}
+  .tag-pan{background:#d1fae5;color:var(--t-pan)}
+  .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+  .s9{background:var(--red)} .s8{background:#f97316} .s7{background:#eab308} .s6{background:var(--dim)}
+  .card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:6px}
+  .card .sum{font-size:13.5px;color:var(--sub);line-height:1.6;margin-bottom:8px}
+  .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);background:#f8faff;border-radius:0 6px 6px 0;line-height:1.6}
+  .card .ins b{color:var(--accent);margin-right:4px}
+  .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
+  .card .foot .src{color:var(--dim)}
+  .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
+  .card .foot .orig:hover{text-decoration:underline}
+
+  /* Compact row */
+  .row{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:box-shadow .15s}
+  .row:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
   .row .rc{flex:1;min-width:0}
-  .row h4{font-size:15px;font-weight:700;line-height:1.45;margin-bottom:5px}
-  .row h4 a:hover{color:var(--accent)}
-  .row .ract{font-size:13px;color:var(--sub)}
-  .row .ract b{color:var(--accent)}
+  .row h4{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
+  .row .ract{font-size:13px;color:var(--sub);line-height:1.6}
 
-  footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);color:var(--dim);font-size:12.5px}
-  footer .disc{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;color:var(--sub);font-size:12.5px;line-height:1.75}
-  footer b{color:var(--txt)}
-  @media(max-width:640px){
-    h1.title{font-size:32px} .card{padding:15px} .score{margin-left:0}
-    .insight-inner{padding:22px 18px} .meta{gap:6px}
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
+
+  @media(max-width:768px){
+    .sidebar{position:relative;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;padding:16px 12px;border-right:none;border-bottom:1px solid var(--line)}
+    .sidebar .logo{width:100%;margin-bottom:12px;padding:0}
+    .sidebar nav{display:flex;flex-wrap:wrap;gap:4px;flex:none}
+    .sidebar nav a{border-left:none;border-bottom:2px solid transparent;padding:6px 10px;font-size:13px}
+    .sidebar nav a:hover{border-bottom-color:var(--accent);background:none}
+    .sidebar .footnote{display:none}
+    .app{flex-direction:column}
+    .main{margin-left:0;padding:20px 16px 60px;max-width:100%}
+    .main-header{flex-direction:column;gap:8px}
+    .insight{padding:20px 16px}
   }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="app">
 
-  <header class="hero">
-    <div class="kicker">AI Frontier · 每日速览</div>
-    <h1 class="title">每日 AI 前沿速览</h1>
-    <div class="subtitle">为关心 AI 与电商的你,每日速递全球前沿 · 每条附一句<b style="color:var(--accent)">从业者启示</b></div>
-    <div class="dateline">
-      <span class="pill">2026年9月2日 · 星期三</span>
-      <span class="pill">共 22 条</span>
-      <span>数据源:<b>联网检索聚合</b>(全球热榜 / 开源 / 国内 / 研究)</span>
-    </div>
-    <div class="legend">
-      <div class="lg"><i class="dot" style="background:var(--t-tuoguan)"></i><b>AI托管</b>&nbsp;经营托管 / 电商Agent</div>
-      <div class="lg"><i class="dot" style="background:var(--t-xuanpin)"></i><b>AI选品</b>&nbsp;选品 / 导购 / 货品分发</div>
-      <div class="lg"><i class="dot" style="background:var(--t-ka)"></i><b>工具生态</b>&nbsp;工具服务商 / A2A / 开源</div>
-      <div class="lg"><i class="dot" style="background:var(--t-pan)"></i><b>电商联盟</b>&nbsp;淘客 / 联盟 / 电商大盘</div>
-    </div>
-  </header>
+  <!-- ============ 侧边栏导航 ============ -->
+  <aside class="sidebar">
+    <div class="logo">如桑的AI日报<span>产品运营 · 每日速览</span></div>
+    <nav>
+      <a href="#insight">今日洞见</a>
+      <a href="#hot">全球热榜<span class="cnt">7</span></a>
+      <a href="#ecom">电商·联盟<span class="cnt">4</span></a>
+      <a href="#oss">开源热项<span class="cnt">3</span></a>
+      <a href="#voices">大佬说<span class="cnt">3</span></a>
+      <a href="#cn">国内速递<span class="cnt">6</span></a>
+      <a href="#research">前沿研究<span class="cnt">3</span></a>
+    </nav>
+    <div class="footnote">由 AI 每日联网检索聚合生成<br>评分与启示为编辑判断<br>点击标题可查看原文</div>
+  </aside>
 
-  <!-- ============ 今日洞见 ============ -->
-  <section>
-    <div class="sec-head"><span class="sec-ico">✦</span><h2>今日洞见</h2><span class="rule"></span></div>
-    <div class="insight-card"><div class="insight-inner">
-      <div class="insight-tag">✦ 编辑视角 · AI × 电商</div>
-      <h3>今天有三件事,值得做 AI × 电商的人认真停下来想。</h3>
-      <p><span class="num">01</span><strong class="hl-p">战略窗口正在收窄。</strong>阿里已率先打通「千问 × 淘宝」AI 购物全链路(推荐→下单→履约→售后闭环),淘宝 App 消息页也上线了 AI 购物助手;而淘宝联盟更早就立下「3 年发展 100 万深度用 AI 的淘客」的目标(算法投流 / 智能选品 / 智能文案)。这两件事合起来说明:<strong class="hl-t">AI 经营托管</strong>不是一次创新实验,而是<strong>集团级战略在中小长尾的落地抓手</strong>——上面已经修好高速路(千问入口 + 联盟目标),托管能力就是让 40 万长尾淘客能开上这条路的车。窗口在收窄,因为一旦大模型入口的购物闭环成型,不走官方托管的长尾会被结构性边缘化。</p>
-      <p><span class="num">02</span><strong class="hl-x">货品分发要开始"给 Agent 读"。</strong>海外 Agentic Commerce 明显提速(有报告称 AI 驱动订单增长约 15x),Forbes 直接给出电商新规则:让商品目录「可被 Agentic AI 读取」、像顾客说话那样写、别堆关键词。这是 GEO 在电商的翻版:未来货品分发不只"给消费者看",还要"给对方购物 Agent 读"。「货品 × 利益点 × 表达」的差异化配置,值得预留一层<strong>结构化、机器可解析</strong>的表达。</p>
-      <p><span class="num">03</span><strong class="hl-t">护城河不在模型,在数据闭环。</strong>通义 8 月开源了 27B 稠密多模态 Agent 模型(256K→1M 上下文),OpenClaw 成为史上增长最快的开源 Agent 项目——底层模型与 Agent 框架正在飞速商品化。这意味着经营托管的壁垒不在"用了哪个模型/框架",而在<strong>「经营数据 + 策略生成→采纳→成交」的反馈闭环</strong>(策略采纳率、收入提升占比这类标尺)。把闭环和采纳率做深,比追新模型更重要。</p>
-    </div></div>
-  </section>
+  <!-- ============ 主内容区 ============ -->
+  <main class="main">
 
-  <!-- ============ 全球热榜 ============ -->
-  <section>
-    <div class="sec-head"><span class="sec-ico">▲</span><h2>全球热榜</h2><span class="cnt">按影响力排序 · 7</span><span class="rule"></span></div>
+    <header class="main-header">
+      <h1>如桑的AI日报</h1>
+      <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年9月2日 星期三</div>
+    </header>
 
-    <article class="card">
-      <div class="rank">01</div><div class="cbody">
-        <div class="meta"><span class="cat">电商</span><span class="topic tp-pan">电商联盟</span><span class="score s9">9</span></div>
+    <!-- ============ 今日洞见 ============ -->
+    <section id="insight">
+      <div class="sec-title">今日洞见</div>
+      <div class="insight">
+        <div class="insight-head"><span class="star">★</span> 编辑视角 <span class="by">· by AI</span></div>
+        <p class="intro">今天有三件事,值得做 AI × 电商的人认真停下来想。</p>
+
+        <div class="item">
+          <span class="idx">01</span>
+          <span class="ititle"><a href="https://www.ebrun.com/20231013/530959.shtml" target="_blank">阿里已打通「千问 × 淘宝」AI 购物全链路</a></span>
+          <div class="ibody">战略窗口正在收窄。阿里已率先打通千问 App 与淘宝的推荐→下单→履约→售后闭环,淘宝 App 消息页也上线了 AI 购物助手;而淘宝联盟更早就立下「3 年发展 100 万深度用 AI 的淘客」的目标。两件事合起来说明:AI 经营托管不是一次创新实验,而是集团级战略在中小长尾的落地抓手——上面已修好高速路,托管能力就是让 40 万长尾淘客能开上这条路的车。窗口在收窄,因为一旦大模型入口的购物闭环成型,不走官方托管的长尾会被结构性边缘化。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">02</span>
+          <span class="ititle"><a href="https://www.forbes.com/sites/catherineerdly/2026/02/22/a-2026-guide-to-getting-agentic-ai-to-recommend-your-e-commerce-site/" target="_blank">货品分发要开始"给 Agent 读"</a></span>
+          <div class="ibody">海外 Agentic Commerce 明显提速(AI 驱动订单增长约 15x),Forbes 直接给出电商新规则:让商品目录「可被 Agentic AI 读取」、像顾客说话那样写、别堆关键词。这是 GEO 在电商的翻版:未来货品分发不只"给消费者看",还要"给对方购物 Agent 读"。货品×利益点×表达的差异化配置,值得预留一层结构化、机器可解析的表达。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">03</span>
+          <span class="ititle"><a href="https://zhuanlan.zhihu.com/p/670574382" target="_blank">护城河不在模型,在数据闭环</a></span>
+          <div class="ibody">通义 8 月开源了 27B 稠密多模态 Agent 模型(256K→1M 上下文),OpenClaw 成为史上增长最快的开源 Agent 项目——底层模型与 Agent 框架正在飞速商品化。这意味着经营托管的壁垒不在"用了哪个模型/框架",而在于「经营数据+策略生成→采纳→成交」的反馈闭环。把闭环和采纳率做深,比追新模型更重要。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 全球热榜 ============ -->
+    <section id="hot">
+      <div class="sec-title">全球热榜<span class="count">7</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s9">9</span></div>
         <h3><a href="https://www.destilabs.com/blog/ai-shopping-agents-ecommerce-2026" target="_blank">Agentic Commerce 提速:AI 购物 Agent 开始"替人逛、替人买",AI 驱动订单增长约 15x</a></h3>
         <p class="sum">多份 2026 报告指出,自主购物 Agent 通过结构化 API 完成"研究→比价→下单",AI 驱动的订单量同比大幅增长,电商正从"人浏览"转向"Agent 代理购买"。</p>
         <p class="ins"><b>→ 电商联盟:</b> 货品与利益点需"机器可读";长尾托管可探索"帮消费者的 Agent 下单"的承接玩法。</p>
-        <div class="foot"><span class="src">Desti Labs / Invisible</span><span class="tags"><span class="tg">Agentic Commerce</span><span class="tg">购物Agent</span></span><a class="orig" href="https://invisibletech.ai/blog/agentic-commerce-2026" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">Desti Labs / Invisible</span><a class="orig" href="https://invisibletech.ai/blog/agentic-commerce-2026" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">02</div><div class="cbody">
-        <div class="meta"><span class="cat">电商</span><span class="topic tp-xuanpin">AI选品</span><span class="score s8">8</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-xuanpin">AI选品</span><span class="score s8">8</span></div>
         <h3><a href="https://www.forbes.com/sites/catherineerdly/2026/02/22/a-2026-guide-to-getting-agentic-ai-to-recommend-your-e-commerce-site/" target="_blank">Forbes:让商品目录"可被 Agentic AI 推荐",是电商的下一代 GEO</a></h3>
-        <p class="sum">文章给出三条实操:让 catalog 对 AI 可读、像顾客说话那样写内容(弃关键词堆砌)、在站外建立可信足迹。核心是"被 AI 推荐"正在取代"被搜索命中"。</p>
+        <p class="sum">文章给出三条实操:让 catalog 对 AI 可读、像顾客说话那样写内容、在站外建立可信足迹。核心是"被 AI 推荐"正在取代"被搜索命中"。</p>
         <p class="ins"><b>→ AI选品:</b> "表达"要分层——一层给人看(种草),一层给 Agent 读(结构化卖点/参数),承接效率将分化。</p>
-        <div class="foot"><span class="src">Forbes</span><span class="tags"><span class="tg">GEO</span><span class="tg">货品分发</span></span><a class="orig" href="https://www.forbes.com/sites/catherineerdly/2026/02/22/a-2026-guide-to-getting-agentic-ai-to-recommend-your-e-commerce-site/" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">Forbes</span><a class="orig" href="https://www.forbes.com/sites/catherineerdly/2026/02/22/a-2026-guide-to-getting-agentic-ai-to-recommend-your-e-commerce-site/" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">03</div><div class="cbody">
-        <div class="meta"><span class="cat">行业</span><span class="topic tp-ka">工具生态</span><span class="score s8">8</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s8">8</span></div>
         <h3><a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank">A2A 成为 Agent 互联事实标准,主流框架 2026 已原生兼容 MCP</a></h3>
         <p class="sum">Google 的 A2A 协议定义 Agent 间任务委托/状态同步/能力发现;业界梳理出 120+ Agentic 工具、11 大类,MCP 与 A2A 组合成为企业 Agent 的默认接入层。</p>
         <p class="ins"><b>→ 工具生态:</b> 把托管/选品能力做成"可被服务商 Agent 调用"的标准组件(能力发现 = 对外接入层),而非封闭功能。</p>
-        <div class="foot"><span class="src">Google Developers / StackOne</span><span class="tags"><span class="tg">A2A</span><span class="tg">MCP</span><span class="tg">工具服务商</span></span><a class="orig" href="https://www.stackone.com/blog/ai-agent-tools-landscape-2026/" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">Google Developers / StackOne</span><a class="orig" href="https://www.stackone.com/blog/ai-agent-tools-landscape-2026/" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">04</div><div class="cbody">
-        <div class="meta"><span class="cat">行业</span><span class="topic tp-pan">电商联盟</span><span class="score s8">8</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s8">8</span></div>
         <h3><a href="https://www.nytimes.com/2026/05/28/technology/anthropic-tops-openai-valuation.html" target="_blank">Anthropic 登顶全球最高估值 AI 公司:融资 650 亿、估值 9000 亿美元</a></h3>
         <p class="sum">Anthropic 新一轮融资后估值达 9000 亿美元,超过 OpenAI 上一轮 7300 亿;OpenAI 3 月一轮估值 8520 亿。头部纯 AI 公司估值军备竞赛持续拉高。</p>
         <p class="ins"><b>→ 电商联盟:</b> 头部模型资本充裕→能力迭代更快→托管底层可选项更多,"多模型可切换"架构值得预留。</p>
-        <div class="foot"><span class="src">The New York Times</span><span class="tags"><span class="tg">融资</span><span class="tg">Anthropic</span></span><a class="orig" href="https://www.nytimes.com/2026/05/28/technology/anthropic-tops-openai-valuation.html" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">The New York Times</span><a class="orig" href="https://www.nytimes.com/2026/05/28/technology/anthropic-tops-openai-valuation.html" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">05</div><div class="cbody">
-        <div class="meta"><span class="cat">营销</span><span class="topic tp-pan">电商联盟</span><span class="score s7">7</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s7">7</span></div>
         <h3><a href="https://www.get-ryze.ai/blog/meta-ai-agents-for-advertising-automation" target="_blank">Meta 广告 Agent / Advantage+:代理称客户产能提升 200–300%</a></h3>
         <p class="sum">2026 广告投放自动化进入"Agent 主导 + 人工兜底"阶段,代理商用 AI Agent 做素材生成与投放优化,单团队可服务的客户数显著放大。</p>
         <p class="ins"><b>→ 电商联盟:</b> 广告链路"辅助→半自动→Agent 主导"三阶段,关键跳跃是数据反馈闭环——托管策略"生成→采纳→成交"同理。</p>
-        <div class="foot"><span class="src">Ryze AI / StackAdapt</span><span class="tags"><span class="tg">营销Agent</span><span class="tg">投放自动化</span></span><a class="orig" href="https://basis.com/insights/ai-and-advertising-automation-in-2026-whats-real-whats-hype-and-how-to-choose-a-platform" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">Ryze AI / StackAdapt</span><a class="orig" href="https://basis.com/insights/ai-and-advertising-automation-in-2026-whats-real-whats-hype-and-how-to-choose-a-platform" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">06</div><div class="cbody">
-        <div class="meta"><span class="cat">行业</span><span class="topic tp-ka">工具生态</span><span class="score s7">7</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s7">7</span></div>
         <h3><a href="https://www.cnbcafrica.com/2026/meta-google-openai-among-big-tech-firms-seeing-top-staff-leaving-to-launch-ai-startups" target="_blank">大厂人才离职创业潮:Periodic Labs 9 月融资 3 亿美元</a></h3>
         <p class="sum">Meta/Google/OpenAI 顶尖研究员持续出走创业,前 OpenAI 与 DeepMind 员工创立的 Periodic Labs 成立数月即融资 3 亿美元。</p>
         <p class="ins"><b>→ 工具生态:</b> 应用层机会被验证(别赌模型层、押应用层);引入生态工具服务商可优先看"应用层专精"新玩家。</p>
-        <div class="foot"><span class="src">CNBC</span><span class="tags"><span class="tg">人才流动</span><span class="tg">应用层</span></span><a class="orig" href="https://www.cnbcafrica.com/2026/meta-google-openai-among-big-tech-firms-seeing-top-staff-leaving-to-launch-ai-startups" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">CNBC</span><a class="orig" href="https://www.cnbcafrica.com/2026/meta-google-openai-among-big-tech-firms-seeing-top-staff-leaving-to-launch-ai-startups" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">07</div><div class="cbody">
-        <div class="meta"><span class="cat">新模型</span><span class="topic tp-xuanpin">AI选品</span><span class="score s7">7</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-xuanpin">AI选品</span><span class="score s7">7</span></div>
         <h3><a href="https://dentro.de/ai/news/" target="_blank">Google DeepMind 发布 Nano Banana 2 图像模型</a></h3>
-        <p class="sum">8 月全球 AI 要闻之一:DeepMind 迭代图像生成模型 Nano Banana 2;同期 Wayve 融资 12 亿美元做自动驾驶、Anthropic 拒绝五角大楼监控与自主武器请求。</p>
+        <p class="sum">8 月全球 AI 要闻之一:DeepMind 迭代图像生成模型;同期 Wayve 融资 12 亿美元做自动驾驶、Anthropic 拒绝五角大楼监控与自主武器请求。</p>
         <p class="ins"><b>→ AI选品:</b> 图像/素材生成能力升级,可直接用于托管的物料自动生成,降低一人淘客的素材门槛。</p>
-        <div class="foot"><span class="src">dentro.de/ai</span><span class="tags"><span class="tg">图像模型</span><span class="tg">素材生成</span></span><a class="orig" href="https://dentro.de/ai/news/" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
-  </section>
+        <div class="foot"><span class="src">dentro.de/ai</span><a class="orig" href="https://dentro.de/ai/news/" target="_blank">原文 →</a></div>
+      </article>
+    </section>
 
-  <!-- ============ 电商·联盟聚焦 ============ -->
-  <section>
-    <div class="sec-head"><span class="sec-ico">◎</span><h2>电商 · 联盟聚焦</h2><span class="cnt">今日最相关 · 4</span><span class="rule"></span></div>
-    <div class="sec-note">从今日各榜中挑出与电商 / 联盟 / 淘客从业者最相关的条目,给一句可落地动作。</div>
+    <!-- ============ 电商·联盟聚焦 ============ -->
+    <section id="ecom">
+      <div class="sec-title">电商 · 联盟聚焦<span class="count">4</span></div>
 
-    <div class="row">
-      <span class="topic tp-tuoguan" style="margin-top:2px">AI托管</span>
-      <div class="rc"><h4><a href="https://www.ebrun.com/20231013/530959.shtml" target="_blank">淘宝联盟:3 年发展 100 万"深度用 AI"的淘客(算法投流/智能选品/智能文案)</a></h4>
-      <p class="ract"><b>→</b> 这是"AI 经营托管"的顶层行业锚点:托管覆盖规模、服务从业者数量,都可对齐到"100 万 AI 淘客"这个大盘叙事上。</p></div>
-    </div>
-    <div class="row">
-      <span class="topic tp-pan" style="margin-top:2px">电商联盟</span>
-      <div class="rc"><h4><a href="http://www.xinhuanet.com/tech/20260511/b94c26581d9c41ea8c3fd3b383ab2939/c.html" target="_blank">千问 App × 淘宝全面打通:AI 购物从导购走向履约闭环</a></h4>
-      <p class="ract"><b>→</b> 大模型购物入口成型 = 长尾货品的新分发出口;托管产出(选品/内容)应能被千问这类入口消费。</p></div>
-    </div>
-    <div class="row">
-      <span class="topic tp-xuanpin" style="margin-top:2px">AI选品</span>
-      <div class="rc"><h4><a href="https://www.forbes.com/sites/catherineerdly/2026/02/22/a-2026-guide-to-getting-agentic-ai-to-recommend-your-e-commerce-site/" target="_blank">让货品"可被 AI 推荐":电商版 GEO 的三条规则</a></h4>
-      <p class="ract"><b>→</b> 货品"表达"层增加机器可读结构;在分人群分发渗透率之外,补一个"被 Agent 命中/推荐"的过程指标。</p></div>
-    </div>
-    <div class="row">
-      <span class="topic tp-ka" style="margin-top:2px">工具生态</span>
-      <div class="rc"><h4><a href="https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026" target="_blank">OpenClaw:2026 增长最快的开源 Agent 项目</a></h4>
-      <p class="ract"><b>→</b> 轻量 Agent 工作流形态,可作为"一人淘客 Agent / 半托管前端"的参考;评估自研还是基于开源框架封装。</p></div>
-    </div>
-  </section>
+      <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">AI托管</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/20231013/530959.shtml" target="_blank">淘宝联盟:3 年发展 100 万"深度用 AI"的淘客</a></h4>
+        <p class="ract">这是"AI 经营托管"的顶层行业锚点:托管覆盖规模可对齐到"100 万 AI 淘客"叙事。</p>
+      </div></div>
 
-  <!-- ============ 开源热项 ============ -->
-  <section>
-    <div class="sec-head"><span class="sec-ico">◆</span><h2>开源热项</h2><span class="cnt">3</span><span class="rule"></span></div>
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">电商联盟</span><div class="rc">
+        <h4><a href="http://www.xinhuanet.com/tech/20260511/b94c26581d9c41ea8c3fd3b383ab2939/c.html" target="_blank">千问 App × 淘宝全面打通:AI 购物从导购走向履约闭环</a></h4>
+        <p class="ract">大模型购物入口成型 = 长尾货品的新分发出口;托管产出应能被千问这类入口消费。</p>
+      </div></div>
 
-    <article class="card">
-      <div class="rank">01</div><div class="cbody">
-        <div class="meta"><span class="cat">开源</span><span class="topic tp-ka">工具生态</span><span class="score s8">8</span></div>
-        <h3><a href="https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026" target="_blank">OpenClaw:被称为 2026 增长最快的开源项目(GitHub 史上前列)</a></h3>
+      <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">AI选品</span><div class="rc">
+        <h4><a href="https://www.forbes.com/sites/catherineerdly/2026/02/22/a-2026-guide-to-getting-agentic-ai-to-recommend-your-e-commerce-site/" target="_blank">让货品"可被 AI 推荐":电商版 GEO 的三条规则</a></h4>
+        <p class="ract">货品"表达"层增加机器可读结构;在品级渗透率外,补一个"被 Agent 命中/推荐"指标。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026" target="_blank">OpenClaw:2026 增长最快的开源 Agent 项目</a></h4>
+        <p class="ract">轻量 Agent 工作流形态,可作为"一人淘客 Agent / 半托管前端"的参考;评估自研还是封装。</p>
+      </div></div>
+    </section>
+
+    <!-- ============ 开源热项 ============ -->
+    <section id="oss">
+      <div class="sec-title">开源热项<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s8">8</span></div>
+        <h3><a href="https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026" target="_blank">OpenClaw:被称为 2026 增长最快的开源项目</a></h3>
         <p class="sum">由 PSPDFKit 创始人 Peter Steinberger 发起的 Agent 项目,成为 2026 开源黑马,代表"个人/轻量 Agent 工作流"的爆发方向。</p>
         <p class="ins"><b>→ 工具生态:</b> 个人/轻量 Agent 工作流爆发;可作为长尾"一人淘客 Agent"的形态参考。</p>
-        <div class="foot"><span class="src">ByteByteGo</span><span class="tags"><span class="tg">Agent</span><span class="tg">开源黑马</span></span><a class="orig" href="https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">ByteByteGo</span><a class="orig" href="https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">02</div><div class="cbody">
-        <div class="meta"><span class="cat">开源</span><span class="topic tp-tuoguan">AI托管</span><span class="score s7">7</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s7">7</span></div>
         <h3><a href="https://www.nocobase.com/en/blog/github-open-source-ai-projects" target="_blank">Dify:开源 LLM 应用平台(工作流 / RAG / Agent / 模型管理一体)</a></h3>
         <p class="sum">Dify 把 AI 工作流编排、RAG、Agent、模型管理打包成开源平台,是快速搭建"托管策略生成"原型的常见底座之一。</p>
         <p class="ins"><b>→ AI托管:</b> 工作流编排 + RAG 结构可借鉴做"策略生成"MVP;插件化设计可参考做能力开放。</p>
-        <div class="foot"><span class="src">NocoBase Blog</span><span class="tags"><span class="tg">Dify</span><span class="tg">工作流</span><span class="tg">RAG</span></span><a class="orig" href="https://www.nocobase.com/en/blog/github-open-source-ai-projects" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">NocoBase Blog</span><a class="orig" href="https://www.nocobase.com/en/blog/github-open-source-ai-projects" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">03</div><div class="cbody">
-        <div class="meta"><span class="cat">开源</span><span class="topic tp-ka">工具生态</span><span class="score s7">7</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s7">7</span></div>
         <h3><a href="https://github.com/browser-use/browser-use" target="_blank">browser-use:让 AI 用自然语言操控浏览器,持续高热</a></h3>
-        <p class="sum">支持表单填写、信息抓取、多步骤任务,正成为 Agent 应用的"selenium 替代品";Ollama/Open WebUI/vLLM/CrewAI 等也合计超 65 万星。</p>
+        <p class="sum">支持表单填写、信息抓取、多步骤任务,正成为 Agent 应用的"selenium 替代品";Ollama/Open WebUI/vLLM/CrewAI 等合计超 65 万星。</p>
         <p class="ins"><b>→ 工具生态:</b> "代做发品/推广操作"的自动化环节可参考;也是工具服务商能力诊断的基准组件。</p>
-        <div class="foot"><span class="src">GitHub</span><span class="tags"><span class="tg">Browser Agent</span><span class="tg">自动化</span></span><a class="orig" href="https://github.com/browser-use/browser-use" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
-  </section>
+        <div class="foot"><span class="src">GitHub</span><a class="orig" href="https://github.com/browser-use/browser-use" target="_blank">原文 →</a></div>
+      </article>
+    </section>
 
-  <!-- ============ 大佬说 ============ -->
-  <section>
-    <div class="sec-head"><span class="sec-ico">◇</span><h2>大佬说</h2><span class="cnt">3</span><span class="rule"></span></div>
+    <!-- ============ 大佬说 ============ -->
+    <section id="voices">
+      <div class="sec-title">大佬说<span class="count">3</span></div>
 
-    <article class="card">
-      <div class="rank">01</div><div class="cbody">
-        <div class="meta"><span class="cat">观点</span><span class="topic tp-tuoguan">AI托管</span><span class="score s7">7</span></div>
-        <h3><a href="https://www.facebook.com/FastCompany/posts/1435357161792075/" target="_blank">Altman:OpenAI 放缓"超级智能"叙事,AI 研究"实习生"9 月上线、2028 全自动研究员</a></h3>
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s7">7</span></div>
+        <h3><a href="https://www.facebook.com/FastCompany/posts/1435357161792075/" target="_blank">Altman:OpenAI 放缓"超级智能"叙事,AI 研究"实习生"9 月上线</a></h3>
         <p class="sum">Altman 给出节奏:先做能当"研究实习生"的 AI(2026 年 9 月),再到 2028 年 3 月的全自动 AI 研究员;叙事从"奔向超级智能"转向"分阶段落地"。</p>
         <p class="ins"><b>→ AI托管:</b> 托管也走"实习生→半托→全托"分阶段更稳;先把"策略实习生"的采纳率做实,别一步承诺全自动。</p>
-        <div class="foot"><span class="src">Fast Company</span><span class="tags"><span class="tg">Sam Altman</span><span class="tg">分阶段落地</span></span><a class="orig" href="https://www.facebook.com/FastCompany/posts/1435357161792075/" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">Fast Company</span><a class="orig" href="https://www.facebook.com/FastCompany/posts/1435357161792075/" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">02</div><div class="cbody">
-        <div class="meta"><span class="cat">观点</span><span class="topic tp-pan">电商联盟</span><span class="score s6">6</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s6">6</span></div>
         <h3><a href="https://davekarpf.substack.com/p/gpt5-and-the-end-of-naive-ai-futurism" target="_blank">Dave Karpf:GPT-5 与"天真 AI 未来主义"的终结</a></h3>
         <p class="sum">作者批评"当下永远只是序章"式的 AI 叙事,主张回到具体落地与真实约束——能力增长不等于自动的商业价值。</p>
         <p class="ins"><b>→ 电商联盟:</b> 别陷入"能力秀",盯真实约束(执行力/时间/信任);"降门槛"叙事比"更强模型"更打动人。</p>
-        <div class="foot"><span class="src">Substack</span><span class="tags"><span class="tg">AI落地</span><span class="tg">务实</span></span><a class="orig" href="https://davekarpf.substack.com/p/gpt5-and-the-end-of-naive-ai-futurism" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <div class="foot"><span class="src">Substack</span><a class="orig" href="https://davekarpf.substack.com/p/gpt5-and-the-end-of-naive-ai-futurism" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">03</div><div class="cbody">
-        <div class="meta"><span class="cat">观点</span><span class="topic tp-ka">工具生态</span><span class="score s6">6</span></div>
-        <h3><a href="https://simonwillison.net/quotations/" target="_blank">Simon Willison:公众对 AI 的负面认知是"真问题",但不该归咎于个别 AI 领袖</a></h3>
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s6">6</span></div>
+        <h3><a href="https://simonwillison.net/quotations/" target="_blank">Simon Willison:公众对 AI 的负面认知是"真问题"</a></h3>
         <p class="sum">Willison 收录并评论近期 AI 圈言论,强调信任与公众认知是落地的隐性门槛,值得做产品的人正视。</p>
         <p class="ins"><b>→ 工具生态:</b> 信任与公众认知是落地隐性门槛;托管要管预期,讲清"AI 帮你做什么/不做什么"。</p>
-        <div class="foot"><span class="src">Simon Willison's Weblog</span><span class="tags"><span class="tg">信任</span><span class="tg">用户认知</span></span><a class="orig" href="https://simonwillison.net/quotations/" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
-  </section>
+        <div class="foot"><span class="src">Simon Willison's Weblog</span><a class="orig" href="https://simonwillison.net/quotations/" target="_blank">原文 →</a></div>
+      </article>
+    </section>
 
-  <!-- ============ 国内速递 ============ -->
-  <section>
-    <div class="sec-head"><span class="sec-ico">◉</span><h2>国内速递</h2><span class="cnt">6</span><span class="rule"></span></div>
+    <!-- ============ 国内速递 ============ -->
+    <section id="cn">
+      <div class="sec-title">国内速递<span class="count">6</span></div>
 
-    <article class="card">
-      <div class="rank">01</div><div class="cbody">
-        <div class="meta"><span class="cat">行业</span><span class="topic tp-tuoguan">AI托管</span><span class="score s9">9</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s9">9</span></div>
         <h3><a href="https://www.ebrun.com/20231013/530959.shtml" target="_blank">淘宝联盟"科技先锋计划":3 年发展 100 万深度应用 AI 的淘客</a></h3>
-        <p class="sum">淘宝联盟提出发展 100 万能深度运用 AI 的淘客,方向包括算法投流、智能选品、智能文案及各类 AI 技术应用,平台在行业侧给资源扶持。</p>
-        <p class="ins"><b>→ AI托管:</b> 这是经营托管的顶层行业锚点;覆盖规模 / 从业者数可对齐"100 万 AI 淘客"叙事。</p>
-        <div class="foot"><span class="src">亿邦动力</span><span class="tags"><span class="tg">淘宝联盟</span><span class="tg">智能选品</span><span class="tg">100万AI淘客</span></span><a class="orig" href="https://www.ebrun.com/20231013/530959.shtml" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <p class="sum">淘宝联盟提出发展 100 万能深度运用 AI 的淘客,方向包括算法投流、智能选品、智能文案及各类 AI 技术应用。</p>
+        <p class="ins"><b>→ AI托管:</b> 这是经营托管的顶层行业锚点;覆盖规模可对齐"100 万 AI 淘客"叙事。</p>
+        <div class="foot"><span class="src">亿邦动力</span><a class="orig" href="https://www.ebrun.com/20231013/530959.shtml" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">02</div><div class="cbody">
-        <div class="meta"><span class="cat">行业</span><span class="topic tp-pan">电商联盟</span><span class="score s9">9</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s9">9</span></div>
         <h3><a href="http://www.xinhuanet.com/tech/20260511/b94c26581d9c41ea8c3fd3b383ab2939/c.html" target="_blank">阿里率先打通 AI 购物全链路:千问 App 里也能"逛淘宝"</a></h3>
-        <p class="sum">千问 App 与淘宝全面打通,用户可用自然对话完成商品筛选、比较、下单、履约、售后全流程闭环,被视为阿里 AI 电商的重要一步。</p>
-        <p class="ins"><b>→ 电商联盟:</b> 大模型购物入口成型 = 长尾货品的新分发出口;托管产出(选品/内容)要能被千问这类入口消费。</p>
-        <div class="foot"><span class="src">新华网 / 新浪财经</span><span class="tags"><span class="tg">千问</span><span class="tg">AI购物</span><span class="tg">履约闭环</span></span><a class="orig" href="https://finance.sina.com.cn/cj/2026-05-14/doc-inhxvyep3941230.shtml" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <p class="sum">千问 App 与淘宝全面打通,用户可用自然对话完成商品筛选、比较、下单、履约、售后全流程闭环。</p>
+        <p class="ins"><b>→ 电商联盟:</b> 大模型购物入口成型 = 长尾货品的新分发出口;托管产出要能被千问这类入口消费。</p>
+        <div class="foot"><span class="src">新华网 / 新浪财经</span><a class="orig" href="https://finance.sina.com.cn/cj/2026-05-14/doc-inhxvyep3941230.shtml" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">03</div><div class="cbody">
-        <div class="meta"><span class="cat">新模型</span><span class="topic tp-tuoguan">AI托管</span><span class="score s8">8</span></div>
-        <h3><a href="https://zhuanlan.zhihu.com/p/670574382" target="_blank">通义 8 月开源 27B 稠密多模态 Agent 模型:原生 256K、可扩展至 1M 上下文</a></h3>
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s8">8</span></div>
+        <h3><a href="https://zhuanlan.zhihu.com/p/670574382" target="_blank">通义 8 月开源 27B 稠密多模态 Agent 模型:原生 256K、可扩展至 1M</a></h3>
         <p class="sum">通义千问团队 2026 年 8 月发布并开源稠密多模态 Agent 模型(27B),原生 256K token,经 YaRN 可扩展至 1M,主打 Agent 与长上下文能力。</p>
-        <p class="ins"><b>→ AI托管:</b> 多模态(读图/素材)+ 长上下文(装下经营历史数据)正对"基于数据生成策略";可做一次底层选型评测。</p>
-        <div class="foot"><span class="src">知乎专栏</span><span class="tags"><span class="tg">通义千问</span><span class="tg">多模态Agent</span><span class="tg">开源</span></span><a class="orig" href="https://zhuanlan.zhihu.com/p/670574382" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <p class="ins"><b>→ AI托管:</b> 多模态(读图/素材)+ 长上下文(装下经营历史数据)正对"基于数据生成策略";可做底层选型评测。</p>
+        <div class="foot"><span class="src">知乎专栏</span><a class="orig" href="https://zhuanlan.zhihu.com/p/670574382" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">04</div><div class="cbody">
-        <div class="meta"><span class="cat">新模型</span><span class="topic tp-pan">电商联盟</span><span class="score s8">8</span></div>
-        <h3><a href="https://m.21jingji.com/article/20260805/herald/f537842e07c58377a18b0cce5ba7e4a4.html" target="_blank">中国大模型"八周五连发":Qwen3.8-Max / Kimi K3 / DeepSeek-V4-Flash / GLM-5.2 / Seedance 2.5</a></h3>
-        <p class="sum">八周内五款重量级国产模型接连亮相,被市场称为一轮密集迭代;硅谷部分企业开始悄悄更换底座,国产模型性价比与能力同步上行。</p>
-        <p class="ins"><b>→ 电商联盟:</b> 模型快速商品化 = 不必自研;托管应做"模型可插拔",精力压在数据与策略闭环(护城河)。</p>
-        <div class="foot"><span class="src">21 世纪经济报道</span><span class="tags"><span class="tg">国产大模型</span><span class="tg">模型迭代</span></span><a class="orig" href="https://m.21jingji.com/article/20260805/herald/f537842e07c58377a18b0cce5ba7e4a4.html" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s8">8</span></div>
+        <h3><a href="https://m.21jingji.com/article/20260805/herald/f537842e07c58377a18b0cce5ba7e4a4.html" target="_blank">中国大模型"八周五连发":Qwen3.8-Max / Kimi K3 / DeepSeek-V4-Flash / GLM-5.2</a></h3>
+        <p class="sum">八周内五款重量级国产模型接连亮相,被市场称为一轮密集迭代;国产模型性价比与能力同步上行。</p>
+        <p class="ins"><b>→ 电商联盟:</b> 模型快速商品化 = 不必自研;托管应做"模型可插拔",精力压在数据与策略闭环。</p>
+        <div class="foot"><span class="src">21 世纪经济报道</span><a class="orig" href="https://m.21jingji.com/article/20260805/herald/f537842e07c58377a18b0cce5ba7e4a4.html" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">05</div><div class="cbody">
-        <div class="meta"><span class="cat">行业</span><span class="topic tp-xuanpin">AI选品</span><span class="score s7">7</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-xuanpin">AI选品</span><span class="score s7">7</span></div>
         <h3><a href="https://www.bbtnews.com.cn/2026/0511/593072.shtml" target="_blank">淘宝 App 消息页上线"AI 购物助手":AI 试穿 / 帮你买 / 省钱</a></h3>
         <p class="sum">淘宝 App 消息页新增"AI 购物助手"入口,由千问提供 AI 试穿、AI 帮你买、AI 省钱等功能,把 AI 导购推到 C 端一级入口。</p>
-        <p class="ins"><b>→ AI选品:</b> "AI 省钱/帮你买" = 消费者侧的比价与决策代理;货品利益点要被这类助手抓取/比对,竞争力需机器可识别。</p>
-        <div class="foot"><span class="src">北京商报</span><span class="tags"><span class="tg">AI导购</span><span class="tg">淘宝</span></span><a class="orig" href="https://www.bbtnews.com.cn/2026/0511/593072.shtml" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
+        <p class="ins"><b>→ AI选品:</b> "AI 省钱/帮你买" = 消费者侧的比价与决策代理;货品利益点需机器可识别。</p>
+        <div class="foot"><span class="src">北京商报</span><a class="orig" href="https://www.bbtnews.com.cn/2026/0511/593072.shtml" target="_blank">原文 →</a></div>
+      </article>
 
-    <article class="card">
-      <div class="rank">06</div><div class="cbody">
-        <div class="meta"><span class="cat">行业</span><span class="topic tp-ka">工具生态</span><span class="score s6">6</span></div>
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s6">6</span></div>
         <h3><a href="https://www.geekpark.net/news/360140" target="_blank">千问 × 淘宝「生意管家杯」电商 AI 挑战赛:万亿 Tokens 奖池</a></h3>
-        <p class="sum">千问大模型联合淘宝向开发者释放资源(万亿 Tokens 奖池、数百小时魔搭算力等),围绕电商经营难题征集 AI 方案。</p>
+        <p class="sum">千问大模型联合淘宝向开发者释放资源(万亿 Tokens 奖池、数百小时魔搭算力),围绕电商经营难题征集 AI 方案。</p>
         <p class="ins"><b>→ 工具生态:</b> 这类赛事是发现"电商 AI 工具/开发者方案"的低成本渠道,可为生态能力引入供给候选。</p>
-        <div class="foot"><span class="src">极客公园</span><span class="tags"><span class="tg">电商AI</span><span class="tg">开发者生态</span></span><a class="orig" href="https://www.geekpark.net/news/360140" target="_blank">原文 ↗</a></div>
-      </div>
-    </article>
-  </section>
+        <div class="foot"><span class="src">极客公园</span><a class="orig" href="https://www.geekpark.net/news/360140" target="_blank">原文 →</a></div>
+      </article>
+    </section>
 
-  <!-- ============ 前沿研究 ============ -->
-  <section>
-    <div class="sec-head"><span class="sec-ico">✧</span><h2>前沿研究</h2><span class="cnt">3</span><span class="rule"></span></div>
+    <!-- ============ 前沿研究 ============ -->
+    <section id="research">
+      <div class="sec-title">前沿研究<span class="count">3</span></div>
 
-    <div class="row">
-      <span class="topic tp-tuoguan" style="margin-top:2px">AI托管</span>
-      <div class="rc"><h4><a href="https://arxiv.org/html/2604.17312v1" target="_blank">A Survey of Reinforcement Learning for Large Language Models</a></h4>
-      <p class="ract">RL 已成增强 LLM 推理的主流后训练范式。<b>→</b> 托管策略的"生成→采纳→成交"反馈本质是个 RL 闭环,可借鉴其奖励建模思路优化采纳率。</p></div>
-    </div>
-    <div class="row">
-      <span class="topic tp-xuanpin" style="margin-top:2px">AI选品</span>
-      <div class="rc"><h4><a href="https://arxiv.org/list/cs.AI/recent" target="_blank">RL Enhanced LLM Agents for Complex Vehicle Routing Problems</a></h4>
-      <p class="ract">用 RL+LLM Agent 解复杂路径规划。<b>→</b> 与"货品×人群分发调度"同构:把有限的曝光/流量位当"路径",可参考其约束建模做分发效率优化。</p></div>
-    </div>
-    <div class="row">
-      <span class="topic tp-ka" style="margin-top:2px">工具生态</span>
-      <div class="rc"><h4><a href="https://magazine.sebastianraschka.com/p/llm-research-papers-2026-part1" target="_blank">Sebastian Raschka:2026 LLM 研究论文清单(1–5 月)</a></h4>
-      <p class="ract">系统梳理新模型/训练法/Agent/推理/效率方向论文。<b>→</b> 作为"技术雷达"月读源,判断哪些该进托管、哪些只观望。</p></div>
-    </div>
-  </section>
+      <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">AI托管</span><div class="rc">
+        <h4><a href="https://arxiv.org/html/2604.17312v1" target="_blank">A Survey of Reinforcement Learning for Large Language Models</a></h4>
+        <p class="ract">RL 已成增强 LLM 推理的主流后训练范式。托管策略的"生成→采纳→成交"反馈本质是个 RL 闭环,可借鉴其奖励建模思路优化采纳率。</p>
+      </div></div>
 
-  <footer>
-    <div class="disc">
-      <b>关于本站</b> · 由 AI 每日联网检索聚合生成,面向「AI × 电商 / 联盟」从业者视角,每日更新。<br>
-      · 每条均标注<b>原文出处链接</b>;影响力评分(6–9)与"→启示"为<b>编辑判断</b>,引用关键数据前建议点开原文核实。<br>
-      · 分区:今日洞见 / 全球热榜 / 电商·联盟聚焦 / 开源热项 / 大佬说 / 国内速递 / 前沿研究。
-    </div>
-  </footer>
+      <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">AI选品</span><div class="rc">
+        <h4><a href="https://arxiv.org/list/cs.AI/recent" target="_blank">RL Enhanced LLM Agents for Complex Vehicle Routing Problems</a></h4>
+        <p class="ract">用 RL+LLM Agent 解复杂路径规划。与"货品×人群分发调度"同构:把有限的曝光/流量位当"路径",可参考其约束建模做分发效率优化。</p>
+      </div></div>
 
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://magazine.sebastianraschka.com/p/llm-research-papers-2026-part1" target="_blank">Sebastian Raschka:2026 LLM 研究论文清单(1–5 月)</a></h4>
+        <p class="ract">系统梳理新模型/训练法/Agent/推理/效率方向论文。作为"技术雷达"月读源,判断哪些该进托管、哪些只观望。</p>
+      </div></div>
+    </section>
+
+    <footer>
+      由 AI 每日联网检索聚合生成 · 面向 AI × 电商 / 联盟从业者视角 · 每日更新<br>
+      每条均标注原文出处链接;影响力评分(6–9)与"→启示"为编辑判断,引用关键数据前建议点开原文核实。
+    </footer>
+
+  </main>
 </div>
 </body>
 </html>
