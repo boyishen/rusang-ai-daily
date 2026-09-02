@@ -87,6 +87,13 @@
 
   footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
 
+  /* Horizontal nav */
+  .nav-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .nav-bar a{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--sub);
+    background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:.15s;white-space:nowrap}
+  .nav-bar a:hover{background:var(--card);color:var(--txt);border-color:#2a3554;text-decoration:none}
+  .nav-bar a .ncount{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:0 6px;min-width:18px;text-align:center}
+
   @media(max-width:640px){
     .main-header{flex-direction:column;gap:8px;padding-top:32px}
     .insight{padding:20px 16px}
@@ -102,6 +109,16 @@
       <h1>如桑的AI日报</h1>
       <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年9月2日 星期三</div>
     </header>
+
+    <nav class="nav-bar">
+      <a href="#insight">今日洞见</a>
+      <a href="#hot">全球热榜<span class="ncount">7</span></a>
+      <a href="#ecom">电商·联盟<span class="ncount">4</span></a>
+      <a href="#oss">开源热项<span class="ncount">3</span></a>
+      <a href="#voices">大佬说<span class="ncount">3</span></a>
+      <a href="#cn">国内速递<span class="ncount">6</span></a>
+      <a href="#research">前沿研究<span class="ncount">3</span></a>
+    </nav>
 
     <!-- ============ 今日洞见 ============ -->
     <section id="insight">
