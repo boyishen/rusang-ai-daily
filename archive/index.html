@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如桑的AI日报 · 往期存档</title>
+<style>
+  :root{
+    --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
+    --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
+    --accent:#6ea8fe; --green:#22c55e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:radial-gradient(1200px 700px at 80% -10%,#15203a 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 80px}
+  header{display:flex;justify-content:space-between;align-items:flex-start;padding:48px 0 20px;margin-bottom:28px;border-bottom:1px solid var(--line)}
+  header h1{font-size:24px;font-weight:800;letter-spacing:-.3px}
+  header .back{font-size:13px;color:var(--sub)}
+  .arch-list{display:flex;flex-direction:column;gap:8px}
+  .arch-item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;transition:.15s}
+  .arch-item:hover{background:var(--card2);border-color:#2a3554;text-decoration:none}
+  .arch-item .date{font-weight:700;font-size:15px;color:var(--txt)}
+  .arch-item .week{font-size:12px;color:var(--dim);margin-left:auto}
+  .arch-item .go{color:var(--accent);font-size:13px}
+  footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--dim)}
+  @media(max-width:640px){header{flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>如桑的AI日报 · 往期存档</h1>
+    <a class="back" href="/rusang-ai-daily/">← 返回今日</a>
+  </header>
+
+  <div class="arch-list">
+    <a class="arch-item" href="2026-09-03.html">
+      <span class="date">2026年9月3日</span>
+      <span class="week">星期四</span>
+      <span class="go">查看 →</span>
+    </a>
+    <a class="arch-item" href="2026-09-02.html">
+      <span class="date">2026年9月2日</span>
+      <span class="week">星期三</span>
+      <span class="go">查看 →</span>
+    </a>
+    <!-- 新条目加在这行上面,最新在上 -->
+  </div>
+
+  <footer>每天自动存档一期 · 由 AI 每日联网检索聚合生成</footer>
+</div>
+</body>
+</html>
