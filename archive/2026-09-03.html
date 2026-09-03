@@ -38,6 +38,7 @@
   section{margin-bottom:44px;scroll-margin-top:20px}
   .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
   .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
+  .sec-title::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--accent),rgba(110,168,254,.25));flex:none}
 
   /* Insight card */
   .insight{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:8px}
@@ -51,6 +52,7 @@
   .insight .item .ititle{display:inline;font-weight:700;font-size:15px;color:var(--txt)}
   .insight .item .ititle a{font-weight:700}
   .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
+  .hl{color:#fbbf24;font-weight:700}
 
   /* Card (list items) */
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
@@ -75,6 +77,10 @@
   .card .ins b{color:var(--accent);margin-right:4px}
   .card .ins-hook{border-left-color:var(--orange);background:rgba(245,158,11,.08)}
   .card .ins-hook b{color:var(--orange)}
+  .card .ins-pos{border-left-color:var(--green);background:rgba(34,197,94,.08)}
+  .card .ins-pos b{color:var(--green)}
+  .card .ins-neg{border-left-color:var(--red);background:rgba(239,68,68,.08)}
+  .card .ins-neg b{color:var(--red)}
   .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
   .card .foot .src{color:var(--dim)}
   .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
@@ -144,19 +150,19 @@
         <div class="item">
           <span class="idx">01</span>
           <span class="ititle"><a href="https://techcrunch.com/2026-09-01/anthropics-new-fable-release-is-cheaper-less-restrictive/" target="_blank">Agent 长任务重新"算得过账",但档位是隐形账单</a></span>
-          <div class="ibody">Anthropic 在 9 月 1 日发布 Claude Fable 5.1 / Mythos 5.1,输入输出价格不变、缓存读取降到原来的四分之一,官方主打的正是"长时间运行的智能体任务"。但同一天 Simon Willison 的实测给出了另一半事实:同一个"画一只骑自行车的鹈鹕"提示,low 档约 10 美分、几乎没有推理痕迹,max 档要 65,927 个输出 token、13 分 54 秒、3.30 美元。两条信息合起来说明:Agent 的经济性不再由"选了哪个模型"单独决定,而是"模型 × 缓存 × 推理档位"三者的乘积。对多轮、长上下文的经营类任务,把档位与缓存当一等公民来调,比一味拉满更强模型更值钱。</div>
+          <div class="ibody">Anthropic 在 9 月 1 日发布 Claude Fable 5.1 / Mythos 5.1,输入输出价格不变、缓存读取降到原来的<span class="hl">四分之一</span>,官方主打的正是"长时间运行的智能体任务"。但同一天 Simon Willison 的实测给出了另一半事实:同一个"画一只骑自行车的鹈鹕"提示,low 档约 10 美分、几乎没有推理痕迹,max 档要 65,927 个输出 token、13 分 54 秒、<span class="hl">3.30 美元</span>。两条信息合起来说明:Agent 的经济性不再由"选了哪个模型"单独决定,而是"模型 × 缓存 × 推理档位"三者的乘积。对多轮、长上下文的经营类任务,把档位与缓存当一等公民来调,比一味拉满更强模型更值钱。</div>
         </div>
 
         <div class="item">
           <span class="idx">02</span>
           <span class="ititle"><a href="https://www.dsb.cn/p/01m1gk9k9ex20hg8nhmycvqerd" target="_blank">大促的钱正在流向"AI 定向",而不是流量位</a></span>
-          <div class="ibody">9 月 2 日阿里妈妈 m 峰会公布双11 三项核心动作,最结构性的变化是"万相点睛"——用 AI 对消费者意图的理解与推理去突破人群标签,主动发现商家"没想过会买的人"。官方给的案例是把布艺床推给"希望躺着玩游戏更舒适"的电竞人群,该品新客成交金额占比超 83%。同时平台再投数十亿元补贴智能优惠券,并由 AI 按投放力度动态判定补贴档位。对长尾经营者,这意味着两件事:人群定义权正从"标签"转到"模型推理";补贴正在变成按投放行为动态分配的资源。跟对档位与节奏,比单纯加大铺量更决定收益。</div>
+          <div class="ibody">9 月 2 日阿里妈妈 m 峰会公布双11 三项核心动作,最结构性的变化是"万相点睛"——用 AI 对消费者意图的理解与推理去突破人群标签,主动发现商家"没想过会买的人"。官方给的案例是把布艺床推给"希望躺着玩游戏更舒适"的电竞人群,该品新客成交金额占比<span class="hl">超 83%</span>。同时平台再投<span class="hl">数十亿元</span>补贴智能优惠券,并由 AI 按投放力度动态判定补贴档位。对长尾经营者,这意味着两件事:人群定义权正从"标签"转到"模型推理";补贴正在变成按投放行为动态分配的资源。跟对档位与节奏,比单纯加大铺量更决定收益。</div>
         </div>
 
         <div class="item">
           <span class="idx">03</span>
           <span class="ititle"><a href="https://arxiv.org/abs/2609.01519" target="_blank">"看起来有效"是当下最大的评测陷阱</a></span>
-          <div class="ibody">9 月 1 日 arXiv 上有两篇方向互补的论文。一篇审计 LLM Agent 商业模拟:原实现报告了 +87.4、+35.0、+28.8 的福利增益,但它给"有护栏"和"无护栏"的 Agent 用了不同的报价 schema 与选择程序;把这两者固定住之后,配对对比变成 +7.2、-13.9、+23.8,原结论被判定为 INVALID。另一篇 RPCBench 发现,推荐类助手的主要瓶颈不是"推得准",而是"能不能主动识别请求本身就有问题",并且推理越长并非越好——性能在中等推理长度达峰,过长会伴随 overthinking 惩罚。放到 AI × 电商语境里,这两篇指向同一句提醒:模拟收益、榜单排名、模拟转化都可能是评测协议不一致的产物。先钉死协议,再谈效果。</div>
+          <div class="ibody">9 月 1 日 arXiv 上有两篇方向互补的论文。一篇审计 LLM Agent 商业模拟:原实现报告了 +87.4、+35.0、+28.8 的福利增益,但它给"有护栏"和"无护栏"的 Agent 用了不同的报价 schema 与选择程序;把这两者固定住之后,配对对比变成 +7.2、-13.9、+23.8,原结论被判定为 <span class="hl">INVALID</span>。另一篇 RPCBench 发现,推荐类助手的主要瓶颈不是"推得准",而是"能不能主动识别请求本身就有问题",并且推理越长并非越好——性能在中等推理长度达峰,过长会伴随 overthinking 惩罚。放到 AI × 电商语境里,这两篇指向同一句提醒:模拟收益、榜单排名、模拟转化都可能是评测协议不一致的产物。先钉死协议,再谈效果。</div>
         </div>
       </div>
     </section>
@@ -172,21 +178,21 @@
 
       <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">电商联盟</span><div class="rc">
         <h4><a href="https://www.dsb.cn/p/01m1gk9k9ex20hg8nhmycvqerd" target="_blank">阿里妈妈 m 峰会公布双11 三大举措:万相点睛 / 数十亿补贴智惠券 / 最高 55% 反哺</a></h4>
-        <p class="ract">9 月 2 日发布:①AI 定向产品"万相点睛"双11 期间覆盖阿里妈妈主要营销投放场景,以意图理解与推理突破人群标签(林氏家居布艺床推给电竞人群,新客成交金额占比超 83%);②平台再投数十亿元补贴智能优惠券,AI 按投放力度动态判定补贴档位,覆盖场景从关键词扩展到人群与货品全站推广(618 期间无界智惠券引导成交超 180 亿元;Oidire 搜索场域转化率 +30%,babycare 货品全站推广中引导成交占比超 25%);③品牌商家"一客一策"最高 55% 效果券反哺、信息流阶梯返最高 13% 流量反哺,手淘开屏"早锁多得"首批权益截止 9 月 20 日;中小商家有覆盖蓄水期到大促期的多档位加码"双11扶持计划"。启示:大促叙事已从规模扩张转向存量精耕,补贴变成按投放行为动态分配的资源,排期与档位比铺量更关键。</p>
+        <p class="ract">9 月 2 日发布:①AI 定向产品"万相点睛"双11 期间覆盖阿里妈妈主要营销投放场景,以意图理解与推理突破人群标签(林氏家居布艺床推给电竞人群,新客成交金额占比超 83%);②平台再投数十亿元补贴智能优惠券,AI 按投放力度动态判定补贴档位,覆盖场景从关键词扩展到人群与货品全站推广(618 期间无界智惠券引导成交超 180 亿元;Oidire 搜索场域转化率 +30%,babycare 货品全站推广中引导成交占比超 25%);③品牌商家"一客一策"最高 <span class="hl">55%</span> 效果券反哺、信息流阶梯返最高 13% 流量反哺,手淘开屏"早锁多得"首批权益截止 9 月 20 日;中小商家有覆盖蓄水期到大促期的多档位加码"双11扶持计划"。启示:大促叙事已从规模扩张转向存量精耕,补贴变成按投放行为动态分配的资源,排期与档位比铺量更关键。</p>
       </div></div>
 
       <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">电商联盟</span><div class="rc">
         <h4><a href="https://www.taokeshow.com/73162.html" target="_blank">淘宝联盟 9 月营销日历:金秋团圆季,9/16 20:00 三大活动同步上线</a></h4>
-        <p class="ract">中秋团圆季、秋季家装节、新风潮三大活动于 9 月 16 日 20:00 同步开启,延续至 9 月 27 日 24:00,覆盖生鲜礼盒、居家建材、潮流服饰等品类;9 月主线是"换季焕新 + 节庆囤货"双轮驱动。启示:9 月的确定性节点集中在换季与中秋,选品与素材排期宜按"囤货型礼盒 + 换季刚需"两条线提前 1–2 周备好。</p>
+        <p class="ract">中秋团圆季、秋季家装节、新风潮三大活动于 <span class="hl">9 月 16 日 20:00</span> 同步开启,延续至 <span class="hl">9 月 27 日 24:00</span>,覆盖生鲜礼盒、居家建材、潮流服饰等品类;9 月主线是"换季焕新 + 节庆囤货"双轮驱动。启示:9 月的确定性节点集中在换季与中秋,选品与素材排期宜按"囤货型礼盒 + 换季刚需"两条线提前 1–2 周备好。</p>
       </div></div>
 
       <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">AI选品</span><div class="rc">
         <h4><a href="https://www.taokeshow.com/73159.html" target="_blank">京东联盟 9 月节奏:中秋好物佣金翻倍至高额外激励 25%,POP 超惠补佣金膨胀 50%</a></h4>
-        <p class="ract">已披露档期:9/1–9/30 每天 10:00 超级补贴爆品(低至 1 折、佣金翻倍,带【超补爆品限量】标识可获佣金补贴);9/1–9/25 中秋好物佣金翻倍、至高额外激励 25%;京东超市 POP 超惠补佣金膨胀 50%(9/1–9/30);大闸蟹专场佣金高至 35%(9/3–9/4);全球购酒水食品指定商品提佣最高 8%(9/1–9/7);PLUSday 会员日 9/5–9/8(1345 元 PLUS 超级补贴);京东超级18 为 9/17 20:00–9/18;京东中秋促销 9/10–9/25。启示:跨平台佣金窗口高度日历化,把"提佣/膨胀档期"当成选品的时间变量,比单纯比较绝对佣金率更有效。</p>
+        <p class="ract">已披露档期:9/1–9/30 每天 10:00 超级补贴爆品(低至 1 折、佣金翻倍,带【超补爆品限量】标识可获佣金补贴);9/1–9/25 中秋好物佣金翻倍、至高额外激励 25%;京东超市 POP 超惠补佣金膨胀 <span class="hl">50%</span>(9/1–9/30);大闸蟹专场佣金高至 35%(9/3–9/4);全球购酒水食品指定商品提佣最高 8%(9/1–9/7);PLUSday 会员日 9/5–9/8(1345 元 PLUS 超级补贴);京东超级18 为 9/17 20:00–9/18;京东中秋促销 9/10–9/25。启示:跨平台佣金窗口高度日历化,把"提佣/膨胀档期"当成选品的时间变量,比单纯比较绝对佣金率更有效。</p>
       </div></div>
 
       <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
-        <h4><a href="https://www.gdte.org.cn/node_204991.html" target="_blank">第五届全球数字贸易博览会定档 9/23–9/27 杭州:主题"在数贸会遇见AI未来",首设 Token 专区</a></h4>
+        <h4><a href="https://www.gdte.org.cn/node_204991.html" target="_blank">第五届全球数字贸易博览会定档 <span class="hl">9/23–9/27</span> 杭州:主题"在数贸会遇见AI未来",首设 Token 专区</a></h4>
         <p class="ract">展会面积 17 万平方米,突出"人工智能赋能数字贸易",以"可触达、可互动、可交易"为展陈理念,设人工智能、丝路电商、智慧物流等展区,并首次设立 Token 专区,全景展示"模型+算力+电力"出海链路。启示:Token 被当作可展示的贸易品类,说明推理成本已进入商业叙事;跨境与出海货品的 AI 服务供给,值得现场集中摸一遍。</p>
       </div></div>
     </section>
@@ -207,7 +213,7 @@
         <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s9">9</span></div>
         <h3><a href="https://www.zhipuai.cn/zh/research/163" target="_blank">智谱发布并全开源 GLM-5.3-Flash:"前沿智能进入普惠时代"</a></h3>
         <p class="sum">GLM-5.3-Flash 总参数 320B、激活参数 18B,是 GLM-5 系列首个原生多模态模型,也是首个采用稀疏注意力与线性注意力混合架构的开源前沿模型;原生融入视觉能力,使模型能主动观察界面、渲染与交互反馈并持续迭代,形成代码、浏览器与图形界面的协同闭环。限时折扣价被报道为 GLM-5.3 的 1/20。</p>
-        <p class="ins"><b>→ 工具生态:</b> 开源侧同时压低了"多模态 + 长上下文 + Agent 操作界面"三项能力的门槛;自建方案与外采服务的性价比需要重新算一次。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 开源侧同时压低了"多模态 + 长上下文 + Agent 操作界面"三项能力的门槛;自建方案与外采服务的性价比需要重新算一次。</p>
         <div class="foot"><span class="src">智谱 AI / AIHub · 8-26</span><a class="orig" href="https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash" target="_blank">原文 →</a></div>
       </article>
 
@@ -215,7 +221,7 @@
         <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s8">8</span></div>
         <h3><a href="https://post.smzdm.com/p/apqxq3p0" target="_blank">报道称 2.5 亿人用过 AI 购物,但 30 日留存仅 3%:"哪些步骤该交给 AI"</a></h3>
         <p class="sum">据 8 月末报道,已有 2.5 亿用户通过千问 Agent 功能体验 AI 驱动的购物,但 30 日留存率被指仅约 3%。千问 App 于 8 月 10 日上线付费,专业会员分高级、精英、旗舰三档,月费 19 元、49 元、128 元,收费主要对准办公助理与视频生成额度,日常对话与购物入口仍免费。</p>
-        <p class="ins"><b>→ 电商联盟:</b> AI 购物入口的规模与黏性是两件事;把"哪一步交给 AI 用户才愿意回来"拆开验证,比追求入口曝光更影响长期收益。</p>
+        <p class="ins ins-neg"><b>→ 电商联盟:</b> AI 购物入口的规模与黏性是两件事;把"哪一步交给 AI 用户才愿意回来"拆开验证,比追求入口曝光更影响长期收益。</p>
         <div class="foot"><span class="src">什么值得买 / 36氪 · 8-29</span><a class="orig" href="https://news.qq.com/rain/a/20260829A08UH900" target="_blank">原文 →</a></div>
       </article>
 
@@ -252,7 +258,7 @@
         <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s8">8</span></div>
         <h3><a href="https://simonwillison.net/2026/Sep/1/claude-fable-5-1/" target="_blank">Simon Willison:Fable 5.1 的"鹈鹕测试"——同一提示,成本从 10 美分到 3.30 美元</a></h3>
         <p class="sum">9 月 1 日实测记录:Fable 5.1 有 low/medium/high/xhigh/max 五档推理且无法完全关闭。生成"骑自行车的鹈鹕 SVG"时,low 档 1,998 输出 token、23.8 秒、10.017 美分且几乎看不到推理痕迹;high 档 2,612 token、13.087 美分;xhigh 档 36,767 token、7 分 51 秒、1.83 美元;max 档 65,927 token、13 分 54 秒、3.30 美元,产出他见过 Anthropic 模型里最好的鹈鹕。他同时表示 pelican benchmark 与其他能力的相关性正在减弱,如今更有价值的是同族模型、同提示不同推理档位之间的对比。</p>
-        <p class="ins"><b>→ AI托管:</b> 推理档位是被低估的成本/质量旋钮,33 倍价差对应的是同类任务;按任务价值分档配置,比统一拉满更可持续。</p>
+        <p class="ins"><b>→ AI托管:</b> 推理档位是被低估的成本/质量旋钮,<span class="hl">33 倍价差</span>对应的是同类任务;按任务价值分档配置,比统一拉满更可持续。</p>
         <div class="foot"><span class="src">Simon Willison's Weblog · 9-01</span><a class="orig" href="https://simonwillison.net/2026/Sep/1/claude-fable-5-1/" target="_blank">原文 →</a></div>
       </article>
 
@@ -260,7 +266,7 @@
         <div class="meta"><span class="tag tag-pan">电商联盟</span><span class="score s7">7</span></div>
         <h3><a href="https://time.com/article/2026-08-26/openai-sam-altman-interview/" target="_blank">Sam Altman:OpenAI 的"重启"、下一代模型家族 Astra,与"年底可能达到内部定义的 AGI"</a></h3>
         <p class="sum">TIME 8 月 26 日封面报道《Inside OpenAI's Reboot》:Altman 在华盛顿向官员闭门简报下一代模型家族 Astra 的能力后返回,并向客户预览这一系列前沿模型。他称 OpenAI 可能在 2026 年底拥有一个内部视为 AGI 的系统,同时报道呈现的另一面是公司正在放缓节奏、更强调安全与企业市场。</p>
-        <p class="ins"><b>→ 电商联盟:</b> 模型层的里程碑叙事与落地节奏并不总是同频;把"能力预期"拆成"今年哪些环节真能被替换",排期才靠得住。</p>
+        <p class="ins ins-neg"><b>→ 电商联盟:</b> 模型层的里程碑叙事与落地节奏并不总是同频;把"能力预期"拆成"今年哪些环节真能被替换",排期才靠得住。</p>
         <div class="foot"><span class="src">TIME / Sources · 8-26</span><a class="orig" href="https://sources.news/p/sam-altman-openai-agi" target="_blank">原文 →</a></div>
       </article>
 
@@ -268,7 +274,7 @@
         <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s7">7</span></div>
         <h3><a href="https://m.cls.cn/detail/2472571" target="_blank">博通 CEO 陈福阳:到 2027 年,"公司已确保的供应"将使 AI 营收翻倍</a></h3>
         <p class="sum">9 月 3 日财报电话会上,陈福阳在把 2026 财年 AI 业务营收指引从 560 亿美元上调至 580 亿美元(同比 +186%)之外,进一步给出多年期表述:到 2027 年公司已确保的供应将把 AI 营收翻倍。当季总营收 295.91 亿美元,同比增长 86%。</p>
-        <p class="ins"><b>→ 工具生态:</b> 算力侧给出的是"多年期确定性"口径,这类信号比单次模型发布更适合当作中长期技术选型的假设前提。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 算力侧给出的是"多年期确定性"口径,这类信号比单次模型发布更适合当作中长期技术选型的假设前提。</p>
         <div class="foot"><span class="src">财联社 / 每日经济新闻 · 9-03</span><a class="orig" href="https://www.nbd.com.cn/articles/2026-09-03/4570913.html" target="_blank">原文 →</a></div>
       </article>
     </section>
@@ -349,7 +355,7 @@
       <article class="card">
         <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s7">7</span></div>
         <h3><a href="https://www.aboutamazon.com/news/aws/aws-agentic-shopping-assistant-retailers" target="_blank">AWS 把 Alexa for Shopping 的"配方"外卖:Agentic Shopping Assistant,约 60 天上线</a></h3>
-        <p class="sum">AWS 面向零售商推出 Agentic Shopping Assistant,提供架构指导、starter code 与 Generative AI Innovation Center 支持,基于 Bedrock、AgentCore、OpenSearch。Kate Spade 已用其上线 AI Gift Concierge(底层为 Anthropic Haiku 4.5)。文中引用:亚马逊 AI 购物助手去年带来近 120 亿美元增量销售,对话式购物会话转化率是关键词搜索的 3.5 倍。</p>
+        <p class="sum">AWS 面向零售商推出 Agentic Shopping Assistant,提供架构指导、starter code 与 Generative AI Innovation Center 支持,基于 Bedrock、AgentCore、OpenSearch。Kate Spade 已用其上线 AI Gift Concierge(底层为 Anthropic Haiku 4.5)。文中引用:亚马逊 AI 购物助手去年带来近 120 亿美元增量销售,对话式购物会话转化率是关键词搜索的 <span class="hl">3.5 倍</span>。</p>
         <p class="ins"><b>→ 工具生态:</b> 购物 Agent 的基础设施正在被平台商品化外卖;长尾侧的比较优势更可能落在货品与人群理解,而非重造一个助手。</p>
         <div class="foot"><span class="src">About Amazon / Retail Dive</span><a class="orig" href="https://www.retaildive.com/news/amazon-to-offer-ai-agents-to-other-retailers/821597/" target="_blank">原文 →</a></div>
       </article>
@@ -378,7 +384,7 @@
       <article class="card">
         <div class="meta"><span class="tag tag-kuajie">消费趋势</span><span class="score s7">7</span></div>
         <h3><a href="https://m.thepaper.cn/newsDetail_forward_32795075" target="_blank">2026 新消费趋势:AI、情绪与即时满足成为新购买理由</a></h3>
-        <p class="sum">消费对经济增长贡献率已达 53.5%,是第一拉动力;趋势报告指出购买理由正在从“便宜/刚需”转向“情绪价值 + 即时满足”,AI 也在加速个性化推荐与即时交付。</p>
+        <p class="sum">消费对经济增长贡献率已达 <span class="hl">53.5%</span>,是第一拉动力;趋势报告指出购买理由正在从“便宜/刚需”转向“情绪价值 + 即时满足”,AI 也在加速个性化推荐与即时交付。</p>
         <p class="ins ins-hook"><b>→ 为什么值得看:</b> 选品的锚点要跟着变:便宜只是门槛,情绪才是成交理由。同样一包纸巾,讲“省钱”和讲“被照顾的感觉”,转化率是两码事。</p>
         <div class="foot"><span class="src">澎湃新闻 · 2026</span><a class="orig" href="https://m.thepaper.cn/newsDetail_forward_32795075" target="_blank">原文 →</a></div>
       </article>
@@ -386,7 +392,7 @@
       <article class="card">
         <div class="meta"><span class="tag tag-kuajie">AI 下沉</span><span class="score s7">7</span></div>
         <h3><a href="https://www.ndrc.gov.cn/xxgk/jd/jd/202508/t20250826_1400077.html" target="_blank">智能医生助理覆盖 30 省 3 万家基层机构,服务 1 亿居民</a></h3>
-        <p class="sum">“人工智能+”行动加速落地:医疗领域智能医生助理已覆盖 30 个省份、377 个区县、3 万家基层医疗机构、1 亿居民;农业领域智慧平台覆盖 31 个省份。</p>
+        <p class="sum">“人工智能+”行动加速落地:医疗领域智能医生助理已覆盖 30 个省份、377 个区县、3 万家基层医疗机构、<span class="hl">1 亿居民</span>;农业领域智慧平台覆盖 31 个省份。</p>
         <p class="ins ins-hook"><b>→ 为什么值得看:</b> AI 下沉的姿势是“助手”而不是“工具”——先让人用得起、再规模化。你的淘客生态里 AI 助手渗透的节奏,可以拿这条曲线当参照系。</p>
         <div class="foot"><span class="src">国家发改委</span><a class="orig" href="https://www.ndrc.gov.cn/xxgk/jd/jd/202508/t20250826_1400077.html" target="_blank">原文 →</a></div>
       </article>
