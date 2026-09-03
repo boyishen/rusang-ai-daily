@@ -9,7 +9,7 @@
     --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
     --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
     --accent:#6ea8fe; --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
-    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399;
+    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399; --t-kuajie:#fb7185;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -61,6 +61,7 @@
   .tag-xuanpin{background:rgba(251,191,36,.18);color:var(--t-xuanpin)}
   .tag-ka{background:rgba(34,211,238,.18);color:var(--t-ka)}
   .tag-pan{background:rgba(52,211,153,.18);color:var(--t-pan)}
+  .tag-kuajie{background:rgba(251,113,133,.18);color:var(--t-kuajie)}
   .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
     display:flex;align-items:center;justify-content:center;color:#0a0d15;flex:none}
   .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)}
@@ -72,6 +73,8 @@
   .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);
     background:rgba(110,168,254,.08);border-radius:0 6px 6px 0;line-height:1.6}
   .card .ins b{color:var(--accent);margin-right:4px}
+  .card .ins-hook{border-left-color:var(--orange);background:rgba(245,158,11,.08)}
+  .card .ins-hook b{color:var(--orange)}
   .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
   .card .foot .src{color:var(--dim)}
   .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
@@ -95,6 +98,8 @@
     background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:.15s;white-space:nowrap}
   .nav-bar a:hover{background:var(--card);color:var(--txt);border-color:#2a3554;text-decoration:none}
   .nav-bar a .ncount{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:0 6px;min-width:18px;text-align:center}
+  .nav-bar a.nav-archive{background:rgba(110,168,254,.16);border-color:var(--accent);color:var(--accent);font-weight:700}
+  .nav-bar a.nav-archive:hover{background:var(--accent);color:#0a0d15;border-color:var(--accent)}
 
   /* Two-column grid */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -119,12 +124,14 @@
 
     <nav class="nav-bar">
       <a href="#insight">今日洞见</a>
+      <a href="#cross">跨界视野<span class="ncount">3</span></a>
       <a href="#hot">全球热榜<span class="ncount">7</span></a>
       <a href="#ecom">电商·联盟<span class="ncount">5</span></a>
       <a href="#oss">开源热项<span class="ncount">3</span></a>
       <a href="#voices">大佬说<span class="ncount">3</span></a>
       <a href="#cn">国内速递<span class="ncount">6</span></a>
       <a href="#research">前沿研究<span class="ncount">3</span></a>
+      <a class="nav-archive" href="/rusang-ai-daily/archive/">⏱ 往期存档</a>
     </nav>
 
     <!-- ============ 今日洞见 ============ -->
@@ -152,6 +159,35 @@
           <div class="ibody">9 月 1 日 arXiv 上有两篇方向互补的论文。一篇审计 LLM Agent 商业模拟:原实现报告了 +87.4、+35.0、+28.8 的福利增益,但它给"有护栏"和"无护栏"的 Agent 用了不同的报价 schema 与选择程序;把这两者固定住之后,配对对比变成 +7.2、-13.9、+23.8,原结论被判定为 INVALID。另一篇 RPCBench 发现,推荐类助手的主要瓶颈不是"推得准",而是"能不能主动识别请求本身就有问题",并且推理越长并非越好——性能在中等推理长度达峰,过长会伴随 overthinking 惩罚。放到 AI × 电商语境里,这两篇指向同一句提醒:模拟收益、榜单排名、模拟转化都可能是评测协议不一致的产物。先钉死协议,再谈效果。</div>
         </div>
       </div>
+    </section>
+
+    <!-- ============ 跨界视野 ============ -->
+    <section id="cross" class="grid">
+      <div class="sec-title">跨界视野<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">政策</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.nfra.gov.cn/cn/view/pages/governmentDetail.html?docId=1243771&itemId=861&generaltype=1&articleId=1868364" target="_blank">四部门联合优化服务业经营贷贴息:财政+金融联手扩内需</a></h3>
+        <p class="sum">财政部、商务部、央行、金融监管总局联合发文,通过财政贴息撬动金融机构加大对服务业经营主体的信贷支持,扩大内需的发力点明确落在“经营者”身上而非“平台”身上。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 政策的钱正在流向服务业经营者、小微个体,他们正是你天天打交道的淘客人群;钱袋子变宽还是变紧,直接决定你生态里的活跃度。</p>
+        <div class="foot"><span class="src">财政部/商务部/央行/金监总局 · 近日</span><a class="orig" href="https://www.nfra.gov.cn/cn/view/pages/governmentDetail.html?docId=1243771&itemId=861&generaltype=1&articleId=1868364" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">消费趋势</span><span class="score s7">7</span></div>
+        <h3><a href="https://m.thepaper.cn/newsDetail_forward_32795075" target="_blank">2026 新消费趋势:AI、情绪与即时满足成为新购买理由</a></h3>
+        <p class="sum">消费对经济增长贡献率已达 53.5%,是第一拉动力;趋势报告指出购买理由正在从“便宜/刚需”转向“情绪价值 + 即时满足”,AI 也在加速个性化推荐与即时交付。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 选品的锚点要跟着变:便宜只是门槛,情绪才是成交理由。同样一包纸巾,讲“省钱”和讲“被照顾的感觉”,转化率是两码事。</p>
+        <div class="foot"><span class="src">澎湃新闻 · 2026</span><a class="orig" href="https://m.thepaper.cn/newsDetail_forward_32795075" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">AI 下沉</span><span class="score s7">7</span></div>
+        <h3><a href="https://www.ndrc.gov.cn/xxgk/jd/jd/202508/t20250826_1400077.html" target="_blank">智能医生助理覆盖 30 省 3 万家基层机构,服务 1 亿居民</a></h3>
+        <p class="sum">“人工智能+”行动加速落地:医疗领域智能医生助理已覆盖 30 个省份、377 个区县、3 万家基层医疗机构、1 亿居民;农业领域智慧平台覆盖 31 个省份。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> AI 下沉的姿势是“助手”而不是“工具”——先让人用得起、再规模化。你的淘客生态里 AI 助手渗透的节奏,可以拿这条曲线当参照系。</p>
+        <div class="foot"><span class="src">国家发改委</span><a class="orig" href="https://www.ndrc.gov.cn/xxgk/jd/jd/202508/t20250826_1400077.html" target="_blank">原文 →</a></div>
+      </article>
     </section>
 
     <!-- ============ 全球热榜 ============ -->
