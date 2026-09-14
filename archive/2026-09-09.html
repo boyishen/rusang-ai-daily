@@ -9,7 +9,7 @@
     --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
     --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
     --accent:#6ea8fe; --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
-    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399; --t-kuajie:#fb7185;
+    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399; --t-kuajie:#fb7185; --t-luodi:#f472b6;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -64,6 +64,7 @@
   .tag-ka{background:rgba(34,211,238,.18);color:var(--t-ka)}
   .tag-pan{background:rgba(52,211,153,.18);color:var(--t-pan)}
   .tag-kuajie{background:rgba(251,113,133,.18);color:var(--t-kuajie)}
+  .tag-luodi{background:rgba(244,114,182,.18);color:var(--t-luodi)}
   .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
     display:flex;align-items:center;justify-content:center;color:#0a0d15;flex:none}
   .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)}
@@ -131,6 +132,7 @@
     <nav class="nav-bar">
       <a href="#insight">今日洞见</a>
       <a href="#ecom">电商·联盟<span class="ncount">5</span></a>
+      <a href="#practice">落地实践<span class="ncount">3</span></a>
       <a href="#cn">国内速递<span class="ncount">5</span></a>
       <a href="#voices">大佬说<span class="ncount">3</span></a>
       <a href="#oss">开源热项<span class="ncount">4</span></a>
@@ -195,6 +197,35 @@
         <h4><a href="https://www.cnbc.com/2026-09-06/meta-google-openai-anthropic-ai-model-fatigue.html" target="_blank">CNBC "模型疲劳"对电商 AI 选型的警示:别追每一个新模型,聚焦核心任务评估</a></h4>
         <p class="ract">CNBC <span class="hl">9 月 6 日</span>报道,四大实验室同一周发布更新,企业买家陷入"模型疲劳"。据该报道梳理,除少数真正"move the needle"的代际升级外,多数为增量式"point releases"。启示:电商 AI 选型应建立"核心任务基准集",按自身业务(选品 / 客服 / 内容)的实测效果定档,而非被发布节奏裹挟;多数"升级"对具体业务场景的边际收益递减。</p>
       </div><span style="flex:none;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#0a0d15;margin-top:2px;background:linear-gradient(135deg,#ffd97a,#ffc23d)">7</span></div>
+    </section>
+
+    <!-- ============ AI 落地实践 ============ -->
+    <section id="practice" class="grid">
+      <div class="sec-title">AI 落地实践<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.tmtpost.com/8123378.html" target="_blank">零售电商 AI 落地困境:卡点八成不在技术,在数据孤岛</a></h3>
+        <p class="sum">钛媒体 9 月 1 日刊文梳理零售电商行业 AI 落地现状:试点易、推广难,根源不在模型能力,而是 POS、电商、供应链、会员各系统之间的数据孤岛与治理缺位。结论很直接:启动 AI 项目前,先解决数据底座问题。</p>
+        <p class="ins ins-neg"><b>→ 数据基建:</b> 顺序不能反——先补数据、再上 AI;小商家第一步不是买模型,而是把成交与选品数据沉淀成可用资产。</p>
+        <div class="foot"><span class="src">钛媒体 · 9-01</span><a class="orig" href="https://www.tmtpost.com/8123378.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s7">7</span></div>
+        <h3><a href="https://open.oceanbase.com/blog/27723065632" target="_blank">中粮可口可乐与蜜雪冰城的 AI 避坑实录:试点易、推广难、重复建设</a></h3>
+        <p class="sum">两家消费零售头部企业的落地复盘指向同一组坑:试点项目不少但难规模化、数据烟囱林立、技术与业务脱节、投入高见效慢。"AI 落地的坑,80% 不在技术。"</p>
+        <p class="ins"><b>→ 避坑清单:</b> 规模化的前提是先把一个场景打穿、沉淀成可复制 SOP;贪多上项目,是落地失败的第一大原因。</p>
+        <div class="foot"><span class="src">OceanBase 官方博客 · 5-22</span><a class="orig" href="https://open.oceanbase.com/blog/27723065632" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s7">7</span></div>
+        <h3><a href="https://www.shaqiu.cn/article/zZM5V483VRxb" target="_blank">沙丘《2026 企业级 AI Agent 最佳实践报告》:10 个案例还原落地路径与量化成效</a></h3>
+        <p class="sum">报告精选金融、制造、IT/互联网等领域 10 个企业级 Agent 实践案例,逐一还原落地路径、实施细节与量化成效,并给出"从单点场景到规模化"的通用方法论。</p>
+        <p class="ins ins-pos"><b>→ 案例报告:</b> 看案例重点看"场景选择 + 数据准备 + 验收指标"三件套,而不是演示效果;有量化成效的案例才是可迁移的参照系。</p>
+        <div class="foot"><span class="src">沙丘社区 · 6-04</span><a class="orig" href="https://www.shaqiu.cn/article/zZM5V483VRxb" target="_blank">原文 →</a></div>
+      </article>
     </section>
 
     <!-- ============ 国内速递 ============ -->
