@@ -82,6 +82,10 @@
   .card .ins-pos b{color:var(--green)}
   .card .ins-neg{border-left-color:var(--red);background:rgba(239,68,68,.08)}
   .card .ins-neg b{color:var(--red)}
+  .card .points{list-style:none;margin:0 0 10px;padding:0}
+  .card .points li{font-size:13px;color:var(--sub);line-height:1.65;padding-left:16px;position:relative;margin-bottom:5px}
+  .card .points li:last-child{margin-bottom:0}
+  .card .points li::before{content:"▸";position:absolute;left:2px;top:0;color:var(--accent);font-size:12px}
   .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
   .card .foot .src{color:var(--dim)}
   .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
@@ -200,30 +204,46 @@
     </section>
 
     <!-- ============ AI 落地实践 ============ -->
-    <section id="practice" class="grid">
+    <section id="practice">
       <div class="sec-title">AI 落地实践<span class="count">3</span></div>
 
       <article class="card">
         <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
         <h3><a href="https://www.tmtpost.com/8123378.html" target="_blank">零售电商 AI 落地困境:卡点八成不在技术,在数据孤岛</a></h3>
-        <p class="sum">钛媒体 9 月 1 日刊文梳理零售电商行业 AI 落地现状:试点易、推广难,根源不在模型能力,而是 POS、电商、供应链、会员各系统之间的数据孤岛与治理缺位。结论很直接:启动 AI 项目前,先解决数据底座问题。</p>
-        <p class="ins ins-neg"><b>→ 数据基建:</b> 顺序不能反——先补数据、再上 AI;小商家第一步不是买模型,而是把成交与选品数据沉淀成可用资产。</p>
+        <p class="sum">钛媒体 9 月 1 日刊文梳理零售电商行业 AI 落地现状:项目"试点易、推广难",根源不在模型能力,而在数据底座。对零售企业,这意味着启动 AI 项目之前,要先解决数据孤岛问题。</p>
+        <ul class="points">
+          <li>卡点所在:POS、电商、供应链、会员四套系统数据孤岛,数据标准与治理缺位,AI 拿不到干净的输入</li>
+          <li>典型症状:试点项目不少、规模化复制难;技术投入高、见效慢,技术与业务脱节</li>
+          <li>建议路径:先统一数据标准、打通关键系统,再谈模型选型——"先补数据、再上 AI"的顺序不能反</li>
+        </ul>
+        <p class="ins ins-neg"><b>→ 数据基建:</b> 小商家第一步不是买模型,而是把成交与选品数据沉淀成可用资产;数据资产比模型选型更决定落地成败。</p>
         <div class="foot"><span class="src">钛媒体 · 9-01</span><a class="orig" href="https://www.tmtpost.com/8123378.html" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
         <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s7">7</span></div>
         <h3><a href="https://open.oceanbase.com/blog/27723065632" target="_blank">中粮可口可乐与蜜雪冰城的 AI 避坑实录:试点易、推广难、重复建设</a></h3>
-        <p class="sum">两家消费零售头部企业的落地复盘指向同一组坑:试点项目不少但难规模化、数据烟囱林立、技术与业务脱节、投入高见效慢。"AI 落地的坑,80% 不在技术。"</p>
-        <p class="ins"><b>→ 避坑清单:</b> 规模化的前提是先把一个场景打穿、沉淀成可复制 SOP;贪多上项目,是落地失败的第一大原因。</p>
+        <p class="sum">两家消费零售头部企业的 AI 落地复盘,踩的坑高度一致——"AI 落地的坑,80% 不在技术。"把他们的坑提前看完,能省掉不少冤枉钱。</p>
+        <ul class="points">
+          <li>坑一·试点易推广难:单点 demo 效果很好,规模化时链路断裂,项目停在"试点"</li>
+          <li>坑二·数据烟囱:各业务系统数据不互通,重复建设、口径打架</li>
+          <li>坑三·技术与业务脱节:技术团队埋头造轮子,业务一线不买单</li>
+          <li>解法:先把一个场景打穿、沉淀成可复制 SOP,再横向复制——贪多上项目是失败第一大原因</li>
+        </ul>
+        <p class="ins"><b>→ 避坑清单:</b> 规模化的前提是单场景打穿;先做一个 100 分的小场景,胜过三个 60 分的项目。</p>
         <div class="foot"><span class="src">OceanBase 官方博客 · 5-22</span><a class="orig" href="https://open.oceanbase.com/blog/27723065632" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
         <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s7">7</span></div>
         <h3><a href="https://stcn.com/article/detail/3388655.html" target="_blank">天猫双11 的 AI 量化账单:月 2 亿张图、1000 万份报告、85% 好评</a></h3>
-        <p class="sum">证券时报披露去年双11 的 AI 落地数据:AI 美工每月生成约 <span class="hl">2 亿张</span>图片和 <span class="hl">500 万个</span>视频,商品点击率提高 <span class="hl">10%</span>;AI 数据分析工具累计产出超 1000 万份报告,获 <span class="hl">85%</span> 商家好评。</p>
-        <p class="ins ins-pos"><b>→ 量化账单:</b> "月产 2 亿图"说明素材产能已不是瓶颈,差异化回到选品与人群理解;把 AI 工具按"产出量 + 提效比"记账,才知道该把钱花在哪。</p>
+        <p class="sum">去年双11 天猫首度"AI 全面落地",证券时报披露的这份量化账单,值得在今年双11 备战前重读一遍。</p>
+        <ul class="points">
+          <li>AI 美工:每月生成约 <span class="hl">2 亿张</span>图片、<span class="hl">500 万个</span>视频,商品点击率提高 <span class="hl">10%</span></li>
+          <li>AI 数据分析:累计产出超 <span class="hl">1000 万份</span>报告,获 <span class="hl">85%</span> 商家好评</li>
+          <li>结构变化:素材产能不再稀缺,竞争重心回到选品与人群理解——"月产 2 亿图"时代,差异化不在图,在人</li>
+        </ul>
+        <p class="ins ins-pos"><b>→ 量化账单:</b> 把 AI 工具按"产出量 + 提效比"记账,才知道预算该往哪花;今年平台 AI 工具大概率全面铺开,现在就该摸清入口。</p>
         <div class="foot"><span class="src">证券时报 · 2025-10-19</span><a class="orig" href="https://stcn.com/article/detail/3388655.html" target="_blank">原文 →</a></div>
       </article>
     </section>
