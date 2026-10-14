@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如桑的AI日报 · 2026-10-14</title>
+<style>
+  :root{
+    --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
+    --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
+    --accent:#6ea8fe; --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
+    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399; --t-kuajie:#fb7185; --t-luodi:#f472b6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(1200px 700px at 80% -10%,#15203a 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;padding-bottom:80px}
+
+  /* Header */
+  .main-header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding:48px 0 20px;margin-bottom:36px;border-bottom:1px solid var(--line)
+  }
+  .main-header h1{font-size:28px;font-weight:800;letter-spacing:-.3px}
+  .main-header .status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-top:4px;white-space:nowrap}
+  .main-header .status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+  .main-header .status .label{color:var(--green);font-weight:600}
+
+  /* Section header */
+  section{margin-bottom:44px;scroll-margin-top:20px}
+  .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
+  .sec-title::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--accent),rgba(110,168,254,.25));flex:none}
+
+  /* Insight card */
+  .insight{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:8px}
+  .insight .insight-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-bottom:16px}
+  .insight .insight-head .star{color:var(--orange);font-size:16px}
+  .insight .insight-head .by{color:var(--dim);font-size:12px}
+  .insight .intro{font-size:15px;color:var(--sub);margin-bottom:18px;line-height:1.7}
+  .insight .item{margin-bottom:18px}
+  .insight .item:last-child{margin-bottom:0}
+  .insight .item .idx{color:var(--accent);font-weight:700;font-size:14px;margin-right:6px}
+  .insight .item .ititle{display:inline;font-weight:700;font-size:15px;color:var(--txt)}
+  .insight .item .ititle a{font-weight:700}
+  .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
+  .hl{color:#fbbf24;font-weight:700}
+
+  /* Card (list items) */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
+  .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
+  .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
+  .card .meta .tag{font-size:11px;font-weight:600;border-radius:5px;padding:1px 8px}
+  .tag-tuoguan{background:rgba(167,139,250,.18);color:var(--t-tuoguan)}
+  .tag-xuanpin{background:rgba(251,191,36,.18);color:var(--t-xuanpin)}
+  .tag-ka{background:rgba(34,211,238,.18);color:var(--t-ka)}
+  .tag-pan{background:rgba(52,211,153,.18);color:var(--t-pan)}
+  .tag-kuajie{background:rgba(251,113,133,.18);color:var(--t-kuajie)}
+  .tag-luodi{background:rgba(244,114,182,.18);color:var(--t-luodi)}
+  .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:#0a0d15;flex:none}
+  .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)}
+  .s8{background:linear-gradient(135deg,#ffb15d,#ff9028)}
+  .s7{background:linear-gradient(135deg,#ffd97a,#ffc23d)}
+  .s6{background:linear-gradient(135deg,#9fb0d0,#7c8db0)}
+  .card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:6px}
+  .card .sum{font-size:13.5px;color:var(--sub);line-height:1.6;margin-bottom:8px}
+  .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);
+    background:rgba(110,168,254,.08);border-radius:0 6px 6px 0;line-height:1.6}
+  .card .ins b{color:var(--accent);margin-right:4px}
+  .card .ins-hook{border-left-color:var(--orange);background:rgba(245,158,11,.08)}
+  .card .ins-hook b{color:var(--orange)}
+  .card .ins-pos{border-left-color:var(--green);background:rgba(34,197,94,.08)}
+  .card .ins-pos b{color:var(--green)}
+  .card .ins-neg{border-left-color:var(--red);background:rgba(239,68,68,.08)}
+  .card .ins-neg b{color:var(--red)}
+  .card .points{list-style:none;margin:0 0 10px;padding:0}
+  .card .points li{font-size:13px;color:var(--sub);line-height:1.65;padding-left:16px;position:relative;margin-bottom:5px}
+  .card .points li:last-child{margin-bottom:0}
+  .card .points li::before{content:"▸";position:absolute;left:2px;top:0;color:var(--accent);font-size:12px}
+  .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
+  .card .foot .src{color:var(--dim)}
+  .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
+  .card .foot .orig:hover{text-decoration:underline}
+
+  /* Compact row */
+  .row{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
+    border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:.18s}
+  .row:hover{background:var(--card);border-color:#2a3554;transform:translateY(-1px)}
+  .row .rc{flex:1;min-width:0}
+  .row h4{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
+  .row .ract{font-size:13px;color:var(--sub);line-height:1.6}
+
+  .grid .card,.grid .row{margin-bottom:0}
+
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
+
+  /* Horizontal nav */
+  .nav-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .nav-bar a{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--sub);
+    background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:.15s;white-space:nowrap}
+  .nav-bar a:hover{background:var(--card);color:var(--txt);border-color:#2a3554;text-decoration:none}
+  .nav-bar a .ncount{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:0 6px;min-width:18px;text-align:center}
+  .nav-bar a.nav-archive{background:rgba(110,168,254,.16);border-color:var(--accent);color:var(--accent);font-weight:700}
+  .nav-bar a.nav-archive:hover{background:var(--accent);color:#0a0d15;border-color:var(--accent)}
+
+  /* Two-column grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid > .sec-title{grid-column:1/-1}
+
+  @media(max-width:640px){
+    .main-header{flex-direction:column;gap:8px;padding-top:32px}
+    .grid{grid-template-columns:1fr}
+    .insight{padding:20px 16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <main>
+
+    <header class="main-header">
+      <h1>如桑的AI日报</h1>
+      <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年10月14日 星期三</div>
+    </header>
+
+    <nav class="nav-bar">
+      <a href="#insight">今日洞见</a>
+      <a href="#ecom">电商·联盟<span class="ncount">5</span></a>
+      <a href="#practice">落地实践<span class="ncount">3</span></a>
+      <a href="#cn">国内速递<span class="ncount">3</span></a>
+      <a href="#voices">大佬说<span class="ncount">3</span></a>
+      <a href="#oss">开源热项<span class="ncount">4</span></a>
+      <a href="#hot">全球热榜<span class="ncount">5</span></a>
+      <a href="#cross">跨界视野<span class="ncount">3</span></a>
+      <a href="#research">前沿研究<span class="ncount">3</span></a>
+      <a class="nav-archive" href="/rusang-ai-daily/archive/">⏱ 往期存档</a>
+    </nav>
+
+    <!-- ============ 今日洞见 ============ -->
+    <section id="insight">
+      <div class="sec-title">今日洞见</div>
+      <div class="insight">
+        <div class="insight-head"><span class="star">★</span> 编辑视角 <span class="by">· by AI</span></div>
+        <p class="intro">10 月 14 日, 三条主线交汇出同一个信号: 前沿竞赛的"减速论"被现实打破——就在 Anthropic、OpenAI 接连呼吁放慢之时, Meta 反其道甩出前沿级 Muse Wonder, 把"要不要踩刹车"重新变回"谁跑得更快"; 与此同时, 电商侧进入双 11 倒计时(淘宝天猫 <span class="hl">10 月 17 日</span>正式启动), AI 投放从加分项变成大促基础设施; 而硬科技侧最真实的卡点浮出水面——人形机器人上半年出货已超 <span class="hl">4 万台</span>, 却仍被"数据关"卡住规模化。三条合起来提醒: 能力在加速、场景在落地, 但真正的瓶颈正从"模型多强"转向"数据、货盘、治理是否跟得上"。</p>
+
+        <div class="item">
+          <span class="idx">01</span>
+          <span class="ititle"><a href="http://finance.sina.com.cn/roll/2026-10-13/doc-iniuzkkv8190691.shtml" target="_blank">Meta 反其道加速: 发布前沿级 Muse Wonder, 内部代号"西瓜"</a></span>
+          <div class="ibody">当地时间周一(10 月 12 日), Meta 发布 <span class="hl">Muse Wonder</span> 及更强的 Wonder Full 两款模型, 这是扎克伯格重组 AI 部门后交出的最强成果, 内部代号"西瓜(Watermelon)"。据财联社, Meta 称历经 <span class="hl">14 个月</span>攻坚, 新模型已抵达前沿梯队——在代码、金融与法律问题处理上可与 ChatGPT、Claude 媲美, 多项测试达到 Fable 5.1、Opus 5.5、GPT-6 Astra 的相近水平, 部分智能体与知识工作基准甚至略胜一筹。启示: 当头部实验室一边喊"减速"一边被对手加速反超, "要不要慢下来"已成伪命题——应用层更该把模型当作可横评、可替换的依赖, 而非绑死单一路线。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">02</span>
+          <span class="ititle"><a href="https://zhuanlan.zhihu.com/p/2086537615168296380" target="_blank">双 11 进入倒计时: 淘宝天猫 10 月 17 日正式启动, AI 投放成大促基础设施</a></span>
+          <div class="ibody">2026 年淘宝天猫双 11 招商规则已于 9 月 21 日公布, 活动将于 <span class="hl">10 月 17 日</span>正式启动, 核心玩法为官方立减, 分预售与现货两个报名时段; 京东商家大会同期发布四大升级举措、主打"AI 科技"。据多份大促盘点, 阿里妈妈投入数十亿元"无界智惠券"由 AI 动态判定补贴档位, 并以"万相点睛"做 AI 定向。启示: 当平台把"AI 定向 + 动态补贴 + 官方立减"打包成大促标配, 商家侧竞争焦点从"谁降价狠"转向"谁的货盘结构化、人群资产厚"——这也是联盟侧选品与素材要提前对齐的方向。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">03</span>
+          <span class="ititle"><a href="http://finance.sina.com.cn/jjxw/2026-10-13/doc-iniuzeau0476080.shtml" target="_blank">具身智能"数据关": 上半年人形机器人出货超 4 万台, 真实数据却差一个量级</a></span>
+          <div class="ibody">据央视/新浪 10 月 13 日报道, 2026 上半年我国人形机器人出货量超 <span class="hl">4 万台</span>、全球占比升至 <span class="hl">97%</span>, 工信部预计全年产量有望突破 <span class="hl">10 万台</span>。但"造出来"到"用起来"之间卡着一道数据关: 全球可用的高质量真实交互数据仅数十万至百万小时级, 而机器人要迎来"ChatGPT 时刻"需千万小时级, 供需存在量级差距, "具身智能训练场"因此成为关键基础设施。启示: 硬科技落地的真正瓶颈常不在硬件产能, 而在数据供给; 谁先把"真实场景数据"规模化、标准化, 谁就先跨过产业化门槛。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 电商·联盟聚焦 ============ -->
+    <section id="ecom" class="grid">
+      <div class="sec-title">电商 · 联盟聚焦<span class="count">5</span></div>
+
+      <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">AI选品</span><div class="rc">
+        <h4><a href="https://zhuanlan.zhihu.com/p/2086537615168296380" target="_blank">双 11 <span class="hl">10 月 17 日</span>启动: 淘宝天猫招商规则落地, 官方立减 + 两时段报名</a></h4>
+        <p class="ract">2026 年淘宝天猫双 11 招商规则于 9 月 21 日正式公布, 活动 10 月 17 日启动, 分预售商品报名与现货商品报名两个时段, 核心玩法为官方立减; 京东商家大会同期发布四大升级举措。启示: 大促节奏已明确, 商家与联盟侧要提前把货盘、素材、人群资产做成"可被 AI 分发"的结构化字段, 才能接住启动首波流量。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">电商联盟</span><div class="rc">
+        <h4><a href="https://m.zhidx.com/p/590016.html" target="_blank">阿里妈妈双 11: 数十亿"无界智惠券", AI 按投放力度<span class="hl">动态判档</span>补贴</a></h4>
+        <p class="ract">据智东西报道, 今年双 11 阿里妈妈投入数十亿元补贴"无界智惠券", 由 AI 根据商家投放力度动态判断补贴档位, 并推出多档扶持计划、部分产品最高反哺力度可观; 官方称相关 AI 工具可带来约 <span class="hl">10%</span> 的转化提升。启示: 当补贴档位由 AI 动态判定, "投得准"比"投得多"更划算——结构化人群与实时素材数据是拿到更高补贴档的前提。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">AI托管</span><div class="rc">
+        <h4><a href="https://www.cls.cn/detail/2169282" target="_blank">京东主打"AI 科技": 双 11 各平台从拼低价转向供需两端提效</a></h4>
+        <p class="ract">据财联社, 今年双 11 各平台不再一味拼低价、比补贴: 抖音发力供需两端, 京东主打 AI 科技, 淘宝内测"AI 助手"、推出"AI 万能搜", 阿里妈妈上线商家 AI 经营伙伴"万相台 AI 无界"。启示: 电商入口正从"搜索框"迁移到"对话框 + AI 荐", 商品与服务既要适配"人搜"也要适配"AI 荐", 结构化表达是被 agent 选中的前提。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">电商联盟</span><div class="rc">
+        <h4><a href="https://www.digitalcommerce360.com/2026-03-06/openai-shifts-checkout-plans-agentic-commerce-strategy/" target="_blank">代理式购物再调整: OpenAI 结账重心转向"商家自控 checkout"</a></h4>
+        <p class="ract">据 Digital Commerce 360, OpenAI 正调整 Instant Checkout 路线, 把重心转向由商家 App 自控的结账体验; 行业指南亦确认, Instant Checkout 对成交收取约 <span class="hl">4%</span> 费用、由 Stripe 驱动并基于双方共建的 Agentic Commerce Protocol(ACP)。启示: 代理式购物的"结账主权"仍在演进, 商家既要适配 ACP/MCP 主干标准, 也要保留自有结账链路, 别把转化完全押在单一 agent 入口。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://open.taobao.com/whitepaper/ai2026.htm" target="_blank">《AI 重塑经营: 2026 中国电商 AI 应用白皮书》发布, 系统化梳理经营侧 AI 落地</a></h4>
+        <p class="ract">淘宝开放平台发布《AI 重塑经营——2026 中国电商 AI 应用白皮书》, 面向商家系统梳理 AI 在选品、投放、素材、客服与人群运营等环节的应用路径(需登记阅读)。启示: 当平台把"AI 经营方法论"沉淀成白皮书, 中小商家的学习成本被显著拉低——对照白皮书自查"哪些环节还没被 AI 接管", 是低成本的补短板方式。</p>
+      </div></div>
+    </section>
+
+    <!-- ============ AI 落地实践 ============ -->
+    <section id="practice">
+      <div class="sec-title">AI 落地实践<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s9">9</span></div>
+        <h3><a href="https://developer.aliyun.com/article/1743754" target="_blank">深度拆解 <span class="hl">60+</span> 全球企业 AI 案例: 告别"大模型万能论", 提炼 7 条落地共性</a></h3>
+        <p class="sum">一篇基于斯坦福《企业 AI 实战手册》与 16 家头部企业案例的深度拆解, 系统回答了"2026 年企业 AI 到底怎么落地才不翻车"。作者的核心判断是: 行业已告别"大模型万能论", 真正跑通的项目无一例外都把 AI 嵌进了核心业务流程, 而非停在边缘的问答机器人。这份复盘对所有正在推 PoC 的团队都是一张现成的避坑清单。</p>
+        <ul class="points">
+          <li>做法: AI 必须嵌入核心业务流程(选品、风控、客服、供应链), 而不是做一个孤立的"聊天入口"</li>
+          <li>卡点: 高风险行业坚持"人先于 AI"——医疗、金融、法务等场景必须保留人工复核阈值, 否则一次错误就击穿信任</li>
+          <li>成效: 跑通者把预算重心放在数据治理、流程重设计与变更管理, 而非单纯堆模型参数</li>
+          <li>教训: <span class="hl">60+</span> 案例反复印证——demo 惊艳但回不了本的项目, 短板几乎都在"数据质量 + 流程改造", 不在模型能力</li>
+        </ul>
+        <p class="ins ins-neg"><b>→ 避坑清单:</b> 别再把"上了大模型"当成落地成功; 上线前先问三件事——AI 有没有嵌进核心流程、高风险环节有没有人在回路、数据治理预算够不够。把这三点补齐, PoC 才有机会变成能回本的生产系统。</p>
+        <div class="foot"><span class="src">阿里云开发者社区 / 斯坦福企业AI实战手册 · 10-13</span><a class="orig" href="https://developer.aliyun.com/article/1743754" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="http://k.sina.com.cn/article_5953189932_162d6782c067050or0.html" target="_blank">行业落地案例: "土谛 AI"农业大模型出海东盟, 圈地块即出<span class="hl">土地分析报告</span></a></h3>
+        <p class="sum">10 月 12 日, "活力中国调研行"采访团走进广西南宁的中国—东盟国家人工智能应用合作中心。捷佳润科技的"土谛 AI"农业大模型成为样本: 农户在小程序地图上圈出意向地块、输入"我的农场适合种蓝莓吗"这样的提示词, AI 就能结合地块条件生成一份详尽的土地分析报告, 还能为农田"巡诊"。这是"AI + 传统产业 + 区域出海"可复制的降本样板。</p>
+        <ul class="points">
+          <li>做法: 把农业专家经验做成大模型能力, 用户"圈地块 + 一句提示词"即可产出结构化土地分析报告</li>
+          <li>成效: 面向东盟市场输出, 帮助农场显著降低对人力巡田与判别的依赖(相关方案节约超 <span class="hl">2 成</span>人力)</li>
+          <li>卡点: 农业场景数据分散、田间网络与算力受限, 需端云协同与本地化数据适配才能规模化</li>
+          <li>启示: 以中国—东盟 AI 应用合作中心为枢纽, 把成熟行业方案跨境复制, 比单点卖软件更易起量</li>
+        </ul>
+        <p class="ins ins-pos"><b>→ 案例报告:</b> 当一个"高人力 + 可标准化判别"的环节被 AI 压掉两成成本, 落地叙事就从"能不能用"变成"划不划算"; 对做行业方案的团队, 找到那个可量化、可复制的降本切口, 比堆功能更能打动买单方, 也更适合跨境复制。</p>
+        <div class="foot"><span class="src">中华工商时报 / 新浪 · 10-12</span><a class="orig" href="http://k.sina.com.cn/article_5953189932_162d6782c067050or0.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/jjxw/2026-10-13/doc-iniuzeau0476080.shtml" target="_blank">产业基建落地: "具身智能训练场"成破"数据关"关键, 全年人形机器人产量有望破 <span class="hl">10 万台</span></a></h3>
+        <p class="sum">10 月 13 日报道显示, 2026 年具身智能产业站在关键节点: 上半年我国人形机器人出货超 4 万台、全球占比 97%, 工信部预计全年产量突破 10 万台。但"造出来"到"用起来"卡着一道数据关——训练机器人需要海量真实物理交互数据作"教材", 供需存在量级差距, "具身智能训练场"因此被推上基础设施位置。</p>
+        <ul class="points">
+          <li>卡点: 全球可用高质量真实数据仅数十万至百万小时级, 而"ChatGPT 时刻"需<span class="hl">千万小时级</span>, 差一个量级</li>
+          <li>做法: 建"具身智能训练场", 让机器人在真实/仿真场景中"上课", 批量采集标准化交互数据</li>
+          <li>成效: 上半年人形机器人出货超 <span class="hl">4 万台</span>、全球占比 97%, 产能已不是瓶颈</li>
+          <li>启示: 硬科技规模化的胜负手正从"硬件产能"转向"数据供给", 训练场即是新的基础设施赛道</li>
+        </ul>
+        <p class="ins"><b>→ 数据基建:</b> 当机器人产量冲向 10 万台而真实数据还差一个量级, 说明产业的短板已从"能不能造"转到"有没有数据可训"; 把训练场、数据标注与仿真环境当成基础设施来投, 是具身智能跨过量产地狱谷的前提。</p>
+        <div class="foot"><span class="src">央视新闻 / 新浪财经 · 10-13</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-10-13/doc-iniuzeau0476080.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 国内速递 ============ -->
+    <section id="cn" class="grid">
+      <div class="sec-title">国内速递<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">政策风向</span><span class="score s9">9</span></div>
+        <h3><a href="http://finance.sina.com.cn/jjxw/2026-10-13/doc-iniuzeau0476080.shtml" target="_blank">人形机器人上半年出货超 <span class="hl">4 万台</span>、全球占比 <span class="hl">97%</span>, 全年有望破 10 万台</a></h3>
+        <p class="sum">10 月 13 日报道, 2026 上半年我国人形机器人出货量超过 4 万台, 全球占比进一步提升至 97%; 工业和信息化部预计 2026 全年人形机器人产量有望突破 10 万台。报道同时指出, 从"造出来"到"用起来"仍卡在数据关, 具身智能训练场成为破局关键。</p>
+        <p class="ins ins-pos"><b>→ 政策风向:</b> 当出货量与全球占比双双冲高, 中国人形机器人已从"样机演示"进入"量产爬坡"; 对产业链, 数据、训练场与场景运营是下一段真正的价值高地。</p>
+        <div class="foot"><span class="src">央视新闻 / 新浪财经 · 10-13</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-10-13/doc-iniuzeau0476080.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/jjxw/2026-10-13/doc-iniuzeav7248630.shtml" target="_blank">AI 新职业走热: 数字新兴岗位最高月薪 <span class="hl">2 万元</span>, "技能夜校"一天报满</a></h3>
+        <p class="sum">10 月 13 日报道, AI 浪潮正催生一批新职业: 江苏镇江"技能夜校"AI 漫剧课程 90 个名额一天报满, 学员从中专生、全职宝妈到六旬大叔; 重庆一场青年招聘会上, AI 短剧执行导演、AI 剪辑师等 200 余个数字新兴岗位集中亮相, 有企业称这类人才尤为紧缺、最高月薪可达 2 万元。报道也提醒, 热潮下"有人真赚到, 有人被收割"。</p>
+        <p class="ins"><b>→ AI托管:</b> 当 AI 技能课"一天报满"、新岗位月薪冲到 2 万, 说明红利正从"会用工具"下沉到"能产出内容"; 对个人, 选准一个可交付的技能切口, 比泛泛学 AI 更能变现, 也要警惕高价割韭菜培训。</p>
+        <div class="foot"><span class="src">新浪财经 · 10-13</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-10-13/doc-iniuzeav7248630.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s8">8</span></div>
+        <h3><a href="https://k.sina.com.cn/article_7857201856_1d45362c001908qpvk.html" target="_blank">中国 AI 大模型周调用量环比 <span class="hl">+50.96%</span>, 再度包揽全球前五</a></h3>
+        <p class="sum">据 10 月 12 日新浪 AI 热点小时报, 中国 AI 大模型周调用量环比增长 50.96%, 再度包揽全球前五; 阶跃星辰 Step 5 Preview 跻身前四, 匿名模型"太空兔"跌出榜单。国产模型在真实调用量上的集体走强, 反映其在全球开发者侧的实用渗透正在加速。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当"周调用量"而非"跑分"成为衡量口径, 国产模型的价值正被真实使用验证; 对应用层, 把国产开源/低价模型纳入横评池, 是控本又保能力的现实选择。</p>
+        <div class="foot"><span class="src">新浪 AI 热点小时报 · 10-12</span><a class="orig" href="https://k.sina.com.cn/article_7857201856_1d45362c001908qpvk.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 大佬说 ============ -->
+    <section id="voices" class="grid">
+      <div class="sec-title">大佬说<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">观点语录</span><span class="score s9">9</span></div>
+        <h3><a href="http://finance.sina.com.cn/roll/2026-10-13/doc-iniuzkkv8190691.shtml" target="_blank">扎克伯格"打翻身牌": 别人喊减速, Meta 偏发前沿模型并暗示"还要加速"</a></h3>
+        <p class="sum">财联社 10 月 13 日观察指出, 就在 Anthropic、OpenAI 接连呼吁业界放缓前沿大模型开发之际, Meta 反其道宣布推出能力达业界前沿的 Muse Wonder, 并暗示接下来还要加速。这是扎克伯格重组 AI 部门、启用新人才掌舵后的第一次强力亮剑, 也意在重振 Meta 的 AI 产品周期。</p>
+        <p class="ins ins-neg"><b>→ 观点语录:</b> 当"减速"与"加速"在同一周被不同头部玩家同时主张, 说明前沿竞赛没有统一节奏; 对应用层, 与其押注某家的路线宣言, 不如建立多模型横评与快速切换能力, 把主动权握在自己手里。</p>
+        <div class="foot"><span class="src">财联社 / 新浪财经 · 10-13</span><a class="orig" href="http://finance.sina.com.cn/roll/2026-10-13/doc-iniuzkkv8190691.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">行业观察</span><span class="score s8">8</span></div>
+        <h3><a href="https://wap.eastmoney.com/a/202609163876016149.html" target="_blank">黄仁勋拒绝加入"AI 减速联盟": "虚假的选择", 尽你所能地快跑</a></h3>
+        <p class="sum">据东方财富报道, 英伟达 CEO 黄仁勋公开拒绝加入"AI 减速联盟", 称减速是"虚假的选择", 主张"尽你所能地快跑", 并在会上与 OpenAI、Anthropic 掌门人当面呛声。他在 GTC 2026 上更抛出"计算就是收入、瓦特就是收入、每一个 token 都是收入"的判断, 堪称 AI 时代的"时间就是金钱"。</p>
+        <p class="ins"><b>→ 行业观察:</b> 当算力龙头把"每个 token 都是收入"当作信条, 加速派与减速派的分歧本质是利益位置不同; 对从业者, 别被任一方的叙事带走, 回到自己的成本结构与风险承受力做判断更靠谱。</p>
+        <div class="foot"><span class="src">东方财富 / 钛媒体 · 09-16</span><a class="orig" href="https://wap.eastmoney.com/a/202609163876016149.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">观点语录</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.guancha.cn/shijiekexiansheng/2026_09_14_900533.shtml" target="_blank">Amodei 的"我们必须放慢": AI 史上首次三家竞争对手 CEO 24 小时内齐挺减速</a></h3>
+        <p class="sum">据观察者网, 这是 AI 历史上第一次——三家最直接竞争对手的 CEO 在 24 小时内公开支持"放慢"。但细品会发现他们说的并非同一件事: Anthropic 的 Amodei 讲的是"我们必须放慢", 而其他玩家的表态各有前提。一边呼吁减速、一边冲刺 IPO 与新模型, 构成头部实验室复杂的"言行张力"。</p>
+        <p class="ins"><b>→ 观点语录:</b> 当"减速"成为竞争对手间的公开表态, 更要分辨话语背后的商业动机; 对选型方, 把安全承诺当"待验证项"而非"既成事实", 在自己链路里补上访问控制与审计, 才是稳妥姿势。</p>
+        <div class="foot"><span class="src">观察者网 · 09-14</span><a class="orig" href="https://www.guancha.cn/shijiekexiansheng/2026_09_14_900533.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 开源热项 ============ -->
+    <section id="oss" class="grid">
+      <div class="sec-title">开源热项<span class="count">4</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s9">9</span></div>
+        <h3><a href="https://github.com/trending" target="_blank">GitHub Trending 新宠: AI 编码 agent 的"上下文窗口优化", 工具输出<span class="hl">压缩 98%</span></a></h3>
+        <p class="sum">据 GitHub Trending 当日榜单, 一款面向 AI 编码 agent 的"上下文窗口优化"项目走热: 它对工具输出做沙盒化处理(据称减少约 98% 的冗余上下文)、持久化会话记忆, 并在 17 个平台间强制统一路由。这类"不发新模型、只做上下文工程"的项目, 正是 2026 年开源社区的高增长赛道。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当长上下文成本高企, "把喂给模型的 token 压到最少"就是直接省钱; 对做 agent 的团队, 引入成熟的上下文压缩 + 会话记忆组件, 比自研更省时间, 也能显著降低推理账单。</p>
+        <div class="foot"><span class="src">GitHub Trending · 10-14</span><a class="orig" href="https://github.com/trending" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s8">8</span></div>
+        <h3><a href="https://github.com/IAAR-Shanghai/Awesome-AI-Memory" target="_blank">Awesome-AI-Memory: AI 记忆成开源新热点, 系统化整理 LLM/Agent 长期记忆方案</a></h3>
+        <p class="sum">由 IAAR-Shanghai 维护的 Awesome-AI-Memory 是一个持续更新的 AI 记忆知识库, 系统整理了大模型记忆(LLM Memory)与智能体记忆(Agent Memory)相关的前沿研究、工程框架与系统方案。多份 2026 开源盘点也指出, 继"agent skills(技能)"之后, "持久化上下文/记忆"是最值得关注的下一个方向。</p>
+        <p class="ins"><b>→ 工具生态:</b> 当价值从"造模型"转向"编排、调度与记忆", 站在成熟的记忆框架肩膀上比自研更划算; 对做长期助手、跨会话 agent 的团队, 先看这类清单的生态活跃度再选型。</p>
+        <div class="foot"><span class="src">GitHub / IAAR-Shanghai · 10-13</span><a class="orig" href="https://github.com/IAAR-Shanghai/Awesome-AI-Memory" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">政策风向</span><span class="score s8">8</span></div>
+        <h3><a href="https://news.cri.cn/2026-08-20/8b636b2c-52bf-d6ec-1a78-34426667f7ee.html" target="_blank">中国开源大模型出海: 全球开源 TOP10 占 <span class="hl">8 席</span>, 下载量占全球 <span class="hl">41%</span> 居首</a></h3>
+        <p class="sum">据全球最大开源 AI 模型平台报告, 中国研发的开源模型下载量已占全球总量的 41%, 超越美国位居世界第一; 全球开源 TOP10 中, 中国模型占 8 席, MoE 架构成为主流, 国产模型在中文、推理、代码、多模态全面领跑。焦点访谈称中国开源大模型正"在千行百业扎根生长"。</p>
+        <p class="ins ins-pos"><b>→ 政策风向:</b> 当"开源 + 普惠"成为国产模型出海主打法、全球开发者用脚投票, 开源权重意味着更低的私有化部署与合规门槛; 对应用层, 这是把 AI 能力握在自己手里的现实选项。</p>
+        <div class="foot"><span class="src">央广网 / 焦点访谈 · 08-20</span><a class="orig" href="https://news.cri.cn/2026-08-20/8b636b2c-52bf-d6ec-1a78-34426667f7ee.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s7">7</span></div>
+        <h3><a href="https://github.com/ashishpatel26/500-AI-Agents-Projects" target="_blank">500-AI-Agents-Projects: 500+ 智能体项目合集, 覆盖 LangGraph/CrewAI/AutoGen</a></h3>
+        <p class="sum">据 GitHub 上持续更新的 500-AI-Agents-Projects 合集, 其收录了 500 多个 AI agent 项目——涵盖生产级示例、教程与可运行代码, 横跨 LangGraph、CrewAI、AutoGen 等主流框架。对想快速上手智能体开发的团队, 这是一份现成的"抄作业"索引。</p>
+        <p class="ins"><b>→ 工具生态:</b> 当 agent 框架百花齐放, 与其从零试错, 不如先从成熟合集里找同场景的生产级样例对照; 对中小团队, "可运行代码 + 框架覆盖度"是选型时最该看的两个指标。</p>
+        <div class="foot"><span class="src">GitHub / ashishpatel26 · 10-13</span><a class="orig" href="https://github.com/ashishpatel26/500-AI-Agents-Projects" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 全球热榜 ============ -->
+    <section id="hot" class="grid">
+      <div class="sec-title">全球热榜<span class="count">5</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s9">9</span></div>
+        <h3><a href="http://finance.sina.com.cn/world/2026-10-13/doc-iniuzeax8303541.shtml" target="_blank">Meta 发布前沿级 Muse Wonder: 内部代号"西瓜", 对标 ChatGPT 与 Claude</a></h3>
+        <p class="sum">当地时间周一, Meta 发布备受期待的 Muse Wonder(及更强的 Wonder Full), 这是扎克伯格重组 AI 部门后交出的最强模型, 内部代号"西瓜"。Meta 称新模型较前代大幅跃升、具备"前沿能力", 在编程、金融与法律问题处理上可与 ChatGPT、Claude 媲美; 开发者现可通过 Meta 模型 API 与 Muse Code 接口调用。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当 Meta 首次拿出前沿级模型并开放 API, 头部模型供给从"三家"变"四家", 应用层的议价与横评空间被打开; 值得把 Muse Wonder 纳入统一评测集, 实测"能力/单价/延迟"再决定路由。</p>
+        <div class="foot"><span class="src">新浪财经 / 财联社 · 10-13</span><a class="orig" href="http://finance.sina.com.cn/world/2026-10-13/doc-iniuzeax8303541.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s9">9</span></div>
+        <h3><a href="https://finance.sina.cn/stock/jdts/2026-10-09/detail-iniuqqhr7132440.d.html" target="_blank">谷歌反超 Anthropic: Polymarket 隐含概率 <span class="hl">43%</span> vs <span class="hl">42%</span>, 领跑 2026 模型竞赛</a></h3>
+        <p class="sum">据新浪财经 10 月 9 日援引 Polymarket 数据, 谷歌目前以 43% 的隐含概率领跑, 市场认为其最有可能在 12 月 31 日前推出"最佳 AI 模型", 以微弱优势超过 Anthropic 的 42%; OpenAI 与 Meta 紧随其后。头部实验室的"年度最佳"之争已被资本市场量化定价。</p>
+        <p class="ins"><b>→ 行业观察:</b> 当"谁最强"被预测市场标价到个位数百分比, 说明前沿格局高度胶着、没有稳态赢家; 对选型方, 与其追榜单第一名, 不如按任务类型做多模型分工, 把"可替换性"当作架构默认项。</p>
+        <div class="foot"><span class="src">新浪财经 / Polymarket · 10-09</span><a class="orig" href="https://finance.sina.cn/stock/jdts/2026-10-09/detail-iniuqqhr7132440.d.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">政策风向</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.cls.cn/detail/2492801" target="_blank">谷歌、OpenAI、Anthropic 拟共建"前沿 AI 标准局", 最快年底落地</a></h3>
+        <p class="sum">据财联社援引媒体 9 月 24 日报道, 谷歌、OpenAI 与 Anthropic 正推进组建一家 AI 安全标准机构, 目标于今年年底或 2027 年初落地, 暂定名"前沿 AI 标准局(Frontier AI Standards Board)"。三家最直接的竞争对手联手定标准, 意在为前沿模型的安全评估建立行业统一基准。</p>
+        <p class="ins ins-pos"><b>→ 政策风向:</b> 当头部实验室从"各自红队"走向"共建标准", 前沿安全有望形成可对表的行业基线; 对企业采购, 未来可把"是否通过标准局评估"纳入供应商尽调清单。</p>
+        <div class="foot"><span class="src">财联社 · 09-24</span><a class="orig" href="https://www.cls.cn/detail/2492801" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s8">8</span></div>
+        <h3><a href="https://m.chinastarmarket.cn/detail/2497177" target="_blank">"史上最大 IPO"新消息: Anthropic 被曝冲刺<span class="hl">感恩节前</span>上市</a></h3>
+        <p class="sum">据科创板日报 10 月 1 日消息, Anthropic 被曝正冲刺在感恩节前上市, 估值有望冲击"史上最大 IPO"量级。报道同时指出, Anthropic 在 2026 年大部分时间势头强劲, 但正面临来自 OpenAI 等对手的新一轮竞争, 后者近几个月销售增长迅速。</p>
+        <p class="ins"><b>→ 行业观察:</b> 当模型发布节奏与 IPO 窗口绑定, "抢上市"可能压过"充分测试"; 对选型方, 新模型早期版本要格外做回归与压测, 别把资本节奏当成稳定性保证。</p>
+        <div class="foot"><span class="src">科创板日报 · 10-01</span><a class="orig" href="https://m.chinastarmarket.cn/detail/2497177" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s7">7</span></div>
+        <h3><a href="http://finance.sina.com.cn/7x24/2026-10-13/doc-iniuzeau0447616.shtml" target="_blank">算力基建加码: 英特尔推进"智能体 AI 时代"开放基础设施, 联手英伟达/纳维特斯</a></h3>
+        <p class="sum">据新浪 7×24 与 AI 热点小时报 10 月 13 日消息, 英特尔正加速推进面向"智能体 AI 时代"的开放基础设施; 同期, 纳维特斯(Navitas)宣布与英伟达合作开发下一代 AI 基础设施。算力与功率半导体侧的密集动作, 指向 agent 大规模落地带来的新一轮基建需求。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当芯片与功率器件厂商都在为"智能体时代"重铺基础设施, 说明 agent 规模化已被上游当作确定性需求; 对应用层, 未来推理成本与供给的下探值得持续跟踪。</p>
+        <div class="foot"><span class="src">新浪 7×24 · 10-13</span><a class="orig" href="http://finance.sina.com.cn/7x24/2026-10-13/doc-iniuzeau0447616.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 跨界视野 ============ -->
+    <section id="cross" class="grid">
+      <div class="sec-title">跨界视野<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">化学·诺奖</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.nobelprize.org/" target="_blank">2026 诺贝尔化学奖: Kagan 与 Soai, 破解"分子如何复制不对称性"之谜</a></h3>
+        <p class="sum">2026 年诺贝尔化学奖授予 Henri B. Kagan 与 Kenso Soai, 以表彰他们发现了化学反应中的"非线性效应与自催化"——即反应如何被驱动去偏好单一的手性分子镜像。这一发现解释了生命分子为何普遍具有"单手性", 对药物合成等不对称催化领域影响深远。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> "一个微小的初始偏好, 通过自催化被放大成绝对主导"——这与正反馈、网络效应乃至产品冷启动的逻辑惊人相似; 它提醒我们, 系统里最初那点"不对称"往往决定了最终格局, 值得任何研究增长与演化的人琢磨。</p>
+        <div class="foot"><span class="src">NobelPrize.org · 10-08</span><a class="orig" href="https://en.bonikbarta.com/international/SvMYhRW3yb2OVgQl" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">经济·诺奖</span><span class="score s8">8</span></div>
+        <h3><a href="https://time.com/article/2026-10-05/nobel-prize-2026-winners/" target="_blank">2026 诺贝尔经济学奖: Robert E. Hall 与 Michael Woodford, 塑造现代经济政策</a></h3>
+        <p class="sum">2026 年诺贝尔经济学纪念奖授予 Robert E. Hall 与 Michael Woodford, 表彰他们对塑造现代经济政策的贡献。Hall 长期深耕生产率、税收与劳动经济学, Woodford 则是现代货币政策理论(尤其是利率规则与前瞻指引)的奠基者之一, 两人的工作深刻影响了各国央行与财政当局的决策框架。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 货币政策的核心难题是"如何管理预期"——央行说得可信, 市场才会按预期行动; 这套"预期即工具"的思路, 对任何要做用户预期管理、政策沟通或规则设计的场景, 都是极好的跨域参照。</p>
+        <div class="foot"><span class="src">TIME / NobelPrize.org · 10-05</span><a class="orig" href="https://time.com/article/2026-10-05/nobel-prize-2026-winners/" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">医学·诺奖</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.nobelprize.org/" target="_blank">2026 诺贝尔生理学或医学奖: 光遗传学三杰, 用"光"精确控制大脑神经</a></h3>
+        <p class="sum">2026 年诺贝尔生理学或医学奖授予 Karl Deisseroth、Peter Hegemann 与 Georg Nagel, 以表彰他们促成"光遗传学(optogenetics)"的发现——通过让特定神经元对光敏感, 研究者得以用光精确开关单个脑细胞, 从而以前所未有的精度解析大脑回路, 深刻改变了神经科学研究范式。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 把"光"变成操控神经元的精确开关, 本质是给复杂系统装上了"可寻址的控制接口"; 这种"给黑箱装上单点可控探针"的思路, 对任何要理解并干预复杂系统(从大脑到分布式系统)的人都有方法论启发。</p>
+        <div class="foot"><span class="src">NobelPrize.org · 10-06</span><a class="orig" href="https://www.nobelprize.org/" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 前沿研究 ============ -->
+    <section id="research" class="grid">
+      <div class="sec-title">前沿研究<span class="count">3</span></div>
+
+      <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">AI托管</span><div class="rc">
+        <h4><a href="https://arxiv.org/list/cs.AI/recent" target="_blank">arXiv 新论文: 为"最优推理终止方法"构造帕累托前沿, 回答 agent"何时该停"</a></h4>
+        <p class="ract">据 arXiv cs.AI 10 月 12 日的最新列表, 一篇题为《Constructing Pareto Frontiers of Optimal Reasoning Termination Methods》的论文, 研究如何为"推理终止方法"构造帕累托前沿——即在"推理深度(质量)"与"计算成本(时延/token)"之间找到最优权衡边界。启示: 当 agent 的"想多久"直接决定成本与体验, "何时停止推理"正从工程直觉变成可量化、可优化的研究对象, 对做推理链路的团队很有参考价值。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://www.sciencedaily.com/releases/2026-04-260405003952.htm" target="_blank">Tufts 逻辑驱动 AI: 能耗降约 <span class="hl">100 倍</span>, 部分任务反超最强系统</a></h4>
+        <p class="ract">据 ScienceDaily, 塔夫茨大学研究者提出一种"更聪明、逻辑驱动"的 AI 路线, 声称可把能耗降低约 100 倍, 同时在部分任务上超越当今最强大的系统。其思路是减少对大规模暴力计算的依赖, 用逻辑推理结构提升效率。启示: 当"低功耗 + 逻辑驱动"从概念走向可量化指标, 它为边缘设备、绿色算力与高吞吐场景提供了不同于"堆参数"的硬件-算法协同路线, 值得长期跟踪工程化进度。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">AI选品</span><div class="rc">
+        <h4><a href="https://thequantuminsider.com/2026-05-14/google-launches-10-million-quantum-biology-research-initiative/" target="_blank">谷歌启动 <span class="hl">1000 万美元</span> REPLIQA 计划: 量子计算 × 量子传感 × AI 交叉探索</a></h4>
+        <p class="ract">据 The Quantum Insider, 谷歌启动 REPLIQA 研究计划, 投入 1000 万美元资助五所高校, 探索量子计算、量子传感与 AI 如何协同破解生物学难题。这类"量子 + AI"的交叉资助, 意在为长远的基础科学突破埋下种子。启示: 对做 AI for Science 的团队, 量子模拟与 AI 求解的结合正获得头部玩家的资金背书, 是值得关注的前沿练兵场。</p>
+      </div></div>
+    </section>
+
+    <footer>
+      由 AI 每日联网检索聚合生成 · 面向 AI × 电商 / 联盟从业者视角 · 每日更新<br>
+      每条均标注原文出处链接与检索到的发布日期;影响力评分(6–9)与"→启示"为编辑判断,引用关键数据前建议点开原文核实。
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
