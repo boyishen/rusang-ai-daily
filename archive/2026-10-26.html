@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如桑的AI日报 · 2026-10-26</title>
+<style>
+  :root{
+    --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
+    --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
+    --accent:#6ea8fe; --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
+    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399; --t-kuajie:#fb7185; --t-luodi:#f472b6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(1200px 700px at 80% -10%,#15203a 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;padding-bottom:80px}
+
+  /* Header */
+  .main-header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding:48px 0 20px;margin-bottom:36px;border-bottom:1px solid var(--line)
+  }
+  .main-header h1{font-size:28px;font-weight:800;letter-spacing:-.3px}
+  .main-header .status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-top:4px;white-space:nowrap}
+  .main-header .status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+  .main-header .status .label{color:var(--green);font-weight:600}
+
+  /* Section header */
+  section{margin-bottom:44px;scroll-margin-top:20px}
+  .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
+  .sec-title::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--accent),rgba(110,168,254,.25));flex:none}
+
+  /* Insight card */
+  .insight{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:8px}
+  .insight .insight-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-bottom:16px}
+  .insight .insight-head .star{color:var(--orange);font-size:16px}
+  .insight .insight-head .by{color:var(--dim);font-size:12px}
+  .insight .intro{font-size:15px;color:var(--sub);margin-bottom:18px;line-height:1.7}
+  .insight .item{margin-bottom:18px}
+  .insight .item:last-child{margin-bottom:0}
+  .insight .item .idx{color:var(--accent);font-weight:700;font-size:14px;margin-right:6px}
+  .insight .item .ititle{display:inline;font-weight:700;font-size:15px;color:var(--txt)}
+  .insight .item .ititle a{font-weight:700}
+  .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
+  .hl{color:#fbbf24;font-weight:700}
+
+  /* Card (list items) */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
+  .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
+  .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
+  .card .meta .tag{font-size:11px;font-weight:600;border-radius:5px;padding:1px 8px}
+  .tag-tuoguan{background:rgba(167,139,250,.18);color:var(--t-tuoguan)}
+  .tag-xuanpin{background:rgba(251,191,36,.18);color:var(--t-xuanpin)}
+  .tag-ka{background:rgba(34,211,238,.18);color:var(--t-ka)}
+  .tag-pan{background:rgba(52,211,153,.18);color:var(--t-pan)}
+  .tag-kuajie{background:rgba(251,113,133,.18);color:var(--t-kuajie)}
+  .tag-luodi{background:rgba(244,114,182,.18);color:var(--t-luodi)}
+  .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:#0a0d15;flex:none}
+  .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)}
+  .s8{background:linear-gradient(135deg,#ffb15d,#ff9028)}
+  .s7{background:linear-gradient(135deg,#ffd97a,#ffc23d)}
+  .s6{background:linear-gradient(135deg,#9fb0d0,#7c8db0)}
+  .card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:6px}
+  .card .sum{font-size:13.5px;color:var(--sub);line-height:1.6;margin-bottom:8px}
+  .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);
+    background:rgba(110,168,254,.08);border-radius:0 6px 6px 0;line-height:1.6}
+  .card .ins b{color:var(--accent);margin-right:4px}
+  .card .ins-hook{border-left-color:var(--orange);background:rgba(245,158,11,.08)}
+  .card .ins-hook b{color:var(--orange)}
+  .card .ins-pos{border-left-color:var(--green);background:rgba(34,197,94,.08)}
+  .card .ins-pos b{color:var(--green)}
+  .card .ins-neg{border-left-color:var(--red);background:rgba(239,68,68,.08)}
+  .card .ins-neg b{color:var(--red)}
+  .card .points{list-style:none;margin:0 0 10px;padding:0}
+  .card .points li{font-size:13px;color:var(--sub);line-height:1.65;padding-left:16px;position:relative;margin-bottom:5px}
+  .card .points li:last-child{margin-bottom:0}
+  .card .points li::before{content:"▸";position:absolute;left:2px;top:0;color:var(--accent);font-size:12px}
+  .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
+  .card .foot .src{color:var(--dim)}
+  .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
+  .card .foot .orig:hover{text-decoration:underline}
+
+  /* Compact row */
+  .row{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
+    border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:.18s}
+  .row:hover{background:var(--card);border-color:#2a3554;transform:translateY(-1px)}
+  .row .rc{flex:1;min-width:0}
+  .row h4{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
+  .row .ract{font-size:13px;color:var(--sub);line-height:1.6}
+
+  .grid .card,.grid .row{margin-bottom:0}
+
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
+
+  /* Horizontal nav */
+  .nav-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .nav-bar a{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--sub);
+    background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:.15s;white-space:nowrap}
+  .nav-bar a:hover{background:var(--card);color:var(--txt);border-color:#2a3554;text-decoration:none}
+  .nav-bar a .ncount{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:0 6px;min-width:18px;text-align:center}
+  .nav-bar a.nav-archive{background:rgba(110,168,254,.16);border-color:var(--accent);color:var(--accent);font-weight:700}
+  .nav-bar a.nav-archive:hover{background:var(--accent);color:#0a0d15;border-color:var(--accent)}
+
+  /* Two-column grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid > .sec-title{grid-column:1/-1}
+
+  @media(max-width:640px){
+    .main-header{flex-direction:column;gap:8px;padding-top:32px}
+    .grid{grid-template-columns:1fr}
+    .insight{padding:20px 16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <main>
+
+    <header class="main-header">
+      <h1>如桑的AI日报</h1>
+      <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年10月26日 星期一</div>
+    </header>
+
+    <nav class="nav-bar">
+      <a href="#insight">今日洞见</a>
+      <a href="#ecom">电商·联盟<span class="ncount">5</span></a>
+      <a href="#practice">落地实践<span class="ncount">3</span></a>
+      <a href="#cn">国内速递<span class="ncount">3</span></a>
+      <a href="#voices">大佬说<span class="ncount">3</span></a>
+      <a href="#oss">开源热项<span class="ncount">3</span></a>
+      <a href="#hot">全球热榜<span class="ncount">4</span></a>
+      <a href="#cross">跨界视野<span class="ncount">3</span></a>
+      <a href="#research">前沿研究<span class="ncount">3</span></a>
+      <a class="nav-archive" href="/rusang-ai-daily/archive/">⏱ 往期存档</a>
+    </nav>
+
+    <!-- ============ 今日洞见 ============ -->
+    <section id="insight">
+      <div class="sec-title">今日洞见</div>
+      <div class="insight">
+        <div class="insight-head"><span class="star">★</span> 编辑视角 <span class="by">· by AI</span></div>
+        <p class="intro">10 月 26 日, 双 11 进入中局, 三条线给出同一个判断: AI 在电商侧已经跑出可归因的增量, 但入口正在收窄——平台与大商户开始用"许可、限额、逐单确认"决定谁能替用户下单; 企业侧 <span class="hl">157 位</span>技术负责人的调研则把 agent 规模化的瓶颈指向治理与上下文, 而不是模型能力。合起来: 能力不缺, 缺的是"可归因、可授权、可治理"这三件基础设施。</p>
+
+        <div class="item">
+          <span class="idx">01</span>
+          <span class="ititle"><a href="https://www.ebrun.com/20261023/715175.shtml" target="_blank">万相点睛中期成绩单: 10 月 15–20 日带来近 10 亿元额外成交, 新客点击率超 90%</a></span>
+          <div class="ibody">据亿邦动力 10 月 23 日报道, 阿里妈妈万相点睛在双 11 期间(10 月 15–20 日)带来额外成交近 <span class="hl">10 亿元</span>, 新客点击率超过 <span class="hl">90%</span>。品牌样本给出了不同侧面的证据: ELLE 新客成交占比 60%、新访客点击率 70.5%; 小仙炖新客占比超 90%、ROI 提升 20%; 超级直播叠加万相点睛后成交增长 30%、预算增加 180%。启示: AI 定向第一次在大促里给出"可归因增量"的口径, 但新客占比高不等于复购与退货健康——下一步该用对照组验证"增量是不是真增量"。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">02</span>
+          <span class="ititle"><a href="https://www.ebrun.com/20261019/714749.shtml" target="_blank">代理购物转向"签约准入": 亚马逊封禁 Perplexity, Yelp 开收内容许可费</a></span>
+          <div class="ibody">据亿邦动力 10 月 19 日梳理, 代理购物的入口正从"开放抓取"转向"签约准入": 亚马逊已封禁 Perplexity、Meta Muse、Grok、Dots 等 agent; Yelp 开始向 AI 公司收取内容许可费; Delta、JPMorgan、Schwab 等也在阻断第三方 agent 访问。另一边, Meta 与 Walmart、Gap、Sephora、Best Buy 建立官方合作, Shopify 向全量商家开放 agent 结账, Cloudflare 则提供 AI 爬虫拦截。启示: "谁能替用户下单"正由平台与大商户的许可协议决定; 做 agent 或联盟侧, 尽早拿到官方授权与结算通道, 比抢流量入口更关键。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">03</span>
+          <span class="ititle"><a href="https://www.ebrun.com/20261021/714967.shtml" target="_blank">企业 agent 调研: 75% 的团队卡在 10–15 个 agent, 34% 的上线 agent 无人复核</a></span>
+          <div class="ibody">据亿邦动力 10 月 21 日报道, 一份覆盖 157 位企业技术负责人的调研显示: 超过 <span class="hl">75%</span> 的团队在同时运行 10–15 个 agent 时遇到瓶颈; 34% 的上线 agent 没有人工复核; 只有 5% 的团队对 agent 做信任评估; 约 30% 出现过未经授权的数据访问。上下文对齐率从 30% 提升到 90% 后, 两个月又回落到 60%。启示: agent 规模化的真正门槛是权限、上下文与责任链的治理; 先把"谁能改、谁能看、出错谁担"写清楚, 再谈扩量。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 电商·联盟聚焦 ============ -->
+    <section id="ecom" class="grid">
+      <div class="sec-title">电商 · 联盟聚焦<span class="count">5</span></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/20261023/715175.shtml" target="_blank">万相点睛双 11 中期数据: 额外成交近 <span class="hl">10 亿元</span>, 新客点击率超 90%</a></h4>
+        <p class="ract">10 月 15–20 日, 阿里妈妈万相点睛带来额外成交近 10 亿元; ELLE 新客成交占比 60%、新访客点击率 70.5%, 小仙炖新客占比超 90%、ROI 提升 20%, 超级直播叠加后成交 +30%、预算 +180%。启示: AI 定向开始给出可归因的增量口径, 下一步要用对照组验证增量质量, 而不是只看新客占比。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">电商联盟</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/20261025/716342.shtml" target="_blank">Walmart 给 agent 发"身份证": 消费限额、逐单确认、随时撤销</a></h4>
+        <p class="ract">Walmart 推出 Agent Gateway 与 Agent Profiles, 覆盖 Walmart 与 Sam's Club: 用户可以为 agent 设定消费限额、要求逐单确认, 并随时撤销授权。启示: 代理购物的关键不是"能不能下单", 而是"授权边界清不清晰"; 商家侧要尽早把可授权的能力、额度与退款规则产品化。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">AI选品</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/20261026/716370.shtml" target="_blank">调研: <span class="hl">35%</span> 的 AI 用户已用 AI 辅助购物, 入口从搜索框转向对话</a></h4>
+        <p class="ract">一项面向 AI 用户的调研显示, 35% 的受访者已经用 AI 辅助购物; 商品发现路径正从关键词搜索转向对话与推荐。启示: 商品信息要同时适配"人搜"和"AI 荐"——标题、卖点、规格与评价必须结构化, 才能被 agent 读懂、引用和比较。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">电商联盟</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/20261025/716342.shtml" target="_blank">速卖通联手 YouTube 落地 <span class="hl">4 国</span>, 双 11 给 45 国创作者 <span class="hl">12%</span> 返佣</a></h4>
+        <p class="ract">速卖通与 YouTube 在 4 个市场落地合作, 双 11 期间向 45 国创作者提供 12% 返佣。启示: 跨境平台的增量越来越依赖"本地内容 + 本地创作者", 联盟侧的素材与选品要按国家、语言与内容形态拆开做, 而不是一套全球通投。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">AI托管</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/20261026/716385.shtml" target="_blank">抖音双 11 开门红: 破亿商家 <span class="hl">+200%</span>, 店播破千万新商 +133%</a></h4>
+        <p class="ract">抖音双 11 开门红数据显示: 成交破亿商家数同比增长 200%, 破亿直播间增长 80%, 店播破千万新商增长 133%, 快消破亿品牌增长 167%, 宠物破千万商家增长 200%, 母婴增长 83%。启示: 店播与新商家的增速高于大盘, 说明"自播 + 货架"的双场域仍在释放红利, 中小商家应优先把店播的选品与话术做成可复用模板。</p>
+      </div></div>
+    </section>
+
+    <!-- ============ AI 落地实践 ============ -->
+    <section id="practice">
+      <div class="sec-title">AI 落地实践<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.ebrun.com/20261023/715175.shtml" target="_blank">双 11 中期实测: AI 定向带来近 <span class="hl">10 亿元</span>额外成交, 新客点击率超 <span class="hl">90%</span></a></h3>
+        <p class="sum">10 月 15–20 日, 阿里妈妈万相点睛在双 11 期间带来额外成交近 10 亿元, 新客点击率超过 90%。三个品牌样本给出了不同侧面的证据: ELLE 新客成交占比 60%, 小仙炖 ROI 提升 20%, 超级直播叠加后成交增长 30%。</p>
+        <ul class="points">
+          <li>做法: 用 AI 定向圈出高潜新客, 再把直播、补贴与素材按人群动态组合, 而不是全量统一投放</li>
+          <li>成效: 额外成交近 10 亿元; ELLE 新访客点击率 70.5%; 超级直播叠加后预算增加 180%、成交 +30%</li>
+          <li>卡点: 新客占比高不等于复购健康, 退货率与增量归因尚未披露, 需要对照组才能确认"真增量"</li>
+          <li>启示: 把 AI 定向当成一条可 A/B 的渠道来跑, 先小流量验证 ROI, 再决定是否放大预算</li>
+        </ul>
+        <p class="ins ins-pos"><b>→ 案例报告:</b> 当 AI 定向能给出"额外成交"口径, 大促投放就从"抢曝光"变成"算增量"; 但别把平台口径当最终结论, 自己补一组对照, 才知道预算该加在哪个环节。</p>
+        <div class="foot"><span class="src">亿邦动力 · 10-23</span><a class="orig" href="https://www.ebrun.com/20261023/715175.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ebrun.com/20261021/714967.shtml" target="_blank">157 位技术负责人调研: <span class="hl">75%</span> 的团队卡在 10–15 个 agent, <span class="hl">34%</span> 无人复核</a></h3>
+        <p class="sum">一份覆盖 157 位企业技术负责人的调研显示, agent 规模化的第一道坎不是模型能力, 而是治理: 超过 75% 的团队在同时运行 10–15 个 agent 时遇到瓶颈, 34% 的上线 agent 没有人工复核。更刺眼的是, 只有 5% 的团队对 agent 做信任评估, 约 30% 出现过越权数据访问。</p>
+        <ul class="points">
+          <li>卡点: agent 数量一多, 权限、上下文与责任链同时失控, 出错后很难定位是谁的问题</li>
+          <li>做法: 先做上下文对齐与权限隔离; 调研中把上下文对齐率从 30% 提到 90% 的团队, 两个月后仍回落到 60%</li>
+          <li>教训: 34% 的 agent 无人复核、仅 5% 做信任评估, 意味着大多数团队在用"上线速度"换"事故概率"</li>
+          <li>启示: 扩量前先回答三个问题——谁能改、谁能看、出错谁担; 治理规则跑通, 再从 10 个扩到 50 个</li>
+        </ul>
+        <p class="ins ins-neg"><b>→ 避坑清单:</b> 别把 agent 数量当成数字化进度; 没有人工复核、没有权限边界、没有信任评估的"三无"上线, 规模越大, 事故面越大。</p>
+        <div class="foot"><span class="src">亿邦动力 · 10-21</span><a class="orig" href="https://www.ebrun.com/20261021/714967.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505365.html" target="_blank">券商研报从 <span class="hl">2–3 天</span>压到几分钟: 企业微信里的"数字同事"跑通三类场景</a></h3>
+        <p class="sum">腾讯 WorkBuddy 与企业微信打通后, 在券商、制造、零售三类企业里跑出可复用的场景: 券商研究报告的初稿周期从 2–3 天缩短到几分钟, 制造企业用它做模具核价, 零售团队用它做盘客、锁客与 CRM 跟进。它们的共同点不是"更聪明的模型", 而是把 agent 放进了员工每天已经在用的工作流。</p>
+        <ul class="points">
+          <li>做法: 不另开入口, 把 agent 嵌进企业微信的聊天与群工作流, 让"调用 AI"变成一次 @</li>
+          <li>成效: 券商研报初稿 2–3 天→几分钟; 制造企业模具核价、零售盘客/锁客/CRM 跟进均可复用</li>
+          <li>卡点: 企业数据权限、口径统一与历史资料治理是前置, 资料不结构化, agent 也读不懂</li>
+          <li>启示: 先找"高频、有模板、可验收"的岗位切入, 比做一个全员通用的 AI 助手更容易跑出 ROI</li>
+        </ul>
+        <p class="ins ins-pos"><b>→ 落地路径:</b> 当 agent 的入口是员工每天必开的 IM, 采用成本被压到最低; 对推 AI 落地的团队, "少一个 App、少一次跳转"往往比"多一个功能"更能决定用不用起来。</p>
+        <div class="foot"><span class="src">量子位 · 10-26</span><a class="orig" href="https://www.qbitai.com/2026/10/505365.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 国内速递 ============ -->
+    <section id="cn" class="grid">
+      <div class="sec-title">国内速递<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505186.html" target="_blank">50 人团队做出具身大模型 Paimon-0: 控制误差从 <span class="hl">30 微秒</span>降到 <span class="hl">152 纳秒</span></a></h3>
+        <p class="sum">炎曦动力发布 Paimon-0, 一支 50 人团队做出的具身智能模型: 在 RoboColiseum 拿到 0.7754, RoboCasa365 58.1, VLA-Arena 0.73, IROS 46.599; 控制误差从 30 微秒降到 152 纳秒, 约为原来的 1/200。团队还把动作块时长从 3000ms 压到 300ms, 让机器人响应更快。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当"控制误差"和"动作块时长"成为可量化指标, 具身智能的竞争从"演示像不像"进入"控制稳不稳"; 对做机器人应用的团队, 这两项比模型参数量更值得写进验收标准。</p>
+        <div class="foot"><span class="src">量子位 · 10-26</span><a class="orig" href="https://www.qbitai.com/2026/10/505186.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">AI托管</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505083.html" target="_blank">讯飞星辰 TaaS: 跨系统效率 <span class="hl">+90%</span>, <span class="hl">75%</span> 以上流程可自主运行</a></h3>
+        <p class="sum">科大讯飞发布星辰 TaaS 与 Agent OS, 官方给出的数据是: 跨系统协作效率提升 90%, 75% 以上的流程可自主运行, 招采场景自动化率达到 97%; 电商 KA 场景人均投放规模提升 40%、ROAS 提升 50%。平台已有 1187 万开发者, X2.5-4B 模型下载量 256 万。</p>
+        <p class="ins"><b>→ AI托管:</b> 当"流程自主率"被摆到台面上, 企业选型就该从"模型跑分"转向"流程覆盖率"; 先量出自己有多少流程可被 agent 接管, 再谈采购。</p>
+        <div class="foot"><span class="src">量子位 · 10-23</span><a class="orig" href="https://www.qbitai.com/2026/10/505083.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505218.html" target="_blank">支付宝 PAYATHON: <span class="hl">73 分钟</span>完成接入, 开发者跑出第一笔订单</a></h3>
+        <p class="sum">支付宝 PAYATHON 2026 给出 20 万元奖金、5 条赛道; 有开发者在 73 分钟内完成接入并跑出 10 笔订单; "博主农场"项目拿到 1000+ 注册、300+ 博主, 红墨 9 单收入 1282 元, 苍何做到 500+ 单。比赛把"从接入到成交"压成了一条可计时的链路。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当支付接入被压到"小时级", 独立开发者的门槛从"能不能接"变成"有没有场景"; 对做小工具、小玩法的人, 先找到一个能收钱的闭环, 比先做完整产品更重要。</p>
+        <div class="foot"><span class="src">量子位 · 10-26</span><a class="orig" href="https://www.qbitai.com/2026/10/505218.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 大佬说 ============ -->
+    <section id="voices" class="grid">
+      <div class="sec-title">大佬说<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-tuoguan">观点语录</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505271.html" target="_blank">马斯克: 先产 <span class="hl">1–2 万台</span> Optimus 再开"机器人学院", Fremont 目标年产 100 万台</a></h3>
+        <p class="sum">马斯克给出 Optimus 的量产节奏: 先生产 1–2 万台, 再开 "Optimus Academy" 做训练; Fremont 工厂目标年产 100 万台, 德州规划 1000 万台; 周产 2 万台至少需要一年, 2027 年底开始交付。他还提到已积累 50 万小时以上数据, AI5 算力约为 AI4 的 10 倍。</p>
+        <p class="ins"><b>→ 观点语录:</b> 当"先小批量、再开学院"成为量产路径, 人形机器人的瓶颈被明确指向"数据与训练", 而不是产线; 对供应链, 先盯训练场与场景运营, 比盯整机产能更早看到需求。</p>
+        <div class="foot"><span class="src">量子位 · 10-26</span><a class="orig" href="https://www.qbitai.com/2026/10/505271.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">行业观察</span><span class="score s8">8</span></div>
+        <h3><a href="https://finance.sina.com.cn/7x24/2026-10-23/doc-iniweywn8112443.shtml" target="_blank">黄仁勋: <span class="hl">2029 年</span>前内存不太可能全面过剩</a></h3>
+        <p class="sum">黄仁勋公开判断, 到 2029 年内存供应过剩的可能性不大; 在 AI 算力需求持续扩张的背景下, 内存与存储的供需紧张还会延续。这一表态与市场对"AI 基建见顶"的担忧形成对照。</p>
+        <p class="ins"><b>→ 行业观察:</b> 当算力龙头亲自给内存景气度"续期"到 2029 年, AI 基建的资本开支周期可能比预期更长; 对应用层, 推理成本短期难大幅下探, 省 token 的工程优化仍有真金白银的价值。</p>
+        <div class="foot"><span class="src">新浪财经 / CCTV · 10-23</span><a class="orig" href="https://finance.sina.com.cn/7x24/2026-10-23/doc-iniweywn8112443.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">观点语录</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ebrun.com/20261021/714967.shtml" target="_blank">模型更强就能消掉 agent 错误? 一线调研给出的答案是不能</a></h3>
+        <p class="sum">在 Anthropic 与 OpenAI 掌门人看来, 模型能力的持续提升会不断消掉 agent 的执行错误; 但 157 位企业技术负责人的调研显示, 企业流程要的是"唯一正确答案", 而不是"更少错误"。模型再强, 权限、上下文与责任链的问题仍要由企业自己补。</p>
+        <p class="ins ins-neg"><b>→ 观点语录:</b> 当"模型会更强"成为共识, 它反而不能当作落地策略; 对企业, 把 agent 当"需要治理的新员工"而不是"更聪明的软件", 才是可复用的心智模型。</p>
+        <div class="foot"><span class="src">亿邦动力 · 10-21</span><a class="orig" href="https://www.ebrun.com/20261021/714967.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 开源热项 ============ -->
+    <section id="oss" class="grid">
+      <div class="sec-title">开源热项<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505407.html" target="_blank">EdgeRock-4B 开源: KV Cache 压掉 <span class="hl">99.1%</span>, 单卡 512 并发跑到 <span class="hl">12124 tok/s</span></a></h3>
+        <p class="sum">EdgeRock-4B 把 KV Cache 占用压到 72MiB, 压缩率 99.1%; 在单卡上支持 512 并发, 吞吐 12124 tok/s, 约为基线的 6.42 倍; AIME 得分 82.9%。代码已在 GitHub 开源(rockmatrix-ai/EdgeRock)。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当"长上下文"的成本被 KV Cache 压缩直接砍掉两个数量级, 边缘部署与高并发推理的门槛同步下探; 对做私有化、端侧 agent 的团队, 这类工程优化比换更大模型更省钱。</p>
+        <div class="foot"><span class="src">量子位 / GitHub · 10-26</span><a class="orig" href="https://www.qbitai.com/2026/10/505407.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/504930.html" target="_blank">MOSS-Image 开源 4 天下载 <span class="hl">130 万</span>次: 5B DiT 用国产 PPU 训练, 未用 AI 生成图</a></h3>
+        <p class="sum">MOSS-Image 是一个 5B DiT 图像模型, 上线 4 天下载量达 130 万; LLTB 得分 96.3%, 7Bench mIoU 0.88、AUC 0.70, RLA Elo 1698.70/1807.34, 支持 4096 tokens。官方强调训练未使用 AI 生成图片, 且全程在国产 PPU 上完成。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当"国产算力 + 干净数据"能训出可用的图像基座, 开源多模态的供给又多了一条路线; 对做素材生成的团队, 先测它在自己品类上的稳定性, 再决定是否替换闭源 API。</p>
+        <div class="foot"><span class="src">量子位 · 10-23</span><a class="orig" href="https://www.qbitai.com/2026/10/504930.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ebrun.com/20261026/716365.shtml" target="_blank">OpenMobile-2 开源: AndroidWorld <span class="hl">79.9</span> 分, 重建 35 个 App 做训练环境</a></h3>
+        <p class="sum">OpenMobile-2 在 AndroidWorld 拿到 79.9, MobileWorld 50.4, SPA-Bench 59.6; 团队重建了 35 个 App、覆盖 110+ 应用, 把 App 多样性从 60.7% 提到 67.5%。它把"手机 GUI agent"的训练环境当成一等公民来做。</p>
+        <p class="ins"><b>→ 工具生态:</b> 当手机 agent 的瓶颈从"模型会不会点"转向"有没有足够多样的 App 环境", 开源训练环境的价值被放大; 对做 App 自动化、托管的人, 环境覆盖度可能比模型选型更决定上限。</p>
+        <div class="foot"><span class="src">亿邦动力 · 10-26</span><a class="orig" href="https://www.ebrun.com/20261026/716365.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 全球热榜 ============ -->
+    <section id="hot" class="grid">
+      <div class="sec-title">全球热榜<span class="count">4</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">行业观察</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.ebrun.com/20261026/716362.shtml" target="_blank">OpenAI 完成 <span class="hl">300 亿美元</span>融资, 估值升至 <span class="hl">1.25 万亿美元</span></a></h3>
+        <p class="sum">OpenAI 完成 300 亿美元融资, 估值达到 1.25 万亿美元。在模型训练、算力采购与 agent 产品线同时扩张的背景下, 这笔资金把"前沿实验室的资本门槛"又抬高了一档。</p>
+        <p class="ins"><b>→ 行业观察:</b> 当单轮融资到 300 亿美元, 前沿模型的竞争已变成"资本 + 算力 + 分发"的综合战; 对应用层, 依赖单一模型供应商的风险在上升, 多模型路由是更稳的架构选择。</p>
+        <div class="foot"><span class="src">亿邦动力 · 10-26</span><a class="orig" href="https://www.ebrun.com/20261026/716362.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">行业观察</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.reuters.com/business/anthropic-recorded-net-loss-over-80-billion-first-half-this-year-wsj-reports-2026-10-20/" target="_blank">Anthropic 上半年净亏损 <span class="hl">807 亿美元</span>, 其中 720 亿为会计计提</a></h3>
+        <p class="sum">据路透社 10 月 20 日援引《华尔街日报》报道, Anthropic 今年上半年净亏损 807 亿美元, 其中约 720 亿美元为会计计提; 同期 Q3 营收为 168 亿美元。这一数字在 IPO 预期升温的背景下引发关注。</p>
+        <p class="ins"><b>→ 行业观察:</b> 会计计提不等于现金流失, 但"百亿美元级亏损"提醒我们: 模型能力领先并不自动等于商业模型成立; 对采购方, 供应商的持续经营能力该和模型跑分一起纳入评估。</p>
+        <div class="foot"><span class="src">Reuters / WSJ · 10-20</span><a class="orig" href="https://www.reuters.com/business/anthropic-recorded-net-loss-over-80-billion-first-half-this-year-wsj-reports-2026-10-20/" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505108.html" target="_blank">Kimi K3.1 Pro 冲到 AA 全球第 <span class="hl">4</span>: 3T 参数, 价格约为对手 <span class="hl">1/5</span></a></h3>
+        <p class="sum">Kimi K3.1 Pro 在 Artificial Analysis 拿到 55 分, 位列全球第 4; 模型规模 3T 参数, Terminal-Bench 得分 65.7%, 价格约为同级对手的 1/5。官方表示将在两周内开放模型权重。</p>
+        <p class="ins ins-pos"><b>→ 工具生态:</b> 当"接近前沿的能力 + 1/5 价格 + 即将开源"同时出现, 应用层的模型选型窗口被重新打开; 值得把 Kimi K3.1 Pro 放进横评, 重点测长任务与工具调用。</p>
+        <div class="foot"><span class="src">量子位 · 10-26</span><a class="orig" href="https://www.qbitai.com/2026/10/505108.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">工具生态</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/504931.html" target="_blank">Scenes AI 开源 <span class="hl">34B</span> 世界模型: 单张 RTX 5090 可跑, 编辑成功率 <span class="hl">98.2%</span></a></h3>
+        <p class="sum">Scenes AI 发布 34B 世界模型, 采用稀疏激活, 单次仅约 4B 参数参与计算(11.8%), 一张 RTX 5090 即可运行; 画面编辑成功率 98.2%, 主体一致性 93.3%, 单次只改动 10–20% 像素。相关论文已被 UbiComp/ISWC 2026 收录。</p>
+        <p class="ins"><b>→ 工具生态:</b> 当世界模型能在消费级显卡上做"可控编辑", 视频与素材生产的成本结构会被重算; 对做内容与投放素材的团队, 这类模型值得先做小场景试点。</p>
+        <div class="foot"><span class="src">量子位 · 10-23</span><a class="orig" href="https://www.qbitai.com/2026/10/504931.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 跨界视野 ============ -->
+    <section id="cross" class="grid">
+      <div class="sec-title">跨界视野<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">消费·零售</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ebrun.com/20261022/715059.shtml" target="_blank">星巴克中国"消费入座"背后: 客单价连降, 但交易次数转正</a></h3>
+        <p class="sum">星巴克中国推进"消费入座"的同时, 交出了一组值得细看的数据: 2024 年同店销售 -8%、客单价 -8%; 2025 年同店销售 -1%, 但交易次数 +4%、客单价 -5%; 2026 财年 Q2 营收 7.998 亿美元、同比 +8%, 同店销售 +0.5%。博裕资本拿下中国业务 60% 控股权, 交易估值约 40 亿美元, 门店约 8000 家, 目标 2 万家。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 这不是"降价换量"的简单故事, 而是主动用客单价换消费频次与场景占用; 任何做用户运营的人都可以借它区分——客单下降是"主动换频次", 还是"被动流失"。</p>
+        <div class="foot"><span class="src">亿邦动力 · 10-22</span><a class="orig" href="https://www.ebrun.com/20261022/715059.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">医疗·装备</span><span class="score s8">8</span></div>
+        <h3><a href="https://news.sciencenet.cn/htmlnews/2026/10/573586.shtm" target="_blank">国产新一代医用重离子加速器首台示范装置建成, 预计 <span class="hl">2026 年底</span>开展临床试验</a></h3>
+        <p class="sum">基于中科院近代物理研究所的超紧凑旋转束重离子治疗系统(SIMM), 国产新一代医用重离子加速器首台示范装置近日在广东惠州重离子医学中心建成, 目前已进入设备检测阶段, 预计 2026 年底开展临床试验。这标志着中国精准放疗装备从"跟跑"进入"示范验证"。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 高端装备国产化的路径是"单点示范→临床验证→产业升级", 每一步都有明确验收; 对 AI 落地, 先做一个可验收的示范点, 再谈规模化, 比一上来铺开更稳。</p>
+        <div class="foot"><span class="src">科学网 · 10-25</span><a class="orig" href="https://news.sciencenet.cn/htmlnews/2026/10/573586.shtm" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">教育·科研</span><span class="score s8">8</span></div>
+        <h3><a href="https://news.sciencenet.cn/htmlnews/2026/10/573586.shtm" target="_blank">美国 STEM 博士论文约 <span class="hl">30%</span> 含 AI 生成文本, 且更可能流向工业界</a></h3>
+        <p class="sum">据《自然》报道, 一份未经同行评审的论文指出, 美国 STEM 领域博士论文中约 30% 包含 AI 生成文本; 研究还发现, 使用 AI 撰写论文的博士毕业生更可能去工业界, 而不太可能留在学术界。NBER 研究者提出的问题是: 如果一半工作交给 AI, 学生是否还具备成为优秀科学家所需的深度理解?</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 当"会用 AI"变成默认能力, 评估的重心会从"产出量"转向"独立判断"; 对团队考核和个人成长, 可迁移的是判断力与问题定义能力, 不是生成速度。</p>
+        <div class="foot"><span class="src">科学网 / Nature · 10-25</span><a class="orig" href="https://news.sciencenet.cn/htmlnews/2026/10/573586.shtm" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 前沿研究 ============ -->
+    <section id="research" class="grid">
+      <div class="sec-title">前沿研究<span class="count">3</span></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2610.32483" target="_blank">arXiv: 同一个模型换个"外壳"就差很多, agent 评测该把模型和 harness 分开算</a></h4>
+        <p class="ract">论文《When Agents Fail: Model or Harness—Who's to Blame?》用 4 个通用 harness(OpenCode、Codex CLI、Pi CLI、DeepAgents)搭配 4 个核心模型, 在 6 类基准上跑了 111 种设置、52168 条轨迹。结论: harness 排名会随模型与基准变化, 任务分数与"有效完成率"可能指向不同组合; OpenCode 的跨模型表现第一, DeepSeek V4 Flash Preview 的有效完成率最稳。启示: 内部评测若不拆开"模型"和"工具壳", 很容易把 harness 的问题算到模型头上。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2610.32851" target="_blank">arXiv: 企业 RAG 的胜负手是"先组织再检索", 241 个仓库里定位 100+ 缺陷</a></h4>
+        <p class="ract">论文《Reimagining Enterprise RAG for Multi-Agent Systems》用 7 个 agent 的反向工程流水线, 处理 18 个服务、241 个仓库, 产出数千个描述范围、旅程、规则与验收标准的 artifact。由于 offer、eligibility 等实体在不同服务里"同名不同义", 扁平向量检索会把错误服务的规则以高相似度召回; 作者把本体放在 artifact 层, 用来源元数据先消歧再检索, 一周内建成, 支撑了 100+ 生产缺陷的根因分析与 35 次发布回归的归因。启示: 企业知识库别急着调向量模型, 先把"这条知识来自哪个服务、哪个版本"变成结构化字段。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">工具生态</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2610.32536" target="_blank">arXiv: GUI agent 新基准 IGG——人 94.6%, GPT-5.5 79.4%, 最强开源 VLM 仅 31.6%</a></h4>
+        <p class="ract">IGG 基准包含 601 个任务、16 个可控 GUI 环境、7 类"可见性约束": 目标可能在屏幕外、悬停后才出现、被遮挡或延迟可点。人类准确率 94.6%, GPT-5.5 79.4%, 最强开源 VLM 只有 31.6%。关键实验: 告诉 Qwen3-VL 该做什么交互, 准确率只从 30.8% 升到 33.9%; 直接替它完成交互, 则升到 81.9%——瓶颈在"把目标弄出来"的执行, 不在"看见后点中"。启示: 做手机、桌面 agent, 滚动、等待、拖拽这些"让目标出现"的动作策略, 比换更强的视觉模型更值得投入。</p>
+      </div></div>
+    </section>
+
+    <footer>
+      由 AI 每日联网检索聚合生成 · 面向 AI × 电商 / 联盟从业者视角 · 每日更新<br>
+      每条均标注原文出处链接与检索到的发布日期;影响力评分(6–9)与"→启示"为编辑判断,引用关键数据前建议点开原文核实。
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
