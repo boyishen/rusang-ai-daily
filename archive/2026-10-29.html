@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如桑的AI日报 · 2026-10-29</title>
+<style>
+  :root{
+    --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
+    --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
+    --accent:#6ea8fe; --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
+    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399; --t-kuajie:#fb7185; --t-luodi:#f472b6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(1200px 700px at 80% -10%,#15203a 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;padding-bottom:80px}
+
+  /* Header */
+  .main-header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding:48px 0 20px;margin-bottom:36px;border-bottom:1px solid var(--line)
+  }
+  .main-header h1{font-size:28px;font-weight:800;letter-spacing:-.3px}
+  .main-header .status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-top:4px;white-space:nowrap}
+  .main-header .status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+  .main-header .status .label{color:var(--green);font-weight:600}
+
+  /* Section header */
+  section{margin-bottom:44px;scroll-margin-top:20px}
+  .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
+  .sec-title::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--accent),rgba(110,168,254,.25));flex:none}
+
+  /* Insight card */
+  .insight{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:8px}
+  .insight .insight-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-bottom:16px}
+  .insight .insight-head .star{color:var(--orange);font-size:16px}
+  .insight .insight-head .by{color:var(--dim);font-size:12px}
+  .insight .intro{font-size:15px;color:var(--sub);margin-bottom:18px;line-height:1.7}
+  .insight .item{margin-bottom:18px}
+  .insight .item:last-child{margin-bottom:0}
+  .insight .item .idx{color:var(--accent);font-weight:700;font-size:14px;margin-right:6px}
+  .insight .item .ititle{display:inline;font-weight:700;font-size:15px;color:var(--txt)}
+  .insight .item .ititle a{font-weight:700}
+  .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
+  .hl{color:#fbbf24;font-weight:700}
+
+  /* Card (list items) */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
+  .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
+  .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
+  .card .meta .tag{font-size:11px;font-weight:600;border-radius:5px;padding:1px 8px}
+  .tag-tuoguan{background:rgba(167,139,250,.18);color:var(--t-tuoguan)}
+  .tag-xuanpin{background:rgba(251,191,36,.18);color:var(--t-xuanpin)}
+  .tag-ka{background:rgba(34,211,238,.18);color:var(--t-ka)}
+  .tag-pan{background:rgba(52,211,153,.18);color:var(--t-pan)}
+  .tag-kuajie{background:rgba(251,113,133,.18);color:var(--t-kuajie)}
+  .tag-luodi{background:rgba(244,114,182,.18);color:var(--t-luodi)}
+  .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:#0a0d15;flex:none}
+  .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)}
+  .s8{background:linear-gradient(135deg,#ffb15d,#ff9028)}
+  .s7{background:linear-gradient(135deg,#ffd97a,#ffc23d)}
+  .s6{background:linear-gradient(135deg,#9fb0d0,#7c8db0)}
+  .card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:6px}
+  .card .sum{font-size:13.5px;color:var(--sub);line-height:1.6;margin-bottom:8px}
+  .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);
+    background:rgba(110,168,254,.08);border-radius:0 6px 6px 0;line-height:1.6}
+  .card .ins b{color:var(--accent);margin-right:4px}
+  .card .ins-hook{border-left-color:var(--orange);background:rgba(245,158,11,.08)}
+  .card .ins-hook b{color:var(--orange)}
+  .card .ins-pos{border-left-color:var(--green);background:rgba(34,197,94,.08)}
+  .card .ins-pos b{color:var(--green)}
+  .card .ins-neg{border-left-color:var(--red);background:rgba(239,68,68,.08)}
+  .card .ins-neg b{color:var(--red)}
+  .card .points{list-style:none;margin:0 0 10px;padding:0}
+  .card .points li{font-size:13px;color:var(--sub);line-height:1.65;padding-left:16px;position:relative;margin-bottom:5px}
+  .card .points li:last-child{margin-bottom:0}
+  .card .points li::before{content:"▸";position:absolute;left:2px;top:0;color:var(--accent);font-size:12px}
+  .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
+  .card .foot .src{color:var(--dim)}
+  .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
+  .card .foot .orig:hover{text-decoration:underline}
+
+  /* Compact row */
+  .row{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
+    border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:.18s}
+  .row:hover{background:var(--card);border-color:#2a3554;transform:translateY(-1px)}
+  .row .rc{flex:1;min-width:0}
+  .row h4{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
+  .row .ract{font-size:13px;color:var(--sub);line-height:1.6}
+
+  .grid .card,.grid .row{margin-bottom:0}
+
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
+
+  /* Horizontal nav */
+  .nav-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .nav-bar a{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--sub);
+    background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:.15s;white-space:nowrap}
+  .nav-bar a:hover{background:var(--card);color:var(--txt);border-color:#2a3554;text-decoration:none}
+  .nav-bar a .ncount{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:0 6px;min-width:18px;text-align:center}
+  .nav-bar a.nav-archive{background:rgba(110,168,254,.16);border-color:var(--accent);color:var(--accent);font-weight:700}
+  .nav-bar a.nav-archive:hover{background:var(--accent);color:#0a0d15;border-color:var(--accent)}
+
+  /* Two-column grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid > .sec-title{grid-column:1/-1}
+
+  @media(max-width:640px){
+    .main-header{flex-direction:column;gap:8px;padding-top:32px}
+    .grid{grid-template-columns:1fr}
+    .insight{padding:20px 16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <main>
+
+    <header class="main-header">
+      <h1>如桑的AI日报</h1>
+      <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年10月29日 星期四</div>
+    </header>
+
+    <nav class="nav-bar">
+      <a href="#insight">今日洞见</a>
+      <a href="#ecom">电商·联盟<span class="ncount">5</span></a>
+      <a href="#practice">落地实践<span class="ncount">3</span></a>
+      <a href="#cn">国内速递<span class="ncount">3</span></a>
+      <a href="#voices">大佬说<span class="ncount">3</span></a>
+      <a href="#oss">开源热项<span class="ncount">3</span></a>
+      <a href="#hot">全球热榜<span class="ncount">4</span></a>
+      <a href="#cross">跨界视野<span class="ncount">3</span></a>
+      <a href="#research">前沿研究<span class="ncount">3</span></a>
+      <a class="nav-archive" href="/rusang-ai-daily/archive/">往期存档</a>
+    </nav>
+
+    <!-- ============ 今日洞见 ============ -->
+    <section id="insight">
+      <div class="sec-title">今日洞见</div>
+      <div class="insight">
+        <div class="insight-head"><span class="star">★</span> 编辑视角 <span class="by">· by AI</span></div>
+        <p class="intro">10 月 28 日至 29 日，三条线同时收紧：模型按“专用度”定价，资本按“现金流”投票，制造业按“良品率”验收。Gemini 4 Carbon 把网络安全做成单一战场；Alphabet 交出云收入翻倍、但自由现金流承压的季度；智谱的万亿市值则把“教授创业”的股权账摊到台面上。能力、估值与落地，正在被同一把尺子量。</p>
+
+        <div class="item">
+          <span class="idx">01</span>
+          <span class="ititle"><a href="http://k.sina.com.cn/article_5953190046_162d6789e06703vpi4.html" target="_blank">谷歌发布 Gemini 4 Carbon：漏洞检测 88.2%，先向防御者开放</a></span>
+          <div class="ibody">10 月 29 日发布，定位“网安与长流程专家”，智能指数 59 分；漏洞检测得分 <span class="hl">88.2%</span>，安全代码生成成功率是 Argon 的两倍多。API 首发价每百万输入 <span class="hl">2 美元</span>、标准价 4 美元，并通过 Fairwind 计划先向防御者开放。启示：专用模型用“可测的战场”换信任，安全场景可能比通用榜单更早跑出付费闭环。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">02</span>
+          <span class="ititle"><a href="https://aa.com.tr/en/economy/alphabets-revenue-jumps-25-to-1276b-in-q3/4104395" target="_blank">Alphabet Q3：营收 1276 亿美元、云收入翻倍，股价仍因现金流承压走低</a></span>
+          <div class="ibody">第三季度营收 <span class="hl">1276 亿美元</span>、同比 +25%，云收入 307 亿美元、同比 +103%，净利润 265 亿美元；2026 年资本开支指引约 2050 亿美元。尽管云业务超预期，营收未达市场预期、现金消耗扩大，财报后股价走低。启示：AI 基建的“增长—折旧—现金流”三角开始分叉，采购方要同时看对方的订单与资本结构。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">03</span>
+          <span class="ititle"><a href="http://finance.sina.com.cn/roll/2026-10-28/doc-iniwuqvx5956513.shtml" target="_blank">智谱市值一度达 1.07 万亿港元：唐杰持股市值约 275 亿元</a></span>
+          <div class="ibody">智谱于 1 月 8 日以 <span class="hl">116.20 港元</span>上市，6 月市值一度达 1.07 万亿港元；清华教授、首席科学家唐杰持有约 <span class="hl">6.1%</span> 股份，对应身家约 275 亿元。启示：学术创始人的股权定价，把“研究成果—公司估值—个人财富”连成一条链；但万亿市值本身波动极大，别把峰值当常态。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 电商·联盟聚焦 ============ -->
+    <section id="ecom" class="grid">
+      <div class="sec-title">电商 · 联盟聚焦<span class="count">5</span></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">联盟政策</span><div class="rc">
+        <h4><a href="https://www.taokeshow.com/73233.html" target="_blank">淘宝联盟双11：超级红包最高 <span class="hl">90%</span> 分成，单淘客 CPA 上限 150 万</a></h4>
+        <p class="ract">双11 超级红包 10 月 15 日首发，最高分成 90%；活动 CPA 上限 3485 万用户，单个淘客上限 150 万，开奖率要求不低于 15%，新人无额外门槛。启示：红包从“平台补贴”变成“按结果分成”，预算更看重开奖率与有效转化，而不是单纯拉新量。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">平台成本</span><div class="rc">
+        <h4><a href="https://www.chwang.com/news/211527637786" target="_blank">亚马逊旺季配送费上调：美国站 FBA 每件平均多付 <span class="hl">0.32 美元</span></a></h4>
+        <p class="ract">新费率自 10 月 15 日起生效，覆盖美国站全部 FBA 订单，旺季平均每件比非旺季高约 0.32 美元，直接推高尾程成本。启示：旺季利润要先扣掉“履约附加费”，再把折扣和佣金算进去；低价轻小件对费率最敏感。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">合规新规</span><div class="rc">
+        <h4><a href="https://www.chwang.com/news/211528062670" target="_blank">欧盟 <span class="hl">11 月 1 日</span>起强制申报商品识别码，eBay、敦煌网同步落地</a></h4>
+        <p class="ract">适用范围为欧盟外发往消费者、价值不超过 150 欧元的 B2C 商品；卖家需在物流单或发货页填报识别码，非标准化制造商识别码为必填。信息缺失或不一致会导致清关失败、退运、销毁，罚金由卖家承担。启示：合规字段要前置到上架与打单环节，别等包裹到口岸才补。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">物流成本</span><div class="rc">
+        <h4><a href="https://www.chwang.com/news/211525964730" target="_blank">USPS 自 2027 年起按周收燃油附加费，美线尾程成本再抬一档</a></h4>
+        <p class="ract">新规自 <span class="hl">2027 年 1 月</span>起执行，按基础邮费比例计费，每周随能源署价格调整；叠加 UPS、FedEx 的年度涨价，美线尾程成本密集上升，轻小件毛利首当其冲。启示：跨境定价模型要把“每周浮动”写进去，别用年初费率跑全年预算。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">内容电商</span><div class="rc">
+        <h4><a href="https://www.chwang.com/article/211531802309" target="_blank">TikTok Shop <span class="hl">24 国</span>热卖榜：美区 medicube 登顶，欧洲假发霸榜</a></h4>
+        <p class="ract">榜单覆盖 10 月 19 日至 25 日 24 个市场：美区 medicube 登顶，欧洲 OQ HAIR 假发霸榜，Ninja 炸锅在德法意热销。启示：同一套内容在不同市场的“爆品结构”差异很大，选品要按国家拆，不要用一张全球榜做一盘货。</p>
+      </div></div>
+    </section>
+
+    <!-- ============ AI 落地实践 ============ -->
+    <section id="practice">
+      <div class="sec-title">AI 落地实践<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s9">9</span></div>
+        <h3><a href="https://zhidx.com/p/601377.html" target="_blank">京东双11 把 AI 铺进 <span class="hl">3000+</span> 场景：数字人服务 9 万商家，路径采纳率 90.2%</a></h3>
+        <p class="sum">京东这轮双11 把 AI 同时压到消费者、商家与物流三端，而不是只做一个导购入口。对商家来说，工具是开放的，但效果要回到自己的转化与履约数据里验证。</p>
+        <ul class="points">
+          <li>卡点：大促峰值下，导购决策、直播人力与履约路径同时被放大，人工经验难以覆盖长尾</li>
+          <li>做法：消费者端“东东”给决策建议、JoyAI 数字人支持视频下单；商家端京麦开放选品、运营等数十款工具，JoyAvatar 服务 <span class="hl">9 万</span>商家直播</li>
+          <li>成效：物流“超脑”3.0 预测准确率超 94.2%，最优路径采纳率超 90.2%，“异狼”包裹跟踪准确率 99.9%</li>
+          <li>边界：均为平台口径，商家侧的增量 GMV 与工具成本未披露，需按自家品类做小流量对照</li>
+        </ul>
+        <p class="ins ins-pos"><b>→ 数据基建:</b> 这条案例的看点不是工具数量，而是三层数据是否打通——消费者意图、商家经营、物流轨迹；缺一层，AI 只能做单点提效，做不了闭环。</p>
+        <div class="foot"><span class="src">智东西 · 10-15</span><a class="orig" href="https://zhidx.com/p/601377.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/jjxw/2026-10-28/doc-iniwuvct9394983.shtml" target="_blank">老干妈用 AI 视觉质检把不良率降到 <span class="hl">0.02%</span>，同时否认裁员</a></h3>
+        <p class="sum">一则“老干妈用 AI 裁员”的传闻，把这家传统食品企业推上热搜；公司否认裁员，但确认引入 AI 视觉质检，不良率降至 0.02%。传统制造的 AI 落地，先从最能量化的质检环节开始。</p>
+        <ul class="points">
+          <li>卡点：人工质检依赖经验与体力，漏检率难稳定，旺季更容易波动</li>
+          <li>做法：在产线引入 AI 视觉质检，用图像识别替代重复目检</li>
+          <li>成效：官方口径不良率降至 <span class="hl">0.02%</span></li>
+          <li>边界：产线数量、误检率与投入成本未披露；“AI 导致裁员”被公司否认，传播链条本身也是风险</li>
+        </ul>
+        <p class="ins ins-neg"><b>→ 避坑清单:</b> 传统企业上 AI，先选“可量化、可复核、可停机回退”的环节；同时把对外沟通预案做好——技术账算得清，舆情账未必。</p>
+        <div class="foot"><span class="src">新浪财经 · 10-28</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-10-28/doc-iniwuvct9394983.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="http://k.sina.com.cn/article_7879923515_1d5ae173b06801lcoa.html" target="_blank">AI 进入电影工业流程：生成 <span class="hl">120 万</span>张底图，视觉预演从数周缩到 3 天</a></h3>
+        <p class="sum">在一部电影的制作中，AI 承担了底图生成、视觉预演与分镜拆解，团队把省下的时间投向世界观与审美判断。它不是“替代导演”，而是把重复劳动前移。</p>
+        <ul class="points">
+          <li>卡点：视觉预演与分镜长期依赖手工，改一版世界观就要重画大量图，周期以周计</li>
+          <li>做法：用 AI 生成 120 余万张底图，先做视觉预演，再拆成分镜；人类负责世界观、输出判断与导演思维</li>
+          <li>成效：视觉预演缩至 <span class="hl">3 天</span>，分镜环节节省约 70% 时间</li>
+          <li>边界：成片质量与票房未量化；AI 只解决“看得见”，不解决“讲什么”</li>
+        </ul>
+        <p class="ins"><b>→ 案例报告:</b> 内容生产的 AI 化，先发生在“可批量、可回滚”的中间环节；把人的判断留在最贵的地方，才是成本结构真正改变的地方。</p>
+        <div class="foot"><span class="src">新浪 · 10-29</span><a class="orig" href="http://k.sina.com.cn/article_7879923515_1d5ae173b06801lcoa.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 国内速递 ============ -->
+    <section id="cn" class="grid">
+      <div class="sec-title">国内速递<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">开源模型</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/10/505928.html" target="_blank">蚂蚁开源 Ling-3.1-flash-1019：<span class="hl">560B</span> 总参数 MoE，主打 Personal Agent</a></h3>
+        <p class="sum">10 月 28 日开源，Base 版 560B 总参数、MIT 许可，定位个人智能体；智能指数 44 分，复杂任务 Elo 提升至 <span class="hl">1524</span>，官方称超过 DeepSeek-V4-Pro-Base 等同类。开源模型开始按“场景 + 许可”竞争，个人 agent 的门槛继续下探。</p>
+        <p class="ins ins-pos"><b>→ 品类信号:</b> 但部署成本仍取决于激活参数与推理栈；对应用方而言，“能下载”不等于“跑得起”，先算清单位任务成本再谈替换。</p>
+        <div class="foot"><span class="src">量子位 · 10-28</span><a class="orig" href="https://www.qbitai.com/2026/10/505928.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">标准政策</span><span class="score s8">8</span></div>
+        <h3><a href="http://k.sina.com.cn/article_5953466437_162dab0450670bg9sq.html" target="_blank">我国 AI 国家标准建设提速：已布局 <span class="hl">146 项</span>标准项目</a></h3>
+        <p class="sum">报道显示，我国已布局 146 项人工智能国家标准项目；GB/Z 177—2026 于 5 月 8 日发布、覆盖 <span class="hl">7 个</span>品类，GB/Z 185—2026 于 6 月 26 日发布。标准先行，意味着采购与验收会逐步有统一口径。</p>
+        <p class="ins"><b>→ 验收标准:</b> 做企业级 AI 方案时，提前把国标条款映射到合同验收项，比事后补材料更省成本；尤其关注数据、测评与安全三类条款。</p>
+        <div class="foot"><span class="src">新浪 · 10-29</span><a class="orig" href="http://k.sina.com.cn/article_5953466437_162dab0450670bg9sq.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">具身智能</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.jiemian.com/article/15219492.html" target="_blank">智元创新日今日在沪启幕：围绕硬件、运动、作业、交互四类能力发布部署进展</a></h3>
+        <p class="sum">2026 智元创新日于 <span class="hl">10 月 29 日</span>在上海举行，官方预告围绕“硬件本体、运动智能、作业智能、交互智能”发布具身智能部署态的新进展。截至发稿，具体产品参数与量化成效尚未公开。</p>
+        <p class="ins ins-neg"><b>→ 注意:</b> 具身智能的竞争点正从“演示动作”转向“部署态”；判断真假落地，要看真实产线的连续运行小时数、维护成本与换型时间，而不是舞台完成度。</p>
+        <div class="foot"><span class="src">界面新闻 · 10-29</span><a class="orig" href="https://www.jiemian.com/article/15219492.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 大佬说 ============ -->
+    <section id="voices" class="grid">
+      <div class="sec-title">大佬说<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">学者观点</span><span class="score s9">9</span></div>
+        <h3><a href="http://finance.sina.com.cn/tech/digi/2026-10-28/doc-iniwuqvs6615394.shtml" target="_blank">菲尔兹奖得主邓煜：若因 AI 放弃自主思考，“真的就和动物没什么区别”</a></h3>
+        <p class="sum">芝加哥大学教授、菲尔兹奖得主邓煜在论坛上表示，人类不能“给 AI 做狗”；如果因为有了 AI 就放弃自主思考，和动物没有区别。他强调数学是体现人类自主思考的关键载体。</p>
+        <p class="ins"><b>→ 分工判断:</b> 工具越强，越要把“提出什么问题、判断什么值得做”留在人这边；这不是情怀，是分工——可标准化的交给模型，不可标准化的留给判断。</p>
+        <div class="foot"><span class="src">新浪科技 · 10-28</span><a class="orig" href="http://finance.sina.com.cn/tech/digi/2026-10-28/doc-iniwuqvs6615394.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">开发者观点</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/wm/2026-10-28/doc-iniwuvcq6494402.shtml" target="_blank">独立开发者 Pieter Levels 退订大部分 SaaS：称“软件已死”，每月省 <span class="hl">2.5 万美元</span></a></h3>
+        <p class="sum">他称“software is dead”，已退订大部分 SaaS，用 AI 编程与开源工具按需现做，保留的只有基础设施成本，每月节省约 2.5 万美元。</p>
+        <p class="ins ins-pos"><b>→ 成本结构:</b> 当“现做工具”的成本低于订阅，软件公司的护城河会从功能转向数据、协作与合规；个人开发者也会重新算“买还是做”。</p>
+        <div class="foot"><span class="src">新浪财经 · 10-28</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-10-28/doc-iniwuvcq6494402.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">产业判断</span><span class="score s9">9</span></div>
+        <h3><a href="https://finance.sina.com.cn/stock/t/2026-10-17/doc-inivpfyq1407475.shtml" target="_blank">黄仁勋谈 AI 泡沫：供给超过需求才会破裂，“但不是今天”</a></h3>
+        <p class="sum"><span class="hl">10 月 14 日</span>伦敦，黄仁勋表示“泡沫发生在供给超过需求的时候”，最终供需会趋于平衡，某个时候供给可能超过需求，“但不是今天”。此前他还称 AI 现在不是泡沫，安全不应成为减速理由。</p>
+        <p class="ins ins-neg"><b>→ 风险提示:</b> 产业判断与估值判断要分开——需求仍在，不代表所有公司的价格都合理；对采购方，真正的风险是锁定了长期算力价格，却等不到对应的业务量。</p>
+        <div class="foot"><span class="src">新浪财经 · 10-17</span><a class="orig" href="https://finance.sina.com.cn/stock/t/2026-10-17/doc-inivpfyq1407475.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 开源热项 ============ -->
+    <section id="oss" class="grid">
+      <div class="sec-title">开源热项<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">教育 Agent</span><span class="score s9">9</span></div>
+        <h3><a href="https://github.com/HKUDS/DeepTutor" target="_blank">DeepTutor：<span class="hl">4.8 万</span>stars 的“终身个性化辅导”agent，昨日仍在更新</a></h3>
+        <p class="sum">HKUDS 的 DeepTutor 定位终身个性化辅导，用 Python + Next.js 构建，Apache-2.0 许可，GitHub 约 4.8 万 stars，10 月 28 日仍有更新。</p>
+        <p class="ins ins-pos"><b>→ 教育 Agent:</b> 难点不在答题，而在长期记忆与学习路径；这类项目值得看它如何组织“学生画像”，而不是只看题库覆盖。</p>
+        <div class="foot"><span class="src">GitHub · HKUDS</span><a class="orig" href="https://github.com/HKUDS/DeepTutor" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">开发工具</span><span class="score s8">8</span></div>
+        <h3><a href="https://github.com/JetBrains/thinkrail" target="_blank">JetBrains 孵化 ThinkRail：<span class="hl">5.2k</span> stars 的 agentic IDE，主打 spec-driven coding</a></h3>
+        <p class="sum">ThinkRail 是 JetBrains 的孵化项目，定位 agentic IDE，强调“先写规格、再让 agent 执行”的 spec-driven 开发流；Apache-2.0 许可，约 5.2k stars，近期持续更新。</p>
+        <p class="ins"><b>→ 开发工具:</b> IDE 正在从“编辑器 + 补全”变成“规格 + 执行 + 验收”的工作台；入口之争才刚开始，关键看谁能把验证环节做得更省心。</p>
+        <div class="foot"><span class="src">GitHub · JetBrains</span><a class="orig" href="https://github.com/JetBrains/thinkrail" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">设计技能</span><span class="score s8">8</span></div>
+        <h3><a href="https://github.com/Nutlope/hallmark" target="_blank">Hallmark：<span class="hl">4.1 万</span> stars 的“反 AI 味”设计技能，内置 50 套主题</a></h3>
+        <p class="sum">Hallmark 面向 Claude Code、Cursor、Codex，提供 50 套主题与浏览器端 lint，用来拦截“AI 生成感”过重的界面；MIT 许可，约 4.1 万 stars。</p>
+        <p class="ins ins-pos"><b>→ 设计技能:</b> 设计约束正在被写成可执行的规则，素材与页面的“风格稳定性”会比单次生成质量更重要；可复用的风格包，比反复抽卡更省时间。</p>
+        <div class="foot"><span class="src">GitHub · Nutlope</span><a class="orig" href="https://github.com/Nutlope/hallmark" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 全球热榜 ============ -->
+    <section id="hot" class="grid">
+      <div class="sec-title">全球热榜<span class="count">4</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">并购</span><span class="score s9">9</span></div>
+        <h3><a href="https://wallstreetcn.com/articles/3784719" target="_blank">Marvell 洽购 Lumentum：标的市值约 <span class="hl">830 亿美元</span>，AI 光通信加速整合</a></h3>
+        <p class="sum">报道称交易最快下周宣布，金额未定；Lumentum 市值约 830 亿美元，Marvell 约 2210 亿美元。消息后 Marvell 盘后跌超 <span class="hl">8%</span>，Lumentum 涨 11%；英伟达今年曾向 Lumentum 投资 20 亿美元。</p>
+        <p class="ins ins-neg"><b>→ 供应链:</b> AI 基建的瓶颈正从芯片扩到光模块，垂直整合会改变供货优先级与价格谈判；采购方要关注“谁拿到优先产能”，而不只是单价。</p>
+        <div class="foot"><span class="src">华尔街见闻 · 10-29</span><a class="orig" href="https://wallstreetcn.com/articles/3784719" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">系统入口</span><span class="score s9">9</span></div>
+        <h3><a href="http://finance.sina.com.cn/roll/2026-10-28/doc-iniwuqvs6606512.shtml" target="_blank">iOS 27.2 给 Siri 开更大权限：可读语音留言与消息，开发者担忧入口被绕开</a></h3>
+        <p class="sum"><span class="hl">10 月 26 日</span>发布的 iOS 27.2 为 Siri 增加记忆能力，并可通过“排除应用”选项访问语音留言与消息。开发者担心，当 AI 直接完成任务，传统 App 的界面与收入会被绕过。</p>
+        <p class="ins"><b>→ 入口变化:</b> 系统级 agent 一旦拿到数据权限，应用的分发与变现逻辑都会被重写；做工具的人要提前想清楚：自己是被调用，还是被替代。</p>
+        <div class="foot"><span class="src">新浪财经 · 10-28</span><a class="orig" href="http://finance.sina.com.cn/roll/2026-10-28/doc-iniwuqvs6606512.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">汇率</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.chwang.com/news/211525964567" target="_blank">高盛预测人民币 2028 年底到 <span class="hl">6.0</span>、2031 年底到 5.5，跨境卖家汇兑压力上升</a></h3>
+        <p class="sum">高盛预计人民币年均升值 <span class="hl">3%–5%</span>；乐歌上半年汇兑损失 7784 万元。对毛利薄的小单品，汇率从 6.7 走到 5.5，利润可能缩水约 70%。</p>
+        <p class="ins ins-neg"><b>→ 成本线:</b> 跨境生意的利润表要把汇率当成一条独立成本线，套保不是财务部一个人的事；定价、备货与账期都要跟着币值走。</p>
+        <div class="foot"><span class="src">出海早报 · 10-29</span><a class="orig" href="https://www.chwang.com/news/211525964567" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">财报</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.prnewswire.com/news-releases/meta-reports-third-quarter-2026-results-302915964.html" target="_blank">Meta Q3：营收 <span class="hl">646 亿美元</span>、同比 +26%，资本开支 349 亿美元</a></h3>
+        <p class="sum">Meta 第三季度营收 646 亿美元、同比 +26%，净利润 98.6 亿美元，营业利润率 20%，资本开支 349.1 亿美元；公司称已发布 Muse 与 Muse Wonder。</p>
+        <p class="ins"><b>→ 财报:</b> 社交广告仍在为 AI 基建输血，但利润率被资本开支压缩；后续要看 Muse 能否带来新的收入曲线，而不是只增加成本项。</p>
+        <div class="foot"><span class="src">Meta · 10-21</span><a class="orig" href="https://www.prnewswire.com/news-releases/meta-reports-third-quarter-2026-results-302915964.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 跨界视野 ============ -->
+    <section id="cross" class="grid">
+      <div class="sec-title">跨界视野<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">医疗·AI</span><span class="score s8">8</span></div>
+        <h3><a href="https://k.sina.com.cn/article_1496814565_593793e5020027puy.html" target="_blank">患者先问 AI 再找医生：协和专家称“怎么跟我查的不一样”，清华系 MHAC 系统落地</a></h3>
+        <p class="sum">北京协和医院专家马良坤提到，很多患者会先问豆包，再来门诊对照答案；清华孵化的紫荆智康发布 MHAC 系统，用多分身智能体协同完成诊前预问诊、就诊中语音转写与决策建议，最终诊断权仍在医生。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 医疗 AI 的边界不是“能不能答”，而是“谁签字”；把责任链写清楚，比把准确率再提两个点更重要。这套“多分身 + 人签字”的结构，也能迁移到任何高风险决策场景。</p>
+        <div class="foot"><span class="src">新浪 · 10-28</span><a class="orig" href="https://k.sina.com.cn/article_1496814565_593793e5020027puy.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">平台治理</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/tech/roll/2026-10-28/doc-iniwuvct9398631.shtml" target="_blank">Spotify 家庭套餐要扫动态二维码验证住址，账号共享生意被收紧</a></h3>
+        <p class="sum">Spotify 要求家庭套餐用户扫描动态二维码验证居住地址，以遏制账号共享。流媒体平台正在把“身份验证”从一次性登录变成持续校验。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 当增长见顶，平台会把“共享”重新定价；所有依赖家庭组、拼车、共享账号的生意，都要准备被规则改写。验证频率本身就是一种定价权。</p>
+        <div class="foot"><span class="src">新浪科技 · 10-28</span><a class="orig" href="http://finance.sina.com.cn/tech/roll/2026-10-28/doc-iniwuvct9398631.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">智能制造</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/wm/2026-10-29/doc-iniwvsii9073943.shtml" target="_blank">南京世界智能制造博览会 <span class="hl">11 月 19 日</span>开幕：5.2 万平方米、350 余家企业</a></h3>
+        <p class="sum">第十一届世界智能制造博览会将于 11 月 19 日至 21 日在南京举办，面积扩至 <span class="hl">5.2 万平方米</span>，汇聚 350 余家企业，大批机器人将集中亮相。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 机器人从展会走向产线，真正的分水岭是“连续运行小时数”和“维护成本”，不是舞台上的动作难度。看展时优先问这两个数，比看演示视频有用。</p>
+        <div class="foot"><span class="src">新浪财经 · 10-29</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-10-29/doc-iniwvsii9073943.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 前沿研究 ============ -->
+    <section id="research" class="grid">
+      <div class="sec-title">前沿研究<span class="count">3</span></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">Agent 评测</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2610.36484" target="_blank">arXiv：CogArena 用 10 类行为实验评测多模态 agent，“做完”不等于“复现”</a></h4>
+        <p class="ract">论文让 agent 使用 Browser-Use 操作交互式行为实验，覆盖 <span class="hl">10 类</span>范式，按 L1 完成、L2 准确、L3 行为签名三级评分；测试了 kimi-k2.5、gemini-3-flash-preview、qwen3-vl-235b-instruct、gpt-5.4-nano 等模型，每个模型跑 10 次。结论是：完成任务不等于复现实验的行为特征。启示：评测 agent 不能只看“有没有点完”，要看它是否按正确路径、产生可复核的行为序列。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">多模态 RAG</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2610.36444" target="_blank">arXiv：RouteDRAG 只让 <span class="hl">79.3%</span> 的查询调用 agent，准确率反升 3.47 个百分点</a></h4>
+        <p class="ract">论文提出自适应路由与动态执行的框架，把查询分给“直接回答”或“agent 执行”两条路径；结果显示，只在 79.3% 的查询上调用 agent，整体准确率仍提升 <span class="hl">3.47 个百分点</span>，同时减少调用次数。启示：agent 不是越多越好，路由本身就是能力；先把“什么该交给 agent”判断清楚，再谈堆工具。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">效率评测</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2610.35942" target="_blank">arXiv：AI 到底省了多少时间？论文给出“<span class="hl">3%–82%</span>”与“最多 3.6 倍”两组上限</a></h4>
+        <p class="ract">论文用“账本视角”核算 AI 节省的时间，指出 AI 能帮到的任务占比在 3%–82% 之间；只看审查时间，GPT-5 的速度上限为 <span class="hl">3.6 倍</span>。METR 的实测则显示，部分场景反而慢 19% 或 24%，取决于估计口径。结论是：过度信任会换来更快的单步和更差的总结果。启示：算 AI 的 ROI，要把“返工与纠错”计入分母，而不是只算生成那几秒。</p>
+      </div></div>
+    </section>
+
+    <footer>
+      由 AI 每日联网检索聚合生成 · 面向 AI × 电商 / 联盟从业者视角 · 每日更新<br>
+      每条均标注原文出处链接与检索到的发布日期;影响力评分(6–9)与"→启示"为编辑判断,引用关键数据前建议点开原文核实。
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
