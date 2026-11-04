@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>如桑的AI日报 · 2026-11-03</title>
+<title>如桑的AI日报 · 2026-11-04</title>
 <style>
   :root{
     --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
@@ -24,7 +24,6 @@
 
   .wrap{max-width:920px;margin:0 auto;padding:0 20px;padding-bottom:80px}
 
-  /* Header */
   .main-header{
     display:flex;justify-content:space-between;align-items:flex-start;
     padding:48px 0 20px;margin-bottom:36px;border-bottom:1px solid var(--line)
@@ -34,13 +33,11 @@
   .main-header .status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
   .main-header .status .label{color:var(--green);font-weight:600}
 
-  /* Section header */
   section{margin-bottom:44px;scroll-margin-top:20px}
   .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
   .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
   .sec-title::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--accent),rgba(110,168,254,.25));flex:none}
 
-  /* Insight card */
   .insight{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:8px}
   .insight .insight-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-bottom:16px}
   .insight .insight-head .star{color:var(--orange);font-size:16px}
@@ -54,7 +51,6 @@
   .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
   .hl{color:#fbbf24;font-weight:700}
 
-  /* Card (list items) */
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
   .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
   .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
@@ -91,7 +87,6 @@
   .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
   .card .foot .orig:hover{text-decoration:underline}
 
-  /* Compact row */
   .row{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
     border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:.18s}
   .row:hover{background:var(--card);border-color:#2a3554;transform:translateY(-1px)}
@@ -103,7 +98,6 @@
 
   footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
 
-  /* Horizontal nav */
   .nav-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--line)}
   .nav-bar a{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--sub);
     background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:.15s;white-space:nowrap}
@@ -112,7 +106,6 @@
   .nav-bar a.nav-archive{background:rgba(110,168,254,.16);border-color:var(--accent);color:var(--accent);font-weight:700}
   .nav-bar a.nav-archive:hover{background:var(--accent);color:#0a0d15;border-color:var(--accent)}
 
-  /* Two-column grid */
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .grid > .sec-title{grid-column:1/-1}
 
@@ -130,7 +123,7 @@
 
     <header class="main-header">
       <h1>如桑的AI日报</h1>
-      <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年11月3日 星期二</div>
+      <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年11月4日 星期三</div>
     </header>
 
     <nav class="nav-bar">
@@ -140,7 +133,7 @@
       <a href="#cn">国内速递<span class="ncount">3</span></a>
       <a href="#voices">大佬说<span class="ncount">3</span></a>
       <a href="#oss">开源热项<span class="ncount">3</span></a>
-      <a href="#hot">全球热榜<span class="ncount">4</span></a>
+      <a href="#hot">全球热榜<span class="ncount">3</span></a>
       <a href="#cross">跨界视野<span class="ncount">3</span></a>
       <a href="#research">前沿研究<span class="ncount">3</span></a>
       <a class="nav-archive" href="/rusang-ai-daily/archive/">往期存档</a>
@@ -151,24 +144,24 @@
       <div class="sec-title">今日洞见</div>
       <div class="insight">
         <div class="insight-head"><span class="star">★</span> 编辑视角 <span class="by">· by AI</span></div>
-        <p class="intro">11 月 2 日至 3 日，AI 的两条曲线在同一天交叉：资本市场开始清算现金流——微软、Alphabet、亚马逊、Meta、甲骨文前 9 个月经营现金合计 <span class="hl">5429 亿美元</span>，资本开支 <span class="hl">5569 亿美元</span>，自由现金首次转为 <span class="hl">140 亿美元</span>赤字；产业侧却在开收费单——Palantir 单季营收同比 <span class="hl">+96%</span>，美国商业收入 +148%；李佳琦直播间 30 分钟卖出 2 万亿 Token，天猫第一次把 Token 设成独立促销品类。模型不再靠发布会定价，而靠 token、订单和续费定价。</p>
+        <p class="intro">11 月 3 日至 4 日，AI 开始同时交两张表：收入表与成本表。Anthropic 第三季度营收 <span class="hl">169.56 亿美元</span>、同比增长约 11 倍，净亏损却达 <span class="hl">233 亿美元</span>，算力承诺总额接近 9000 亿美元；电商侧，豆包把“边聊边买”的成交与转化搬进抖店后台，AI 第一次能按天按周算 ROI；双11 千问月卡 <span class="hl">1 分钱</span>卖出近 10 万份。三条线指向同一件事——AI 正从“演示能力”进入“核算能力”。</p>
 
         <div class="item">
           <span class="idx">01</span>
-          <span class="ititle"><a href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyh6795612.shtml" target="_blank">AI 资本开支进入清算时刻：五大科技公司自由现金首次转负，OpenAI 融资目标下调 <span class="hl">100 亿美元</span></a></span>
-          <div class="ibody">前 9 个月，微软、Alphabet、亚马逊、Meta、甲骨文经营现金合计 5429 亿美元，资本开支 5569 亿美元，自由现金转为 140 亿美元赤字；标普把 Meta 展望从“稳定”下调为“负面”，预计其 2026、2027 年自由现金分别短缺 <span class="hl">220 亿</span>、<span class="hl">710 亿美元</span>。启示：AI 叙事正在被拆成三张表——经营现金流、资本开支、折旧。采购方要按折旧周期做预算，而不是按发布会节奏。</div>
+          <span class="ititle"><a href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixmxcu9952462.shtml" target="_blank">Anthropic 招股书：Q3 营收 <span class="hl">169.56 亿美元</span>、同比增约 11 倍，净亏损 233 亿美元</a></span>
+          <div class="ibody">第三季度营收 169.56 亿美元，净亏损 233 亿美元，算力支出 99 亿美元，承诺总额接近 9000 亿美元；GAAP 营业利润转亏 5.67 亿美元，调整后为 25 亿美元。Pitchbook 将其 IPO 估值下调至 <span class="hl">1.42 万亿美元</span>。招股书同时警示，下一代模型可能触及《负责任扩展协议》中“由 AI 驱动的大幅加速进展”的阈值。启示：收入增速与亏损增速同量级时，市场看的不是故事，而是“算力承诺 / 收入”这个比值。</div>
         </div>
 
         <div class="item">
           <span class="idx">02</span>
-          <span class="ititle"><a href="https://www.pai.com.cn/p/01m6fftst4n5txk6s22dhqcger" target="_blank">AI 开始“上货架”：李佳琦 30 分钟卖出 <span class="hl">2 万亿</span> Token，天猫首次把 Token 设为独立促销品类</a></span>
-          <div class="ibody">11 月 2 日至 3 日，李佳琦直播间半小时售出约 2 万亿 Token，累计卖出 <span class="hl">10 万份</span>千问办公月卡；天猫首次把 Token 设为独立促销品类。同期双11 AI 家电占比达 <span class="hl">7 成</span>，AI PC 首小时成交同比 +300%，Token 相关成交 +450%。启示：当算力被拆成月卡、按份卖，AI 的渠道逻辑开始向快消品靠拢——比的不只是模型分数，还有核销率与复购。</div>
+          <span class="ititle"><a href="https://www.newrank.cn/article/detail/34825" target="_blank">豆包打通抖音电商闭环：抖店后台上线“豆包运营”，成交、曝光、转化可按天按周查</a></span>
+          <div class="ibody">品牌可在抖店后台“豆包运营”板块查看成交金额、订单数、曝光、点击率与转化率，按天、按周完整统计，ROI 可衡量；配套的商品卡监测还能追踪提及次数与平均位次。截至 2026 年 11 月，该模式已支持抖音生态深度互通。启示：AI 导购的考核口径从“对话次数”换成“成交与转化”，谁能把归因做进后台，谁才配拿预算。</div>
         </div>
 
         <div class="item">
           <span class="idx">03</span>
-          <span class="ititle"><a href="https://wap.eastmoney.com/a/202611033919213127.html" target="_blank">国产算力跑出 <span class="hl">1.6 万亿</span>参数模型，MIT 用 <span class="hl">0.016%</span> 权重换 6 倍数学能力</a></span>
-          <div class="ibody">美团 11 月 2 日发布 LongCat-2.5，总参数 1.6 万亿，面向长程智能体、多模态原生，全程使用国产算力训练；MIT 团队提出“权重空间编程”，只修改 Qwen 0.8B 约 <span class="hl">0.016%</span> 的权重，就把 MATH-500 得分从 7.9% 拉到 48.1%，提升约 6 倍。启示：能力提升不一定靠更大的预训练——国产算力闭环与低成本后训练，正在把“模型能力”变成可复用的工程件。</div>
+          <span class="ititle"><a href="https://www.qbitai.com/2026/11/507533.html" target="_blank">openJiuwen 发布 Agent-Memory：视听双流记住长视频，问答时延最高降 <span class="hl">97%</span></a></span>
+          <div class="ibody">OmniMem-Lens 用“视听双流”按事件切分长视频，解决记忆碎片化；离线建索引、在线查记忆。实测 EgoLife-QA 召回精度提升 <span class="hl">45.7%</span>，LVbench 在线问答时延从 34.5 秒降至 1.72 秒。启示：Agent 的瓶颈正在从“看得见”转向“记得住、找得快”，记忆层开始成为独立的基础设施。</div>
         </div>
       </div>
     </section>
@@ -177,29 +170,29 @@
     <section id="ecom" class="grid">
       <div class="sec-title">电商 · 联盟聚焦<span class="count">5</span></div>
 
-      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">电商 AI</span><div class="rc">
-        <h4><a href="https://huacheng.gz-cmc.com/pages/2026/11/02/c4c3e323bec44dde8dd4752df4bc4752.html" target="_blank">淘宝千问Go 打通 <span class="hl">40 亿</span>商品库，京东“东东”覆盖选品到售后：商家称退货率降 <span class="hl">10%-25%</span></a></h4>
-        <p class="ract">千问Go 把比价、价保、代办接到淘宝商品库；京东“东东”覆盖从选品、咨询到售后全流程。受访商家称 AI 介入后退货率下降 10%-25%。启示：AI 导购的下一步不是“会聊天”，而是把退货、价保这些高摩擦环节接走——退货率才是可验证的经营指标。</p>
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">AI 电商</span><div class="rc">
+        <h4><a href="https://www.newrank.cn/article/detail/34825" target="_blank">豆包运营板块落地抖店：成交、订单、曝光、转化可按天按周统计</a></h4>
+        <p class="ract">抖店后台新增“豆包运营”板块，品牌可查询成交金额、订单数、曝光、点击率与转化率；新榜智汇提供商品卡监测，追踪提及次数与平均位次。启示：AI 渠道开始有独立报表，投放评估从“感觉有量”进入“按周核算”。</p>
       </div></div>
 
       <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">大促货架</span><div class="rc">
-        <h4><a href="https://www.cnfin.com/hg-lb/detail/20261102/4489939_1.html" target="_blank">双11 AI 产品销售火爆：AI 家电占 <span class="hl">7 成</span>，AI PC 首小时成交同比 <span class="hl">+300%</span></a></h4>
-        <p class="ract">平台数据显示，双11 期间 AI 家电占家电销售 7 成，AI PC 首小时成交同比 +300%，Token 相关成交增长 450%；京东推“一次上门”，中通投入无人车配送。启示：AI 硬件已经从“尝鲜品”变成大促主货架，竞争点转向安装、配送与售后这些服务能力。</p>
+        <h4><a href="https://www.nbd.com.cn/articles/2026-11-03/4637175.html" target="_blank">AI 服务成双11新品类：千问月卡 <span class="hl">1 分钱</span>卖出近 10 万份，京东直播间 1 小时送 10 亿 Token</a></h4>
+        <p class="ract">千问月卡 1 分钱售出近 10 万份、对应 2 万亿 Token；京东 3C 直播间 1 小时送出超 10 亿 Token，相关销量环比增 <span class="hl">20 倍</span>；淘宝、京东、抖音均参与，模型商包括智谱、MiniMax 等。启示：算力被拆成可囤的月卡后，短期是市场教育，长期要看核销与留存。</p>
       </div></div>
 
-      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">入口迁移</span><div class="rc">
-        <h4><a href="https://www.pai.com.cn/p/01m6fnp73g9385tvephev1g43b" target="_blank">QuestMobile：千问 MAU 达 <span class="hl">1.58 亿</span>，同比增长 <span class="hl">5077%</span></a></h4>
-        <p class="ract">QuestMobile 2026 年秋季中国移动互联网实力价值榜显示，千问月活 1.58 亿，同比增幅 5077%。启示：入口正在从“搜索框”迁到“对话框”，但 MAU 不等于交易——要把问答、比价、下单串成一条链路，才接得住流量。</p>
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">二手电商</span><div class="rc">
+        <h4><a href="http://k.sina.com.cn/article_5952915720_162d24908067053w7s.html" target="_blank">ThredUp 用 AI 识别旧衣并算法定价：Q2 毛利率 <span class="hl">79.5%</span>，年销约 1700 万件</a></h4>
+        <p class="ract">AI 识别衣物属性并给出定价，配合以图搜图与 Style Chat，降低非标品处理难度、提升转化。启示：二手电商的利润不在“收得便宜”，而在把非标品变成可标准化处理的 SKU——识别与定价就是隐形货架。</p>
       </div></div>
 
-      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">合规新规</span><div class="rc">
-        <h4><a href="https://www.gzns.gov.cn/gznsscjg/gkmlpt/content/11/11081/post_11081332.html" target="_blank">双11 行政指导意见书：规范算法与 AI 营销，促销数据须留存 <span class="hl">3 年</span></a></h4>
-        <p class="ract">监管部门要求平台复核商家资质、规范算法与 AI 营销，严禁价格欺诈、虚假宣传、“二选一”和刷单；商家须明码标价、保障售后，并留存数据 3 年。启示：AI 生成文案、AI 比价都要留痕；合规字段要前置到活动报名，而不是事后补。</p>
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">智能体信任</span><div class="rc">
+        <h4><a href="http://k.sina.com.cn/article_1496814565_593793e50200281va.html" target="_blank">港大发布全球首个 KYA 报告：<span class="hl">76%</span> 企业有智能体信任顾虑，<span class="hl">88%</span> 呼吁统一标准</a></h4>
+        <p class="ract">KYA 即“了解你的智能体”，报告提出身份确权、授权约束、履约核验等维度。启示：当 AI 代用户比价、下单、履约，联盟生态需要的不只是追踪链接，还要能证明“这个智能体被谁授权、做了什么”。</p>
       </div></div>
 
-      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">转化实测</span><div class="rc">
-        <h4><a href="https://www.tmtpost.com/8172255.html" target="_blank">天猫服饰实测：AI 把羊绒参数“翻译”成人话，下单转化率提升近 <span class="hl">20 个百分点</span></a></h4>
-        <p class="ract">钛媒体 10 月 18 日报道，AI 将羊绒成分、支数等参数转成消费者能懂的表达后，服饰下单转化率提升近 20 个百分点；2026 天猫双11 同期推出“超级旗舰”。启示：AI 对成交最直接的贡献，可能不是生成图片，而是把“参数语言”翻译成“决策语言”。</p>
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">平台政策</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/ebrungo/zb/718125.shtml" target="_blank">亚马逊欧洲站取消月结账单：买家结算改为单笔订单 <span class="hl">14 天</span>账期</a></h4>
+        <p class="ract">欧洲站调整买家结算规则，从按月结算改为单笔订单 14 天账期。启示：结算颗粒度从“月”压到“单笔”，平台现金流与退货核销节奏都会变；做跨境分销要把账期当成选品变量，而不只是支付方式。</p>
       </div></div>
     </section>
 
@@ -209,44 +202,44 @@
 
       <article class="card">
         <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s9">9</span></div>
-        <h3><a href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixkzyh6804524.shtml" target="_blank">Palantir Q3：营收 <span class="hl">23.13 亿美元</span>、同比 <span class="hl">+96%</span>，美国商业收入首超政府</a></h3>
-        <p class="sum">Palantir 把 AI 从概念演示做成可计费的企业软件：单季营收 23.13 亿美元，同比 +96%，环比 +20%，首次突破 20 亿美元；美国商业收入 9.84 亿美元，同比 +148%，历史性超过美国政府业务的 9.53 亿美元。</p>
+        <h3><a href="https://www.qbitai.com/2026/11/507448.html" target="_blank">海马云 RunningHub：月消耗 <span class="hl">9 万亿</span> Token，视频生成提速 <span class="hl">12 倍</span></a></h3>
+        <p class="sum">模型谁都买得到，真正拉开差距的是“生产力系统”。海马云把模型、算力与工作流打包成 RunningHub 平台，并推出 RH Upscale 等垂直模型；官方披露月消耗 Token 达 9 万亿，视频生成提速 12 倍。</p>
         <ul class="points">
-          <li>卡点：企业 AI 项目普遍停在 POC，采购方难把“试点”转成“年度合同”，收入确认周期长</li>
-          <li>做法：用 AIP、Foundry、Ontology 把模型能力嵌进客户既有数据与流程，按平台订阅而非单次项目收费</li>
-          <li>成效：GAAP 营业利润率 <span class="hl">47%</span>，调整后 62%，Rule of 40 得分 158%；全年营收指引上调至 85.3 亿美元、同比 +91%</li>
-          <li>边界：TCV 仅 +6%，与营收 +96% 形成裂口；盘后股价仍跌近 3%，市场在追问增长的可持续性</li>
+          <li>卡点：AI 视频与图像生成单价高、排队久，企业用量一上来就容易成本失控，项目停在试用阶段</li>
+          <li>做法：不做单一模型 API，而是把算力调度、工作流与垂直模型封装成可计费的生产力系统</li>
+          <li>成效：月消耗 9 万亿 Token；视频生成提速 12 倍；电商服务商月投入增 <span class="hl">700%</span>，游戏公司用量增 <span class="hl">70 倍</span></li>
+          <li>边界：投入增长不等于利润增长，需区分是需求扩张、单价下降，还是一次性项目集中交付</li>
         </ul>
-        <p class="ins ins-pos"><b>→ 案例报告:</b> 收入结构比增速更能说明问题——美国商业收入首超政府，意味着 AI 的付费方从“预算项目”转向“经营预算”；但合同额增速远低于收入增速，续约质量要单独看。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixkzyh6804524.shtml" target="_blank">原文 →</a></div>
-      </article>
-
-      <article class="card">
-        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s9">9</span></div>
-        <h3><a href="https://www.pai.com.cn/p/01m6fftst4n5txk6s22dhqcger" target="_blank">李佳琦 30 分钟卖出 <span class="hl">2 万亿</span> Token：<span class="hl">10 万份</span>千问办公月卡，天猫把 Token 做成独立品类</a></h3>
-        <p class="sum">头部主播第一次把 AI 算力当商品卖：半小时售出约 2 万亿 Token，累计 10 万份千问办公月卡，覆盖文档、PPT 等办公任务；天猫首次把 Token 设为独立促销品类。它不是一次普通带货，而是把云资源翻译成消费品的渠道实验。</p>
-        <ul class="points">
-          <li>卡点：AI 软件客单价低、获客贵，用户对“订阅”缺乏感知，传统货架很难讲清楚价值</li>
-          <li>做法：把算力封装成“月卡”这种可比较、可囤货的标准品，用直播间的价格锚点和信任背书完成首购</li>
-          <li>成效：30 分钟 2 万亿 Token、10 万份月卡；Token 从后台计费单位变成前台促销品类</li>
-          <li>边界：未披露核销率、续费率和实际消耗；Token 是预付额度，不等于已发生的使用</li>
-        </ul>
-        <p class="ins ins-pos"><b>→ 定价实验:</b> 这是把“云资源”翻译成“快消品”的一次渠道实验；真正要观察的不是首场成交额，而是 30 天后的核销与续费。</p>
-        <div class="foot"><span class="src">派代 · 11-03</span><a class="orig" href="https://www.pai.com.cn/p/01m6fftst4n5txk6s22dhqcger" target="_blank">原文 →</a></div>
+        <p class="ins ins-pos"><b>→ 数据基建:</b> 衡量 AI 平台别只看调用量，要看“单位 Token 产出”——同样 9 万亿 Token，落在电商素材、游戏资产还是无效重试，商业含义完全不同。</p>
+        <div class="foot"><span class="src">量子位 · 11-04</span><a class="orig" href="https://www.qbitai.com/2026/11/507448.html" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
         <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
-        <h3><a href="https://www.qbitai.com/2026/11/507260.html" target="_blank">仪电智算云 Token 工厂：日均调用从 <span class="hl">1000 亿</span>升到 <span class="hl">500 万亿</span>次，主打“三重可信”</a></h3>
-        <p class="sum">面向企业提供可信词元服务，把“敢不敢用”拆成服务运营、自主生态、安全合规三层；官方称平台日均调用量已从 1000 亿次升至 500 万亿次。对企业来说，这更像一套采购与审计基础设施，而不是又一个模型 API。</p>
+        <h3><a href="https://www.qbitai.com/2026/11/506990.html" target="_blank">红旗连锁机器人售货折戟：<span class="hl">16 个月</span>、286 万元，实验室上万次仍摔瓶子</a></h3>
+        <p class="sum">便利店场景的无人售货机器人被寄予厚望，但红旗连锁的尝试最终终止：实验室测试上万次，实机仍出现玻璃瓶易碎、抓取失误率高、视觉识别偏差等问题，项目耗资约 286 万元、耗时 16 个月。</p>
         <ul class="points">
-          <li>卡点：企业不是没有模型，而是不敢把核心业务交给不可审计、不可控的算力服务</li>
-          <li>做法：用统一 token 计量、国产化生态与合规审计三层能力，降低采购与法务的决策成本</li>
-          <li>成效：日均调用量从 1000 亿次升至 500 万亿次（平台口径），把 token 做成可结算的计费单位</li>
-          <li>边界：未披露客户数、单位成本与调用口径；500 万亿次是累计还是日均，需以原文与平台说明为准</li>
+          <li>卡点：实验室里的固定货架与光照，替代不了门店里密集、非标、易碎的 SKU 组合</li>
+          <li>做法：自研机器人无人售货系统，试图用机械臂完成识别、抓取与结算的完整链路</li>
+          <li>成效：累计测试上万次后，仍判断“未达到大规模商业化落地标准”，选择止损而非硬上</li>
+          <li>边界：286 万元是显性成本，未计入门店改造、停业调试与维护人力等隐性成本</li>
         </ul>
-        <p class="ins ins-neg"><b>→ 避坑清单:</b> 看到“调用量”先问三件事——统计口径、是否含免费额度、单位是 token 还是请求；口径不清的增速不能直接拿来做容量规划。</p>
-        <div class="foot"><span class="src">量子位 · 11-02</span><a class="orig" href="https://www.qbitai.com/2026/11/507260.html" target="_blank">原文 →</a></div>
+        <p class="ins ins-neg"><b>→ 避坑清单:</b> 机器人进零售先算“破损率 × 客单价”，再谈替代人工；演示视频里的成功率，必须换成连续 8 小时实机作业才作数。</p>
+        <div class="foot"><span class="src">量子位 · 11-02</span><a class="orig" href="https://www.qbitai.com/2026/11/506990.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.qbitai.com/2026/11/507410.html" target="_blank">TeleAI 智慧看护：跌倒 <span class="hl">5 秒</span>告警，不存原始画面也能识别异常</a></h3>
+        <p class="sum">TeleAI 智慧看护助手基于智传网与“词元流”架构，识别打架、跌倒等异常并实现 5 秒告警；系统只提取特征向量、不保存原始视频，画面在端侧销毁，以隐私脱敏换取部署许可。</p>
+        <ul class="points">
+          <li>卡点：看护场景既要识别异常，又要保护隐私；原始视频上云的合规成本，往往比算法成本更高</li>
+          <li>做法：只传特征向量、不存原始画面；用烟感外观降低老人与场所的抵触，先解决“愿不愿意装”</li>
+          <li>成效：跌倒等异常 5 秒告警；已落地公共卫生间、养老机构与独居老人场景</li>
+          <li>边界：5 秒是告警时延，不是救援时延；误报率、覆盖率与单点成本尚未披露</li>
+        </ul>
+        <p class="ins"><b>→ 案例报告:</b> 隐私优先的架构反而降低了部署阻力；硬件形态也是采纳率的一部分——把摄像头做成烟感，比多讲十页算法更能推动落地。</p>
+        <div class="foot"><span class="src">量子位 · 11-04</span><a class="orig" href="https://www.qbitai.com/2026/11/507410.html" target="_blank">原文 →</a></div>
       </article>
     </section>
 
@@ -255,27 +248,27 @@
       <div class="sec-title">国内速递<span class="count">3</span></div>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">国产模型</span><span class="score s9">9</span></div>
-        <h3><a href="https://wap.eastmoney.com/a/202611033919213127.html" target="_blank">美团发布 LongCat-2.5：<span class="hl">1.6 万亿</span>总参数，全程国产算力训练</a></h3>
-        <p class="sum">美团 11 月 2 日发布 LongCat-2.5，总参数 <span class="hl">1.6 万亿</span>，采用多模态原生架构，面向长程智能体场景；训练全程使用国产算力，被视为国产算力上规模最大的训练项目之一。官方称评测分数位于 Claude Opus 4.8 与 Opus 5 区间，部分项目更高。</p>
-        <p class="ins ins-pos"><b>→ 算力闭环:</b> 比分数更重要的是“全程国产算力”——它把模型能力、算力供给和工程团队绑成一条可复用的链路；对应用方，这意味着多了一个可谈价、可私有化的供给选项。</p>
-        <div class="foot"><span class="src">东方财富 · 11-03</span><a class="orig" href="https://wap.eastmoney.com/a/202611033919213127.html" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">具身智能</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/11/507396.html" target="_blank">小米乌镇双料大奖：Xiaomi-Robotics-1 用 <span class="hl">10 万小时</span>数据预训练</a></h3>
+        <p class="sum">小米集团获世界互联网大会“杰出贡献奖”，其具身基座模型 Xiaomi-Robotics-1 获“领先科技奖”。模型基于 10 万小时数据预训练，在工厂挑战 8 小时作业，在公寓完成超 30 分钟、覆盖 3 个房间、50 多个任务的连续验证。</p>
+        <p class="ins ins-pos"><b>→ 考核口径:</b> 具身智能开始用“连续工时”和“跨房间任务数”证明自己，而不是只看单条演示视频；这对供应链与现场运维都是硬约束。</p>
+        <div class="foot"><span class="src">量子位 · 11-03</span><a class="orig" href="https://www.qbitai.com/2026/11/507396.html" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">行业大会</span><span class="score s8">8</span></div>
-        <h3><a href="http://finance.sina.com.cn/stock/t/2026-11-03/doc-inixkzyh6804031.shtml" target="_blank">乌镇峰会展示 <span class="hl">1000 余项</span>新技术，“开源开放”成主议题</a></h3>
-        <p class="sum">2026 世界互联网大会乌镇峰会 11 月 2 日至 5 日举行，集中展示 1000 余项新技术；“开源开放、共建共享”成为主议题，项立刚称中国坚持开源路线，奇安信提出“以 AI 应对 AI 安全”。</p>
-        <p class="ins"><b>→ 主线判断:</b> 今年乌镇的关键词不是单一模型，而是“开源 + 安全 + 产业应用”三件事同时被摆上台面；看大会要看有没有可复用的协议与接口，而不是只看展台。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/stock/t/2026-11-03/doc-inixkzyh6804031.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">行业底盘</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.thepaper.cn/newsDetail_forward_34402053" target="_blank">乌镇蓝皮书：企业级 AI 智能体市场 <span class="hl">212 亿元</span>，日均词元调用 140 万亿</a></h3>
+        <p class="sum">《中国互联网发展报告 2026》《世界互联网发展报告 2026》发布：2025 年中国企业级 AI 智能体市场达 212 亿元，具身智能约 9150 亿元；截至 2026 年 6 月，备案生成式服务 924 款，日均词元调用量 140 万亿。报告预测 2030 年 AI 对全球经济贡献 22.3 万亿美元，但“智能鸿沟”可能加剧。</p>
+        <p class="ins"><b>→ 指标解读:</b> 日均词元调用是最接近“用电量”的产业指标；但备案数不等于活跃数，看市场成熟度还要结合付费客户与续费率。</p>
+        <div class="foot"><span class="src">澎湃新闻 · 11-04</span><a class="orig" href="https://www.thepaper.cn/newsDetail_forward_34402053" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">产业政策</span><span class="score s8">8</span></div>
-        <h3><a href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyh6798226.shtml" target="_blank">8 部门印发产业基础能力“十五五”规划：<span class="hl">22 项</span>任务，AI 要进全环节</a></h3>
-        <p class="sum">工信部等 8 部门印发《产业基础能力提升“十五五”规划》，部署 <span class="hl">22 项</span>重点任务；其中明确要加快 AI 在产品研发、设计仿真、中试验证、生产运营等全环节落地应用。</p>
-        <p class="ins"><b>→ 政策口径:</b> “全环节落地”比“鼓励大模型”更具体——它把 AI 从研发工具变成产业基础能力的一部分，后续配套大概率落在中试平台与数据要素上。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyh6798226.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">就业政策</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixmxcy2278679.shtml" target="_blank">发改委：强化 AI 就业替代风险监测预警，做好社保衔接</a></h3>
+        <p class="sum">国家发展改革委表示，针对人工智能带来的就业替代风险，将强化监测预警，加强社保体系同就业结构、工作方式变革的衔接，做好兜底性、普惠性社会保障；同时推动新职业纳入国家分类体系。</p>
+        <p class="ins ins-neg"><b>→ 政策口径:</b> 政策重心从“鼓励产业”扩展到“兜住就业”；对平台与服务商，用工结构、结算方式与职业培训会逐步进入合规视野。</p>
+        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixmxcy2278679.shtml" target="_blank">原文 →</a></div>
       </article>
     </section>
 
@@ -284,27 +277,27 @@
       <div class="sec-title">大佬说<span class="count">3</span></div>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">学者观点</span><span class="score s9">9</span></div>
-        <h3><a href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzyh6815537.shtml" target="_blank">戴琼海院士：AI 缺的不是参数，是“理解场景与对象的关系”</a></h3>
-        <p class="sum">戴琼海院士表示，人类社会的发展就是“不断发现、理解与创造的过程”；他批评现有 AI“难以理解场景与对象间的关系”，主张架起脑科学与 AI 的桥梁——“认知计算”，以实现“大场景多对象智能理解”。</p>
-        <p class="ins"><b>→ 能力边界:</b> 现在的大模型擅长“描述”，不擅长“理解关系”；这解释了为什么 agent 在开放场景里容易迷路——缺的不是参数，是对场景结构的建模。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzyh6815537.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">开源判断</span><span class="score s9">9</span></div>
+        <h3><a href="http://k.sina.com.cn/article_5328858693_13d9fee4502002lde6.html" target="_blank">蔡崇信：只有开源才能普及，千问已开源 <span class="hl">470 多款</span>模型</a></h3>
+        <p class="sum">蔡崇信表示：“只有开源才能普及，只有普及才能创造可持续、普惠的智能时代。”阿里千问已开源超 470 款模型，全球下载突破 40 亿次，衍生模型超 33 万个，居全球第一。</p>
+        <p class="ins"><b>→ 开源账本:</b> 开源不是免费，而是分发——谁定义接口与工具链，谁就拥有下一轮应用的默认选项；对应用方，选开源也是选一条长期维护路线。</p>
+        <div class="foot"><span class="src">新浪 · 11-03</span><a class="orig" href="http://k.sina.com.cn/article_5328858693_13d9fee4502002lde6.html" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">市场判断</span><span class="score s8">8</span></div>
-        <h3><a href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyh6795612.shtml" target="_blank">刘典：市场正从“技术预期定价”转向“现金流与回报定价”</a></h3>
-        <p class="sum">研究者刘典认为，市场对 AI 的定价正从“技术预期定价”转向“现金流和投资回报定价”；经济学家托米奇则警告，AI 基建若失败，外溢影响会很大——“科技企业打个喷嚏，整个市场都得生病”。</p>
-        <p class="ins ins-neg"><b>→ 定价变化:</b> 同一家公司，发布模型时涨、披露资本开支时跌，说明市场已经分开给“能力”和“回报”定价；做预算要把融资环境当成变量。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyh6795612.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">成本边界</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixmxcu9889975.shtml" target="_blank">马斯克收紧 Grok Bot 限额：成本过高“难以持续”，部分用户额度提前耗尽</a></h3>
+        <p class="sum">马斯克证实，因 Grok Bot 服务成本过高、难以持续，已收紧使用限额；11 月 3 日部分用户额度提前耗尽。他把这一调整称为“理性做法”。</p>
+        <p class="ins ins-neg"><b>→ 定价现实:</b> 低价或免费的 Bot 服务，边界由推理成本决定；先用“限额”保毛利，再谈规模，是这一轮 AI 产品的共同动作。</p>
+        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixmxcu9889975.shtml" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">开源判断</span><span class="score s8">8</span></div>
-        <h3><a href="http://finance.sina.com.cn/stock/t/2026-11-03/doc-inixkzyh6804031.shtml" target="_blank">项立刚：中国坚持开源开放路线，开源不是“免费”</a></h3>
-        <p class="sum">项立刚在乌镇峰会期间表示，中国坚持开源开放路线；他认为开源的收益不在授权费，而在把标准、生态和人才一起做大，让更多企业能在同一套接口上做应用。</p>
-        <p class="ins"><b>→ 开源账本:</b> 开源的收益不在“省下的授权费”，而在生态位——谁定义接口，谁就拥有下一轮应用的默认选项；对应用方，选开源也是选一条长期维护路线。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/stock/t/2026-11-03/doc-inixkzyh6804031.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">机构预警</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/11/507382.html" target="_blank">Anthropic 修改招股书：下一代模型可能触及 RSI“危险红线”</a></h3>
+        <p class="sum">招股书披露 Q3 营收 170 亿美元、同比增 1127%；同时预警自家下一代模型“可能即将触达《负责任扩展协议》所定义的‘由 AI 驱动的大幅加速进展’阈值”，即递归自我改进（RSI）风险。</p>
+        <p class="ins ins-neg"><b>→ 披露信号:</b> 安全条款开始写进招股书，说明 RSI 从论文话题变成可披露风险；采购方应把模型迭代速度纳入合同与退出机制。</p>
+        <div class="foot"><span class="src">量子位 · 11-04</span><a class="orig" href="https://www.qbitai.com/2026/11/507382.html" target="_blank">原文 →</a></div>
       </article>
     </section>
 
@@ -313,64 +306,56 @@
       <div class="sec-title">开源热项<span class="count">3</span></div>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-ka">Agent 基建</span><span class="score s9">9</span></div>
-        <h3><a href="https://github.com/lexmount/moli" target="_blank">moli：<span class="hl">2.2 万</span>stars 的 Rust 无头浏览器，专为 AI agent 设计</a></h3>
-        <p class="sum">Rust 编写的无头浏览器，面向 AI agent 的网页操作与抓取，主打轻量、快速与高兼容；GitHub 约 <span class="hl">2.2 万</span> stars，近期持续出现在趋势榜。</p>
-        <p class="ins"><b>→ 抓取成本:</b> agent 能看多深，取决于浏览器能跑多快、多便宜；无头浏览器正在从“测试工具”变成“agent 的基础设施”。</p>
-        <div class="foot"><span class="src">GitHub · lexmount</span><a class="orig" href="https://github.com/lexmount/moli" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-ka">Agent 记忆</span><span class="score s9">9</span></div>
+        <h3><a href="https://github.com/thedotmack/claude-mem" target="_blank">claude-mem：<span class="hl">11.2 万</span>stars，把跨会话记忆做成独立组件</a></h3>
+        <p class="sum">TypeScript 实现的 Agent 记忆层，主打跨会话持久上下文、AI 压缩后注入，以及多代理共享；GitHub 约 11.2 万 stars，今日仍在 Trending 前列。</p>
+        <p class="ins"><b>→ 组件化:</b> 记忆正在从“框架内置能力”变成可替换的独立层；对业务方，这意味着换模型时不必重做全部上下文工程。</p>
+        <div class="foot"><span class="src">GitHub · thedotmack</span><a class="orig" href="https://github.com/thedotmack/claude-mem" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-ka">AI 同事</span><span class="score s8">8</span></div>
-        <h3><a href="https://github.com/CopilotKit/OpenBot" target="_blank">OpenBot：<span class="hl">9,900</span> stars，给每个 AI 同事一台“自己的电脑”</a></h3>
-        <p class="sum">开源 AI 同事框架，每个 agent 拥有独立的浏览器、文件与工具环境，所有动作在执行前先决策；TypeScript 实现，GitHub 约 <span class="hl">9,900</span> stars。</p>
-        <p class="ins ins-neg"><b>→ 权限设计:</b> 给 agent 一台“自己的电脑”，等于把权限边界做成产品的一部分；企业落地时，隔离与审计会比模型选择更早成为瓶颈。</p>
-        <div class="foot"><span class="src">GitHub · CopilotKit</span><a class="orig" href="https://github.com/CopilotKit/OpenBot" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-ka">Computer Use</span><span class="score s8">8</span></div>
+        <h3><a href="https://github.com/vercel-labs/agent-desktop" target="_blank">agent-desktop：<span class="hl">1.3 万</span>stars，给 AI agent 一套桌面操作 CLI</a></h3>
+        <p class="sum">Vercel Labs 开源的 computer-use 命令行工具，让 agent 直接操作桌面应用；Rust 实现，GitHub 约 1.3 万 stars，今日更新活跃。</p>
+        <p class="ins ins-neg"><b>→ 权限设计:</b> 桌面操作是 agent 进入存量软件的最低成本路径，但也是权限风险最高的路径；企业落地要先做隔离与审计，再谈自动化率。</p>
+        <div class="foot"><span class="src">GitHub · vercel-labs</span><a class="orig" href="https://github.com/vercel-labs/agent-desktop" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-ka">社媒 Agent</span><span class="score s8">8</span></div>
-        <h3><a href="https://github.com/ZJU-REAL/Easel" target="_blank">Easel：<span class="hl">4,300</span> stars 的社媒 agent，选题、生产、发布、复盘一条链</a></h3>
-        <p class="sum">面向社交媒体的开源 agent：发现趋势、生成内容、多平台发布，并回读效果；支持小红书、抖音等平台，Python 实现，GitHub 约 <span class="hl">4,300</span> stars。</p>
-        <p class="ins"><b>→ 内容分发:</b> 当“选题—生产—发布—复盘”被一个 agent 串起来，内容团队的瓶颈会从产能转向判断；平台风控与账号安全仍是硬约束。</p>
-        <div class="foot"><span class="src">GitHub · ZJU-REAL</span><a class="orig" href="https://github.com/ZJU-REAL/Easel" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-ka">二手情报</span><span class="score s8">8</span></div>
+        <h3><a href="https://github.com/Usagi-org/ai-goofish-monitor" target="_blank">ai-goofish-monitor：<span class="hl">1.65 万</span>stars，闲鱼多任务实时监控与智能分析</a></h3>
+        <p class="sum">基于 Playwright 与 AI 的闲鱼监控系统，支持多任务实时/定时抓取与智能分析；Python 实现，GitHub 约 1.65 万 stars，今日仍在更新。</p>
+        <p class="ins"><b>→ 信息差:</b> 二手交易的价格差正在被 agent 实时抹平；但平台风控与数据合规是硬约束，监控能力越强，越要先想清楚边界。</p>
+        <div class="foot"><span class="src">GitHub · Usagi-org</span><a class="orig" href="https://github.com/Usagi-org/ai-goofish-monitor" target="_blank">原文 →</a></div>
       </article>
     </section>
 
     <!-- ============ 全球热榜 ============ -->
     <section id="hot" class="grid">
-      <div class="sec-title">全球热榜<span class="count">4</span></div>
+      <div class="sec-title">全球热榜<span class="count">3</span></div>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">世界模型</span><span class="score s9">9</span></div>
-        <h3><a href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzym8901595.shtml" target="_blank">谷歌 Genie 4 发布：一句话生成可探索世界，天气、人物、对话都能实时改</a></h3>
-        <p class="sum">Google DeepMind 发布 Genie 4：一句话生成可探索的虚拟世界，可实时修改天气、人物与物体，环境音、音乐和人物对话同步生成；Gemini 负责任务规划、观察反馈与策略调整。</p>
-        <p class="ins"><b>→ 训练数据:</b> 世界模型的价值不只是“生成游戏”，而是为具身智能提供可交互、可重复的训练环境；谁掌握环境，谁就掌握下一批数据。</p>
-        <div class="foot"><span class="src">新浪科技 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzym8901595.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">AI 财务</span><span class="score s9">9</span></div>
+        <h3><a href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixmxcu9952462.shtml" target="_blank">Anthropic Q3：营收 <span class="hl">169.56 亿美元</span>，净亏 233 亿美元，IPO 估值下调至 1.42 万亿</a></h3>
+        <p class="sum">营收同比增长约 11 倍，净亏损 233 亿美元；算力支出 99 亿美元，承诺总额接近 9000 亿美元。GAAP 营业利润转亏 5.67 亿美元，调整后为 25 亿美元；Pitchbook 将 IPO 估值下调至 1.42 万亿美元。</p>
+        <p class="ins"><b>→ 估值锚:</b> 当收入与亏损同速放大，估值锚就从“增长率”切换到“算力承诺/收入”；这也是所有重资产 AI 公司要回答的同一道题。</p>
+        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixmxcu9952462.shtml" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-ka">模型竞赛</span><span class="score s9">9</span></div>
-        <h3><a href="https://www.qbitai.com/2026/11/507082.html" target="_blank">GPT-6.2 Astra 开启灰测，Claude Mythos 5.5 同日曝光</a></h3>
-        <p class="sum">GPT-6.2 Astra 开启灰度测试，Claude Mythos 5.5 同日曝光；有消息称 Astra 相关权重在 HuggingFace 被下载 <span class="hl">5000 次</span>。官方尚未公布参数、价格与正式可用范围。</p>
-        <p class="ins ins-neg"><b>→ 信息噪声:</b> 灰度期的“泄露权重”“跑分截图”大多不可复核；把未发布模型当采购依据，风险高于收益，等正式版与价格表更稳。</p>
-        <div class="foot"><span class="src">量子位 · 11-02</span><a class="orig" href="https://www.qbitai.com/2026/11/507082.html" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">科技巨头</span><span class="score s8">8</span></div>
+        <h3><a href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixmxcy2238423.shtml" target="_blank">苹果财报双超预期：营收 <span class="hl">1145 亿美元</span>，AI 投入“相对温和”</a></h3>
+        <p class="sum">苹果营收 1145 亿美元、利润 307.1 亿美元，均超预期；报道称其 AI 投入“相对温和”，未大举建设基础设施，中国市场表现强劲，现金流稳健。</p>
+        <p class="ins"><b>→ 另一条路线:</b> 不押注巨额资本开支也能交出财报，苹果给“AI 克制派”提供了一个估值样本；但这意味着它必须用产品体验而非算力规模证明 AI。</p>
+        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/roll/2026-11-03/doc-inixmxcy2238423.shtml" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-pan">市场</span><span class="score s9">9</span></div>
-        <h3><a href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyh6795612.shtml" target="_blank">10 月纳指回落约 <span class="hl">6%</span>，大型科技股市值蒸发超 <span class="hl">2 万亿美元</span></a></h3>
-        <p class="sum">10 月纳指回落约 6%，大型科技股市值蒸发超 2 万亿美元；英伟达跌 <span class="hl">10.4%</span>、美光跌 16.9%、Alphabet 跌 18.7%、Meta 跌 15.2%。五大科技公司前 9 个月资本开支 5569 亿美元，首次超过经营现金流。</p>
-        <p class="ins"><b>→ 估值锚:</b> 市场正在把 AI 公司分成“有现金流”和“只有订单”两类；对依赖融资输血的平台，这是一次压力测试。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyh6795612.shtml" target="_blank">原文 →</a></div>
-      </article>
-
-      <article class="card">
-        <div class="meta"><span class="tag tag-pan">机器人</span><span class="score s7">7</span></div>
-        <h3><a href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzyf0039411.shtml" target="_blank">贾跃亭：FFR 机器人 10 月出货 <span class="hl">351 台</span>，累计首次破千台</a></h3>
-        <p class="sum">法拉第未来（FF）称 FFR 机器人 10 月出货 351 台，累计首次突破 1000 台、达 <span class="hl">1168 台</span>；预计 11、12 月月均超 400 台，全年目标 2000 台。</p>
-        <p class="ins"><b>→ 量产爬坡:</b> 机器人行业正在用“月出货”替代“发布会”证明自己；但 2000 台的目标仍要看供应链与交付节奏，不能只看订单口径。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzyf0039411.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-pan">政企旋转门</span><span class="score s8">8</span></div>
+        <h3><a href="http://k.sina.com.cn/article_1686546714_6486a91a040052vlk.html" target="_blank">前美陆军部长加入 OpenAI，任“国家安全现代化高级顾问”</a></h3>
+        <p class="sum">美国前陆军部长丹尼尔·德里斯科尔辞职后加入 OpenAI，担任新设的“国家安全现代化高级顾问”，聚焦用 AI 加强美国国家安全与网络安全。</p>
+        <p class="ins"><b>→ 合规变量:</b> 前沿实验室与国防体系的人才流动加速，AI 采购会越来越多地绑定出口管制与安全审查；跨境业务要提前看条款，而不是等签约。</p>
+        <div class="foot"><span class="src">新浪 · 11-03</span><a class="orig" href="http://k.sina.com.cn/article_1686546714_6486a91a040052vlk.html" target="_blank">原文 →</a></div>
       </article>
     </section>
 
@@ -379,27 +364,27 @@
       <div class="sec-title">跨界视野<span class="count">3</span></div>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-kuajie">机器人·极限测试</span><span class="score s8">8</span></div>
-        <h3><a href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzym8901525.shtml" target="_blank">机器人爬泰山：<span class="hl">3.9 公里</span>、3100 级台阶，宇树 A2 用 43 分 41 秒完赛</a></h3>
-        <p class="sum">首届 CMG 世界机器人登泰山大赛收官，赛道 3.9 公里、3100 余级台阶，近 90 支队伍参赛；宇树 A2 机器狗以 <span class="hl">43 分 41 秒</span>完赛（含 2 分钟罚时），最终获 1 金 2 银。</p>
-        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 把机器人放到真实地形里跑，比实验室里的步态演示更能暴露问题——续航、散热、关节磨损，都会在 3100 级台阶上现形。</p>
-        <div class="foot"><span class="src">新浪科技 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzym8901525.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-kuajie">汽车·定价</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.qbitai.com/2026/11/507473.html" target="_blank">智己 LS8 纯电版 <span class="hl">25 万</span>起：宁德 93/103 度电池，转弯半径 4.85 米</a></h3>
+        <p class="sum">智己 LS8 纯电版 25 万元起，搭载宁德时代 93 度与 103 度电池，续航提升而重量未增；全系标配线控底盘，转弯半径 4.85 米，电池 SOC 估算误差控制在 2%-3%，并打出“买车送终身 AI”权益。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> “终身 AI”被写进汽车权益，说明 AI 正在从软件订阅变成硬件溢价的一部分；定价时要把服务成本折进整车毛利，而不是当成赠品。</p>
+        <div class="foot"><span class="src">量子位 · 11-04</span><a class="orig" href="https://www.qbitai.com/2026/11/507473.html" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-kuajie">消费·代际</span><span class="score s8">8</span></div>
-        <h3><a href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzyh6810475.shtml" target="_blank">“老登经济”集体承压：房价跌两三成，劳力士从加价 10 万转为降价 <span class="hl">30%</span></a></h3>
-        <p class="sum">豪车、名表、文玩、普洱、地产与高端烟酒构成的“老登经济”集体承压：部分城市房价下跌两三成，某款劳力士从加价 10 万元转为降价 <span class="hl">30%</span>，BBA 销量腰斩；年轻人转向黄金保值与体验消费。</p>
-        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 这不是单个品类的周期，而是“面子消费”的定价权在代际间转移；做选品时，谁定义“值得”，比折扣力度更关键。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/wm/2026-11-03/doc-inixkzyh6810475.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-kuajie">消费·品牌</span><span class="score s7">7</span></div>
+        <h3><a href="https://www.cnr.cn/mspd/msgc/qwfb/20261103/t20261103_527860875.shtml" target="_blank">钟薛高淡季“复活”：轻牛乳四支装 <span class="hl">46 元</span>，单支约 12 元</a></h3>
+        <p class="sum">破产重整后的钟薛高在淡季重新开售，轻牛乳四支装标价 46 元，折合单支约 12 元；相比此前的高价定位明显下探，选择在雪糕淡季复出。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 品牌重启先修价格锚，再谈渠道；淡季开售是用低流量成本测试新定价，而不是追求短期销量。做选品时，价格带复位往往比故事更重要。</p>
+        <div class="foot"><span class="src">央广网 · 11-03</span><a class="orig" href="https://www.cnr.cn/mspd/msgc/qwfb/20261103/t20261103_527860875.shtml" target="_blank">原文 →</a></div>
       </article>
 
       <article class="card">
-        <div class="meta"><span class="tag tag-kuajie">全球·产业</span><span class="score s8">8</span></div>
-        <h3><a href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyk2420807.shtml" target="_blank">拉美 AI 路线：到 2030 年带动区域 GDP 增长 <span class="hl">5.6%</span>，多国共建开源大模型</a></h3>
-        <p class="sum">美洲开发银行预计，AI 到 2030 年可带动拉美区域 GDP 增长 <span class="hl">5.6%</span>；巴西计划投入 <span class="hl">230 亿雷亚尔</span>建设超算与语言模型，智利推出 177 项举措，多国共建开源大模型 Latam-GPT。</p>
-        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 新兴市场选择“开源 + 本地语言 + 公共算力”的组合，说明 AI 基建不只有一条硅谷路径；出海业务要重新评估本地化模型与数据主权。</p>
-        <div class="foot"><span class="src">新浪财经 · 11-03</span><a class="orig" href="http://finance.sina.com.cn/jjxw/2026-11-03/doc-inixkzyk2420807.shtml" target="_blank">原文 →</a></div>
+        <div class="meta"><span class="tag tag-kuajie">科学·传播</span><span class="score s7">7</span></div>
+        <h3><a href="https://www.qbitai.com/2026/11/507339.html" target="_blank">B站超级科学晚：脑机接口、人造太阳同台，累计观看超 <span class="hl">23 亿</span>小时</a></h3>
+        <p class="sum">2026 年 10 月 31 日，B站超级科学晚在北京举办，展示脑机接口、人造太阳等前沿科技；郑辉演示多人脑电互动，王腾分享核聚变进展。相关内容累计观看超 23 亿小时，133 万 UP 主参与。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 硬科技正在用综艺化表达争夺注意力；对内容与带货团队，科学议题的“可信度 + 观赏性”是一种可复用的内容结构。</p>
+        <div class="foot"><span class="src">量子位 · 11-03</span><a class="orig" href="https://www.qbitai.com/2026/11/507339.html" target="_blank">原文 →</a></div>
       </article>
     </section>
 
@@ -407,19 +392,19 @@
     <section id="research" class="grid">
       <div class="sec-title">前沿研究<span class="count">3</span></div>
 
-      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">上下文迁移</span><div class="rc">
-        <h4><a href="https://arxiv.org/abs/2610.42116" target="_blank">arXiv：ACCT 跨 LLM 迁移上下文，KV cache 缩 <span class="hl">75%</span> 仍不掉点，提速 6.5-21.2 倍</a></h4>
-        <p class="ract">论文提出非对称跨 LLM 上下文迁移方法 ACCT：在约 1.9 万 token 的上下文下，实现 <span class="hl">6.5-21.2 倍</span>加速；把 KV cache 缩小 75% 后，性能仍匹配或超过基线。启示：长上下文的瓶颈不只在显存，还在“搬运”；跨模型复用上下文，可能让“换模型”不再等于“重跑一遍”。</p>
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">模拟计算</span><div class="rc">
+        <h4><a href="https://www.qbitai.com/2026/11/507367.html" target="_blank">北大联合 IBM 定义“现代模拟计算”：矩阵方程一步求解，耗时 <span class="hl">&lt;100ns</span></a></h4>
+        <p class="ract">北大孙仲团队联合 IBM 等提出以阻变存储器矩阵为核心的“现代模拟计算”，安纳智芯芯片一步求解矩阵方程，耗时不到 100 纳秒、精度达 FP32 级；相比 GPU 需百次迭代，能效高百倍、吞吐千倍、成本低十倍。启示：若矩阵求解从“迭代”变成“物理一步”，边缘具身与 6G 的功耗约束会明显松动。</p>
       </div></div>
 
-      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">长程 Agent</span><div class="rc">
-        <h4><a href="https://arxiv.org/abs/2610.41564" target="_blank">arXiv：VBL 让长程 agent 失败后“回退到可验证状态”，AppWorld 最高提升 <span class="hl">22.07</span> 个百分点</a></h4>
-        <p class="ract">论文提出 Verify-Backtrack Loop（VBL），通过结构化的前置条件恢复，让长程 agent 在失败后回退到可验证状态；在 AppWorld 上较 ReAct 最高提升 <span class="hl">22.07</span> 个百分点。启示：长程任务的失败往往不是“不会做”，而是“忘了做到哪”；把状态显式化、可回滚，比继续堆上下文更有效。</p>
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">世界模型</span><div class="rc">
+        <h4><a href="https://www.qbitai.com/2026/11/507031.html" target="_blank">清华姚期智团队 AWM：ARC-AGI-3 通关率 <span class="hl">99.9%</span>，平均步数仅人类 43%</a></h4>
+        <p class="ract">代数世界模型（AWM）用“探索—凝炼—证明”三步，借范畴论把现象抽象为形式化断言；在 ARC-AGI-3 上通关率 99.9%，平均步数为人类的 43%，并能判断“无解”情形。启示：世界模型开始输出“证明”而不只是答案，可验证性会比跑分更能决定它能否进生产。</p>
       </div></div>
 
-      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">权重编程</span><div class="rc">
-        <h4><a href="https://www.qbitai.com/2026/11/507322.html" target="_blank">MIT：只改 <span class="hl">0.016%</span> 权重，Qwen 0.8B 数学得分从 7.9% 升到 48.1%</a></h4>
-        <p class="ract">MIT 团队提出“权重空间编程”：不改提示词、不重训，只修改 Qwen 0.8B 约 0.016% 的权重，就把 MATH-500 得分从 7.9% 提升到 <span class="hl">48.1%</span>，约 6 倍。启示：如果能力可以通过极小范围的权重编辑获得，“大模型 + 小补丁”会成为一种新的交付形态；但可解释性与安全性仍需单独验证。</p>
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">GUI Agent</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2611.03634" target="_blank">arXiv WebHarbor：<span class="hl">153 个</span>Docker 化网站、3518 个任务，给 GUI agent 一个可复现环境</a></h4>
+        <p class="ract">WebHarbor 把真实网站工作流重构为 153 个 Docker 化环境，包含 3518 个任务，解决 GUI agent 评测环境不稳定的问题；Qwen 4B 在其上训练后，于四个基准测试中表现领先。启示：agent 评测正从“静态截图”转向“可复现的真实网站”，环境标准化是规模化的前提。</p>
       </div></div>
     </section>
 
