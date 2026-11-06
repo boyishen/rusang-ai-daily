@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如桑的AI日报 · 2026-11-06</title>
+<style>
+  :root{
+    --bg:#080b12; --bg2:#0d1220; --card:#111726; --card2:#151c2e;
+    --line:#1e2740; --txt:#e6ebf5; --sub:#9aa7c2; --dim:#6b7896;
+    --accent:#6ea8fe; --green:#22c55e; --orange:#f59e0b; --red:#ef4444;
+    --t-tuoguan:#a78bfa; --t-xuanpin:#fbbf24; --t-ka:#22d3ee; --t-pan:#34d399; --t-kuajie:#fb7185; --t-luodi:#f472b6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:radial-gradient(1200px 700px at 80% -10%,#15203a 0%,var(--bg) 55%) fixed,var(--bg);
+    color:var(--txt);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;padding-bottom:80px}
+
+  .main-header{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    padding:48px 0 20px;margin-bottom:36px;border-bottom:1px solid var(--line)
+  }
+  .main-header h1{font-size:28px;font-weight:800;letter-spacing:-.3px}
+  .main-header .status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-top:4px;white-space:nowrap}
+  .main-header .status .dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+  .main-header .status .label{color:var(--green);font-weight:600}
+
+  section{margin-bottom:44px;scroll-margin-top:20px}
+  .sec-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .sec-title .count{font-size:12px;color:var(--dim);font-weight:400;border:1px solid var(--line);border-radius:10px;padding:0 8px;margin-left:4px}
+  .sec-title::before{content:"";width:4px;height:16px;border-radius:2px;background:linear-gradient(180deg,var(--accent),rgba(110,168,254,.25));flex:none}
+
+  .insight{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;margin-bottom:8px}
+  .insight .insight-head{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--sub);margin-bottom:16px}
+  .insight .insight-head .star{color:var(--orange);font-size:16px}
+  .insight .insight-head .by{color:var(--dim);font-size:12px}
+  .insight .intro{font-size:15px;color:var(--sub);margin-bottom:18px;line-height:1.7}
+  .insight .item{margin-bottom:18px}
+  .insight .item:last-child{margin-bottom:0}
+  .insight .item .idx{color:var(--accent);font-weight:700;font-size:14px;margin-right:6px}
+  .insight .item .ititle{display:inline;font-weight:700;font-size:15px;color:var(--txt)}
+  .insight .item .ititle a{font-weight:700}
+  .insight .item .ibody{color:var(--sub);font-size:14px;margin-top:4px;line-height:1.65}
+  .hl{color:#fbbf24;font-weight:700}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:8px;transition:.18s}
+  .card:hover{background:var(--card2);border-color:#2a3554;transform:translateY(-1px)}
+  .card .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:var(--dim)}
+  .card .meta .tag{font-size:11px;font-weight:600;border-radius:5px;padding:1px 8px}
+  .tag-tuoguan{background:rgba(167,139,250,.18);color:var(--t-tuoguan)}
+  .tag-xuanpin{background:rgba(251,191,36,.18);color:var(--t-xuanpin)}
+  .tag-ka{background:rgba(34,211,238,.18);color:var(--t-ka)}
+  .tag-pan{background:rgba(52,211,153,.18);color:var(--t-pan)}
+  .tag-kuajie{background:rgba(251,113,133,.18);color:var(--t-kuajie)}
+  .tag-luodi{background:rgba(244,114,182,.18);color:var(--t-luodi)}
+  .card .score{margin-left:auto;font-size:11px;font-weight:800;width:24px;height:24px;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:#0a0d15;flex:none}
+  .s9{background:linear-gradient(135deg,#ff7a7a,#ff4d4d)}
+  .s8{background:linear-gradient(135deg,#ffb15d,#ff9028)}
+  .s7{background:linear-gradient(135deg,#ffd97a,#ffc23d)}
+  .s6{background:linear-gradient(135deg,#9fb0d0,#7c8db0)}
+  .card h3{font-size:15px;font-weight:700;line-height:1.5;margin-bottom:6px}
+  .card .sum{font-size:13.5px;color:var(--sub);line-height:1.6;margin-bottom:8px}
+  .card .ins{border-left:3px solid var(--accent);padding:6px 12px;font-size:13px;color:var(--txt);
+    background:rgba(110,168,254,.08);border-radius:0 6px 6px 0;line-height:1.6}
+  .card .ins b{color:var(--accent);margin-right:4px}
+  .card .ins-hook{border-left-color:var(--orange);background:rgba(245,158,11,.08)}
+  .card .ins-hook b{color:var(--orange)}
+  .card .ins-pos{border-left-color:var(--green);background:rgba(34,197,94,.08)}
+  .card .ins-pos b{color:var(--green)}
+  .card .ins-neg{border-left-color:var(--red);background:rgba(239,68,68,.08)}
+  .card .ins-neg b{color:var(--red)}
+  .card .points{list-style:none;margin:0 0 10px;padding:0}
+  .card .points li{font-size:13px;color:var(--sub);line-height:1.65;padding-left:16px;position:relative;margin-bottom:5px}
+  .card .points li:last-child{margin-bottom:0}
+  .card .points li::before{content:"▸";position:absolute;left:2px;top:0;color:var(--accent);font-size:12px}
+  .card .foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:11.5px;color:var(--dim)}
+  .card .foot .src{color:var(--dim)}
+  .card .foot .orig{color:var(--accent);font-weight:600;margin-left:auto}
+  .card .foot .orig:hover{text-decoration:underline}
+
+  .row{display:flex;gap:12px;align-items:flex-start;background:var(--bg2);border:1px solid var(--line);
+    border-radius:10px;padding:12px 16px;margin-bottom:8px;transition:.18s}
+  .row:hover{background:var(--card);border-color:#2a3554;transform:translateY(-1px)}
+  .row .rc{flex:1;min-width:0}
+  .row h4{font-size:14px;font-weight:700;line-height:1.5;margin-bottom:4px}
+  .row .ract{font-size:13px;color:var(--sub);line-height:1.6}
+
+  .grid .card,.grid .row{margin-bottom:0}
+
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--dim);line-height:1.8}
+
+  .nav-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .nav-bar a{display:flex;align-items:center;gap:5px;font-size:13px;color:var(--sub);
+    background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;transition:.15s;white-space:nowrap}
+  .nav-bar a:hover{background:var(--card);color:var(--txt);border-color:#2a3554;text-decoration:none}
+  .nav-bar a .ncount{font-size:11px;color:var(--dim);background:var(--card);border-radius:8px;padding:0 6px;min-width:18px;text-align:center}
+  .nav-bar a.nav-archive{background:rgba(110,168,254,.16);border-color:var(--accent);color:var(--accent);font-weight:700}
+  .nav-bar a.nav-archive:hover{background:var(--accent);color:#0a0d15;border-color:var(--accent)}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .grid > .sec-title{grid-column:1/-1}
+
+  @media(max-width:640px){
+    .main-header{flex-direction:column;gap:8px;padding-top:32px}
+    .grid{grid-template-columns:1fr}
+    .insight{padding:20px 16px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <main>
+
+    <header class="main-header">
+      <h1>如桑的AI日报</h1>
+      <div class="status"><span class="dot"></span><span class="label">今日已更新</span> · 2026年11月6日 星期五</div>
+    </header>
+
+    <nav class="nav-bar">
+      <a href="#insight">今日洞见</a>
+      <a href="#ecom">电商·联盟<span class="ncount">5</span></a>
+      <a href="#practice">落地实践<span class="ncount">3</span></a>
+      <a href="#cn">国内速递<span class="ncount">3</span></a>
+      <a href="#voices">大佬说<span class="ncount">3</span></a>
+      <a href="#oss">开源热项<span class="ncount">3</span></a>
+      <a href="#hot">全球热榜<span class="ncount">3</span></a>
+      <a href="#cross">跨界视野<span class="ncount">3</span></a>
+      <a href="#research">前沿研究<span class="ncount">3</span></a>
+      <a class="nav-archive" href="/rusang-ai-daily/archive/">往期存档</a>
+    </nav>
+
+    <!-- ============ 今日洞见 ============ -->
+    <section id="insight">
+      <div class="sec-title">今日洞见</div>
+      <div class="insight">
+        <div class="insight-head"><span class="star">★</span> 编辑视角 <span class="by">· by AI</span></div>
+        <p class="intro">11 月 5 日至 6 日，AI 行业同时给出三张账单：谷歌把视频模型价格再砍 <span class="hl">30%</span>，苹果把工程师的日 AI 额度从 300 美元压到 <span class="hl">200 美元</span>，双 11 则把“AI 导购”写进真实入口——千问月活超 <span class="hl">3 亿</span>、京言咨询用户近 8000 万。能力还在涨，但买单的人开始逐项核对：便宜多少、用掉多少、谁在真正用。</p>
+
+        <div class="item">
+          <span class="idx">01</span>
+          <span class="ititle"><a href="https://www.ithome.com/1/023/026.htm" target="_blank">谷歌 Gemini Omni 1.2 Flash：原生 <span class="hl">15 秒</span>视频，价格再降 <span class="hl">30%</span></a></span>
+          <div class="ibody">谷歌发布 Gemini Omni 1.2 Flash，原生支持 15 秒视频生成与编辑，分辨率覆盖 720p 至 4K，价格较 1.1 版下降 30%；发布即拿下视频生成两项榜单第一，排在 Grok、Seedance 之前。启示：视频模型的竞争从“能不能生成”转向“每分钟多少钱、能不能直接交付”。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">02</span>
+          <span class="ititle"><a href="https://www.ithome.com/1/022/479.htm" target="_blank">苹果削减内部 AI 预算：工程师日额度 300 → <span class="hl">200 美元</span>，降幅 <span class="hl">33%</span></a></span>
+          <div class="ibody">彭博社称苹果收紧员工 AI 使用预算：部分工程师每日额度从 300 美元降至 200 美元，部分工程师可能进一步降到 100 美元，非工程团队额度或低至 25 美元；微软、特斯拉、Uber、Meta 也在设置 token 或订阅上限。启示：大厂进入“算账时代”，AI 工具采购会从“按人头发放”转向“按产出核额”。</div>
+        </div>
+
+        <div class="item">
+          <span class="idx">03</span>
+          <span class="ititle"><a href="https://m.10jqka.com.cn/20261105/c681477050.shtml" target="_blank">双 11 把 AI 导购搬到入口：千问月活超 <span class="hl">3 亿</span>，京言咨询用户近 <span class="hl">8000 万</span></a></span>
+          <div class="ibody">2026 双 11，平台规则做减法、AI 做加法：天猫千问月活超过 3 亿，京东“京言”咨询用户近 8000 万，抖音上线“买前问豆包”，拼多多落地 AI 搜索与 AI 试衣间。启示：AI 导购不再只是客服工具，而是在重写“搜索—比较—下单”的路径；商家要准备的，是能被 AI 读懂的商品信息。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 电商·联盟聚焦 ============ -->
+    <section id="ecom" class="grid">
+      <div class="sec-title">电商 · 联盟聚焦<span class="count">5</span></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">AI入口</span><div class="rc">
+        <h4><a href="https://m.10jqka.com.cn/20261105/c681477050.shtml" target="_blank">双 11 平台 AI 导购起量：千问 <span class="hl">3 亿</span>月活、京言 <span class="hl">8000 万</span>咨询用户</a></h4>
+        <p class="ract">天猫千问月活超 3 亿；京东“京言”咨询用户近 8000 万；抖音“买前问豆包”上线，拼多多落地 AI 搜索与 AI 试衣间。启示：入口从搜索框迁移到对话后，商品标题、卖点、评价与库存的“可被 AI 读取”程度，会直接影响被推荐的概率。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-tuoguan" style="margin-top:2px;flex:none">会员运营</span><div class="rc">
+        <h4><a href="https://www.ebrun.com/20261106/718415.shtml" target="_blank">小红书推 <span class="hl">66 元</span>年费“小红卡”：积分抵扣、专属券、退货包运费</a></h4>
+        <p class="ract">小红书上线年费 66 元的电商会员卡，权益包括积分抵扣、专属券与退货包运费；同期董宇辉自营单品累计销量超 7 亿元。启示：会员卡把“一次性成交”改成“年度关系”，平台在用低门槛年费锁定复购与退货体验。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">代理规则</span><div class="rc">
+        <h4><a href="https://www.tmtpost.com/8190926.html" target="_blank">巨量引擎 2027 年起取消代理商返点，改为考核制与排名制激励</a></h4>
+        <p class="ract">巨量引擎宣布自 2027 年 1 月 1 日起取消返点，改为“考核制与排名制”激励；代理商利润从返点转向服务费，纯流水型代理将加速出清。启示：投放服务从“拿返点”转向“拿结果”，服务商的报价方式与能力证明都要重做。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-xuanpin" style="margin-top:2px;flex:none">供给变化</span><div class="rc">
+        <h4><a href="https://m.ebrun.com/718373.html" target="_blank">双 11 期间 <span class="hl">182 个</span>新品牌冲进天猫各行业 TOP10，最快 1 年登顶</a></h4>
+        <p class="ract">天猫双 11 期间，182 个入驻不到 5 年的新品牌进入行业 TOP10，最快 1 年冲顶；覆盖个护、灯具、家具等类目，Off&amp;Relax 升至第 2，拓竹 5 年做到办公用品第 1。启示：新品牌靠细分场景切走头部份额，选品时“新供给”比“大牌平替”更值得跟踪。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-pan" style="margin-top:2px;flex:none">跨境变量</span><div class="rc">
+        <h4><a href="https://www.cls.cn/detail/2212188" target="_blank">美国 301 关税豁免临近 <span class="hl">11 月 10 日</span>到期，跨境备货进入倒计时</a></h4>
+        <p class="ract">美国此前将部分中国产品的 301 关税豁免延长至 2026 年 11 月 10 日，距今不足 5 天；豁免清单覆盖的品类与金额需以 USTR 公告为准。启示：跨境卖家要把“豁免到期”当作备货与定价的硬约束，提前准备替代供应链与清关方案。</p>
+      </div></div>
+    </section>
+
+    <!-- ============ AI 落地实践 ============ -->
+    <section id="practice">
+      <div class="sec-title">AI 落地实践<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.ebrun.com/20261105/718371.shtml" target="_blank">李宁把 <span class="hl">50 个</span> AI 智能体“编入组织”：年等效 <span class="hl">46 万小时</span>，约 220 名员工</a></h3>
+        <p class="sum">李宁将 50 个 AI 智能体编入组织，覆盖设计、供应链与终端场景；官方口径年等效 46 万小时，约等于 220 名员工，其中数字店长占三分之二。</p>
+        <ul class="points">
+          <li>卡点：AI 工具停在“个人提效”，没有进入岗位、流程与考核，规模一大就回到手工</li>
+          <li>做法：把智能体按岗位编入组织，数字店长占 2/3，先跑设计、供应链、终端三类高频场景</li>
+          <li>成效：50 个智能体、年等效 46 万小时、约 220 名员工的工作量</li>
+          <li>边界：“等效人力”不等于裁员或替代，岗位职责、复核与责任归属仍需重写</li>
+        </ul>
+        <p class="ins ins-pos"><b>→ 组织重构:</b> 先把 Agent 当“岗位”而不是“工具”，再谈编制与考核；否则效率只停留在个人层面，组织不会真正变化。</p>
+        <div class="foot"><span class="src">亿邦动力 · 11-05</span><a class="orig" href="https://www.ebrun.com/20261105/718371.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="https://news.sina.com.cn/zx/gj/2026-11-02/doc-inixipxc9403312.shtml" target="_blank">AI 客服“承诺不算数”：2026 年投诉超 <span class="hl">5300 条</span>，中消协点名案例</a></h3>
+        <p class="sum">“人民直击”调查显示，AI 客服的承诺与实际履约不一致：中消协披露案例中，AI 称报价含过户费，消费者实际仍被收取 1000 元；2026 年相关投诉超过 5300 条。</p>
+        <ul class="points">
+          <li>卡点：AI 客服被当成“会说话的 FAQ”，没有权限、没有边界，也无人对承诺负责</li>
+          <li>做法：律师明确“经营者部署的 AI 客服，其服务行为等同于经营者服务行为”</li>
+          <li>成效：2026 年相关投诉超过 5300 条，中消协案例中单笔多收 1000 元</li>
+          <li>边界：仅靠提示词约束不够，需要“不可承诺清单 + 人工兜底 + 全程留痕”</li>
+        </ul>
+        <p class="ins ins-neg"><b>→ 避坑清单:</b> 上线 AI 客服前先划三条线：不能承诺什么、什么必须转人工、每一句承诺由谁负责；否则省下的人工成本会变成投诉与赔付。</p>
+        <div class="foot"><span class="src">新浪新闻 · 11-02</span><a class="orig" href="https://news.sina.com.cn/zx/gj/2026-11-02/doc-inixipxc9403312.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-luodi">落地实践</span><span class="score s8">8</span></div>
+        <h3><a href="https://m.chinaventure.com.cn/news/80-20261031-393852.html" target="_blank">Getty Images 破产重组：市值从 <span class="hl">110 亿美元</span>跌至约 589 万美元</a></h3>
+        <p class="sum">图库巨头 Getty Images 申请破产保护并推进私有化：市值从约 110 亿美元跌至约 589 万美元，债务约 21 亿美元；2025 年营收 9.8 亿美元，代理与 iStock 收入下滑约 40%。</p>
+        <ul class="points">
+          <li>卡点：AI 生成图片替代授权素材，传统“按张授权”的收入模型被直接绕开</li>
+          <li>做法：申请破产保护、重组债务并私有化，试图用更轻的资产负债表换时间</li>
+          <li>成效：市值从 110 亿美元跌至约 589 万美元；债务 21 亿美元；代理与 iStock 收入下滑 40%</li>
+          <li>边界：起诉 Stability AI 未获支持，法院认为模型权重不构成版权侵权，版权护城河失效</li>
+        </ul>
+        <p class="ins ins-neg"><b>→ 风险信号:</b> 内容生意的护城河不在“拥有素材”，而在“持续生产 + 授权链路 + 客户关系”；只卖库存，会被生成式模型直接跳过。</p>
+        <div class="foot"><span class="src">投中网 · 10-31</span><a class="orig" href="https://m.chinaventure.com.cn/news/80-20261031-393852.html" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 国内速递 ============ -->
+    <section id="cn" class="grid">
+      <div class="sec-title">国内速递<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">模型开源</span><span class="score s9">9</span></div>
+        <h3><a href="https://m.leiphone.com/category/industrynews/XOv7MDFAP99kUMEW.html" target="_blank">百度开源文心 5.5 Flash Base：<span class="hl">2800 亿</span>总参数、<span class="hl">140 亿</span>激活</a></h3>
+        <p class="sum">百度 11 月 5 日开源文心 5.5 Flash Base，总参数 2800 亿、激活 140 亿，采用稀疏激活；官方称在多基准测试中刷新同尺寸模型 SOTA，超过 DeepSeek-V4-Flash-Base 等模型。</p>
+        <p class="ins ins-pos"><b>→ 开源信号:</b> 大模型开源从“给权重”转向“给可部署的尺寸”：总参数大、激活小，意味着单卡/小集群也能跑，应用层的算力门槛继续下降。</p>
+        <div class="foot"><span class="src">雷峰网 · 11-05</span><a class="orig" href="https://m.leiphone.com/category/industrynews/XOv7MDFAP99kUMEW.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">智能体平台</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.ithome.com/1/023/011.htm" target="_blank">DeepSeek Harness 日活 <span class="hl">154 万</span>：日耗 <span class="hl">92 万亿</span> Token，3.5 万插件</a></h3>
+        <p class="sum">DeepSeek Harness 披露运营数据：日活 154 万，日消耗 Token 约 92 万亿；平台已有 3.5 万个第三方插件，60% 用户使用插件，官方将上线插件市场。</p>
+        <p class="ins"><b>→ 生态信号:</b> Agent 平台的竞争点从“模型多强”转向“插件多不多、调用顺不顺”；插件市场一旦形成，工作流会被封装成可复用能力。</p>
+        <div class="foot"><span class="src">IT之家 · 11-06</span><a class="orig" href="https://www.ithome.com/1/023/011.htm" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">流量结构</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ithome.com/1/023/093.htm" target="_blank">中国移动：手机流量增长 <span class="hl">18%</span>，AI 生成内容带动流量增长 <span class="hl">5 倍</span></a></h3>
+        <p class="sum">中国移动在 11 月 6 日大会上表示，2026 年手机上网流量增长 18%，AI 生成内容带动流量增长 5 倍，成为流量增长的主要引擎。</p>
+        <p class="ins"><b>→ 数据基建:</b> 流量结构正在被 AI 内容改写：视频、图像、Agent 调用都在推高上行与下行；做内容分发的人，要把“AI 生成占比”纳入容量与成本模型。</p>
+        <div class="foot"><span class="src">IT之家 · 11-06</span><a class="orig" href="https://www.ithome.com/1/023/093.htm" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 大佬说 ============ -->
+    <section id="voices" class="grid">
+      <div class="sec-title">大佬说<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">算力判断</span><span class="score s8">8</span></div>
+        <h3><a href="https://news.qq.com/rain/a/20261103A086AQ00" target="_blank">蔡崇信：AI 需求持续攀升，算力供不应求</a></h3>
+        <p class="sum">阿里巴巴董事会主席蔡崇信在 2026 年乌镇峰会上表示：“AI 需求持续攀升，算力供不应求。”这一判断出现在模型价格持续下行的背景下。</p>
+        <p class="ins ins-neg"><b>→ 算力约束:</b> 价格下降与算力紧张同时发生，说明“便宜”来自规模与效率，不是供给过剩；做 AI 预算时，要把“排队与限流”当成隐性成本。</p>
+        <div class="foot"><span class="src">腾讯新闻 · 11-03</span><a class="orig" href="https://news.qq.com/rain/a/20261103A086AQ00" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">研究复核</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.qbitai.com/2026/11/507782.html" target="_blank">spaCy 作者 Honnibal：MIT“权重编程”研究偷换概念</a></h3>
+        <p class="sum">spaCy 作者 Matthew Honnibal 公开质疑 MIT 的“权重空间编程”研究：Astra 修改 Qwen 权重时使用了 Python 编程与 50 次前向测试，并非“只读权重”；原称 MATH-500 从 7.9% 提升到 48.1%，但实验条件不同。</p>
+        <p class="ins ins-neg"><b>→ 复核提醒:</b> 看到“只改 0.016% 参数、能力涨 6 倍”这类结论，先问三件事：基线是否同条件、测试是否参与训练、复现是否独立。</p>
+        <div class="foot"><span class="src">量子位 · 11-05</span><a class="orig" href="https://www.qbitai.com/2026/11/507782.html" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">组织设计</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ebrun.com/20261105/718371.shtml" target="_blank">李宁李飞：把 AI 编入组织，“这不是效率问题，是在做新的事情”</a></h3>
+        <p class="sum">李宁将 50 个 AI 智能体编入组织，年等效 46 万小时、约 220 名员工；负责人李飞称：“这不是效率问题，是在做新的事情。”数字店长占三分之二，覆盖设计、供应链与终端。</p>
+        <p class="ins ins-pos"><b>→ 组织设计:</b> 当 Agent 进入岗位，管理问题就从“买不买工具”变成“怎么设岗、怎么考核、谁来复核”；先改组织，再谈规模化。</p>
+        <div class="foot"><span class="src">亿邦动力 · 11-05</span><a class="orig" href="https://www.ebrun.com/20261105/718371.shtml" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 开源热项 ============ -->
+    <section id="oss" class="grid">
+      <div class="sec-title">开源热项<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">推理层</span><span class="score s9">9</span></div>
+        <h3><a href="https://github.com/NVIDIA/auto-ontology" target="_blank">NVIDIA/auto-ontology：今日 +<span class="hl">2679</span> stars，把推理层从模型里拆出来</a></h3>
+        <p class="sum">NVIDIA 开源的 Python 框架，在数据之上构建语义化、图结构的推理层，强调确定性推理；GitHub 约 7539 stars，今日新增约 2679，位列 Trending 第一。</p>
+        <p class="ins"><b>→ 工程路径:</b> 把“推理层”与“模型层”解耦，业务规则可以独立于模型迭代维护；对需要可解释性的场景，这比堆 prompt 更稳。</p>
+        <div class="foot"><span class="src">GitHub · NVIDIA</span><a class="orig" href="https://github.com/NVIDIA/auto-ontology" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">电脑操作</span><span class="score s8">8</span></div>
+        <h3><a href="https://github.com/vercel-labs/agent-desktop" target="_blank">vercel-labs/agent-desktop：今日 +<span class="hl">2173</span> stars，给 Agent 一个桌面 CLI</a></h3>
+        <p class="sum">Vercel Labs 开源的 Rust 项目，为 AI Agent 提供 computer use 的命令行入口；GitHub 约 1.7 万 stars，今日新增约 2173。</p>
+        <p class="ins ins-pos"><b>→ 入口基建:</b> Agent 要从“会聊天”走到“会操作”，桌面级 CLI 是低成本的第一步；但权限、沙箱与操作审计必须同步设计。</p>
+        <div class="foot"><span class="src">GitHub · vercel-labs</span><a class="orig" href="https://github.com/vercel-labs/agent-desktop" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-ka">闲鱼监控</span><span class="score s7">7</span></div>
+        <h3><a href="https://github.com/Usagi-org/ai-goofish-monitor" target="_blank">ai-goofish-monitor：用 AI 监控闲鱼，今日 +<span class="hl">240</span> stars</a></h3>
+        <p class="sum">Python 项目，用 AI 对闲鱼商品进行监控与筛选；GitHub 约 1.77 万 stars，今日新增约 240。适合观察二手供给、价格波动与稀缺商品。</p>
+        <p class="ins"><b>→ 运营工具:</b> 二手平台的“非标供给 + 实时价格”是天然的数据源；把监控做成常驻任务，比人工蹲守更能发现价格异常与套利窗口。</p>
+        <div class="foot"><span class="src">GitHub · Usagi-org</span><a class="orig" href="https://github.com/Usagi-org/ai-goofish-monitor" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 全球热榜 ============ -->
+    <section id="hot" class="grid">
+      <div class="sec-title">全球热榜<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">视频模型</span><span class="score s9">9</span></div>
+        <h3><a href="https://www.ithome.com/1/023/026.htm" target="_blank">Gemini Omni 1.2 Flash 双榜第一：原生 <span class="hl">15 秒</span>视频，价格再降 <span class="hl">30%</span></a></h3>
+        <p class="sum">谷歌 11 月 5 日发布 Gemini Omni 1.2 Flash，原生支持 15 秒视频生成与编辑，分辨率覆盖 720p 至 4K，价格较 1.1 版下降 30%；发布即拿下视频生成两项榜单第一，领先 Grok、Seedance。</p>
+        <p class="ins ins-pos"><b>→ 成本曲线:</b> 视频生成进入“按秒计价”的淘汰赛：谁能把时长、分辨率与价格同时压到位，谁就能先进入商家的日常素材链路。</p>
+        <div class="foot"><span class="src">IT之家 · 11-06</span><a class="orig" href="https://www.ithome.com/1/023/026.htm" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">硬件账本</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.cls.cn/detail/2525628" target="_blank">Snap 财报后跌超 <span class="hl">10%</span>：Q4 营收指引 19.5–19.9 亿美元</a></h3>
+        <p class="sum">Snap 公布财报后股价盘后跌超 10%：公司预计第四财季营收 19.5 亿至 19.9 亿美元，市场预估 19.6 亿美元；其 AI 眼镜 Specs 定价 2195 美元，硬件投入与盈利仍在赛跑。</p>
+        <p class="ins ins-neg"><b>→ 硬件账本:</b> AI 硬件的叙事很贵：眼镜、算力、内容生态都要先投入，收入却按季度验证；做硬件相关生意，先看现金流与复购，不看发布会。</p>
+        <div class="foot"><span class="src">财联社 · 11-05</span><a class="orig" href="https://www.cls.cn/detail/2525628" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-pan">开放权重</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ithome.com/1/023/158.htm" target="_blank">Ripple-65B：<span class="hl">650 亿</span>参数开放权重，TerminalBench 2.1 超过更大模型</a></h3>
+        <p class="sum">Ricursive Intelligence 于 11 月 4 日发布 Ripple-65B，参数 650 亿、开放权重稠密模型；官方称其在美国开放权重模型中智能体编程表现最佳，在 TerminalBench 2.1 上超过更大规模竞品。</p>
+        <p class="ins"><b>→ 模型供给:</b> 开放权重模型的竞争从“参数规模”转向“单位成本下的编程/工具调用能力”；对应用方，选型要多看任务基准，少看参数量。</p>
+        <div class="foot"><span class="src">IT之家 · 11-04</span><a class="orig" href="https://www.ithome.com/1/023/158.htm" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 跨界视野 ============ -->
+    <section id="cross" class="grid">
+      <div class="sec-title">跨界视野<span class="count">3</span></div>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">通信·基础设施</span><span class="score s8">8</span></div>
+        <h3><a href="https://www.ithome.com/1/022/917.htm" target="_blank">诺基亚预测：到 2035 年 AI 驱动全球约 <span class="hl">44%</span> 的网络流量</a></h3>
+        <p class="sum">诺基亚 11 月 5 日发布预测：到 2035 年，AI 将驱动全球约 44% 的网络流量；全球月度总流量将达 3789 EB，较 2026 年增长近四倍；智能体 AI 流量预计达 2026 年的 160 倍，物理 AI 达 105 倍。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 网络流量的结构变化，往往早于商业模式的变化；当“Agent 调用”成为流量主体，按人头/按设备计的套餐逻辑会被重写。</p>
+        <div class="foot"><span class="src">IT之家 · 11-05</span><a class="orig" href="https://www.ithome.com/1/022/917.htm" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">消费·政策</span><span class="score s7">7</span></div>
+        <h3><a href="https://www.chinanews.com.cn/cj/2026/11-05/10726826.shtml" target="_blank">海南离岛免税新政满一年：购物金额 <span class="hl">334.5 亿元</span></a></h3>
+        <p class="sum">海南离岛免税新政实施满一年，离岛免税购物金额达 334.5 亿元；政策自 2025 年 11 月 1 日起实施，这是新政落地后的首个完整年度。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 政策窗口能直接改变消费的地理分布；判断一个渠道的机会，先看“政策把交易推到哪里”，再看货架与履约。</p>
+        <div class="foot"><span class="src">中国新闻网 · 11-05</span><a class="orig" href="https://www.chinanews.com.cn/cj/2026/11-05/10726826.shtml" target="_blank">原文 →</a></div>
+      </article>
+
+      <article class="card">
+        <div class="meta"><span class="tag tag-kuajie">消费电子·产品周期</span><span class="score s7">7</span></div>
+        <h3><a href="https://www.ithome.com/1/023/033.htm" target="_blank">三星 SM-U700 通过 FCC 认证：疑为 <span class="hl">Galaxy Studio</span> 头戴耳机</a></h3>
+        <p class="sum">三星 SM-U700 头戴式耳机通过美国 FCC 认证，外界推测为 Galaxy Studio；预计 2027 年初随 Galaxy S27 发布，对标 AirPods Max，采用可旋转耳罩，提供黑、米两色，价格未披露。</p>
+        <p class="ins ins-hook"><b>→ 为什么值得看:</b> 一款产品从认证到发布通常要跨一个换机周期；看硬件路线，别只看发布会，认证与供应链的节奏更早暴露意图。</p>
+        <div class="foot"><span class="src">IT之家 · 11-06</span><a class="orig" href="https://www.ithome.com/1/023/033.htm" target="_blank">原文 →</a></div>
+      </article>
+    </section>
+
+    <!-- ============ 前沿研究 ============ -->
+    <section id="research" class="grid">
+      <div class="sec-title">前沿研究<span class="count">3</span></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">智能体运行</span><div class="rc">
+        <h4><a href="https://arxiv.org/abs/2611.05391" target="_blank">arXiv：给 Agent 看“已验证的运行时快照”，策略后悔值降低 <span class="hl">96.9%</span></a></h4>
+        <p class="ract">论文提出 Agent Harness Awareness：把工具调用时的运行时状态做成经过验证的遥测快照，再交给 Agent 决策；在工具使用任务上，策略后悔值降低 96.9%。启示：Agent 的“自我认知”不必靠更长的提示词，靠可验证的状态输入更便宜、更可靠。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">代码验证</span><div class="rc">
+        <h4><a href="https://arxiv.org/html/2611.05590v1" target="_blank">arXiv：<span class="hl">99.1%</span> 的验证通过率，只有 1.9% 真正绑定需求</a></h4>
+        <p class="ract">论文《Verified but Vacuous》拆解 LLM 代码验证的三类失败面：验证器给出 99.1% 的接受率，但只有 1.9% 的通过结果真正绑定到规格说明。启示：把“测试通过”当成“需求满足”是危险的；验收要检查测试是否覆盖真实约束，而不是只看绿灯。</p>
+      </div></div>
+
+      <div class="row"><span class="tag tag-ka" style="margin-top:2px;flex:none">Agent 记忆</span><div class="rc">
+        <h4><a href="https://www.sohu.com/a/1096739295_610300" target="_blank">openJiuwen Agent-Memory：视听双流记忆，召回精度最高提升 <span class="hl">45.7%</span>，时延降 <span class="hl">97%</span></a></h4>
+        <p class="ract">openJiuwen 上线 OmniMem-Lens，用视听双流按“事件”组织长视频记忆；实测召回精度最高提升 45.7%，时延降低 97%。启示：Agent 的记忆从“存全文”转向“存事件”，长视频、直播与会议场景的检索成本会被重算。</p>
+      </div></div>
+    </section>
+
+    <footer>
+      由 AI 每日联网检索聚合生成 · 面向 AI × 电商 / 联盟从业者视角 · 每日更新<br>
+      每条均标注原文出处链接与检索到的发布日期;影响力评分(6–9)与"→启示"为编辑判断,引用关键数据前建议点开原文核实。
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
